@@ -71,7 +71,7 @@ export default function ProductDetailPage() {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-zinc-950 flex items-center justify-center text-white text-sm">
+      <div className="min-h-screen bg-[#F8FAFC] flex items-center justify-center text-slate-700 text-sm font-semibold">
         Loading product details...
       </div>
     );
@@ -79,39 +79,36 @@ export default function ProductDetailPage() {
 
   if (!product) {
     return (
-      <div className="min-h-screen bg-zinc-950 flex flex-col items-center justify-center text-white space-y-4">
+      <div className="min-h-screen bg-[#F8FAFC] flex flex-col items-center justify-center text-slate-900 space-y-4">
         <h2 className="text-xl font-bold">Product Not Found</h2>
-        <button onClick={() => router.back()} className="px-4 py-2 bg-red-600 rounded-lg text-xs font-bold">
+        <button onClick={() => router.back()} className="px-4 py-2 bg-red-600 text-white rounded-xl text-xs font-bold shadow">
           Go Back
         </button>
       </div>
     );
   }
 
-  const is3D = product.vertical === '3d-printing';
   const isOut = product.stock <= 0;
 
   return (
-    <div className={`${is3D ? 'bg-zinc-950 text-white' : 'bg-white text-zinc-900'} min-h-screen py-10 px-4 sm:px-6 lg:px-8`}>
-      <div className="max-w-7xl mx-auto space-y-12">
+    <div className="bg-[#F8FAFC] text-slate-900 min-h-screen py-8 px-4 sm:px-8">
+      <div className="max-w-7xl mx-auto space-y-8">
         
         {/* Back Link */}
         <button
           onClick={() => router.back()}
-          className={`flex items-center space-x-2 text-xs font-bold px-3 py-1.5 rounded-lg border transition ${
-            is3D ? 'border-zinc-800 text-zinc-400 hover:text-white hover:bg-zinc-900' : 'border-zinc-200 text-zinc-600 hover:bg-zinc-100'
-          }`}
+          className="flex items-center space-x-2 text-xs font-bold px-4 py-2 rounded-xl border border-slate-300 bg-white text-slate-700 hover:bg-slate-100 transition shadow-2xs"
         >
           <ArrowLeft className="w-4 h-4" />
           <span>Back to Catalog</span>
         </button>
 
         {/* Main PDP Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
+        <div className="bg-white p-6 sm:p-8 rounded-3xl border border-slate-200/90 shadow-2xs grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
           
           {/* Left Column: Image Gallery */}
           <div className="lg:col-span-6">
-            <div className={`rounded-3xl overflow-hidden border shadow-xl ${is3D ? 'border-zinc-800 bg-zinc-900' : 'border-zinc-200 bg-zinc-50'}`}>
+            <div className="rounded-2xl overflow-hidden border border-slate-200 bg-slate-50 shadow-md">
               <img
                 src={product.image}
                 alt={product.name}
@@ -121,37 +118,32 @@ export default function ProductDetailPage() {
           </div>
 
           {/* Right Column: Title, Stock, Attributes, Add to Cart */}
-          <div className="lg:col-span-6 space-y-6">
+          <div className="lg:col-span-6 space-y-5">
             <div>
               <div className="flex items-center space-x-3 text-xs mb-2">
-                <span className="font-extrabold uppercase tracking-widest text-red-500">{product.brand}</span>
-                <span className="text-zinc-500">&bull;</span>
-                <span className="text-zinc-400 capitalize">{product.vertical} &bull; {product.category}</span>
+                <span className="font-black uppercase tracking-widest text-red-600">{product.brand}</span>
+                <span className="text-slate-300">&bull;</span>
+                <span className="text-slate-500 capitalize">{product.vertical} &bull; {product.category}</span>
               </div>
 
-              <h1 className="text-2xl sm:text-4xl font-black tracking-tight">{product.name}</h1>
+              <h1 className="text-2xl sm:text-3xl font-black text-slate-900 tracking-tight">{product.name}</h1>
 
-              {/* Star rating */}
-              <div className="flex items-center space-x-2 mt-3">
-                <div className="flex items-center space-x-1 text-amber-400">
-                  {[...Array(5)].map((_, i) => (
-                    <Star
-                      key={i}
-                      className={`w-4 h-4 ${i < Math.floor(product.rating) ? 'fill-amber-400' : 'text-zinc-600'}`}
-                    />
-                  ))}
+              {/* Rating badge */}
+              <div className="flex items-center space-x-3 mt-3">
+                <div className="flex items-center space-x-1 bg-emerald-700 text-white text-xs font-black px-2 py-0.5 rounded-md">
+                  <span>{product.rating}</span>
+                  <Star className="w-3.5 h-3.5 fill-white" />
                 </div>
-                <span className="text-sm font-bold">{product.rating}</span>
-                <span className="text-xs text-zinc-500">({reviews.length} customer reviews)</span>
+                <span className="text-xs text-slate-500 font-semibold">({reviews.length} customer reviews)</span>
               </div>
             </div>
 
             {/* Price & Real-Time Stock Status */}
-            <div className={`p-4 rounded-2xl border space-y-2 ${is3D ? 'bg-zinc-900/80 border-zinc-800' : 'bg-zinc-50 border-zinc-200'}`}>
+            <div className="p-4 rounded-2xl bg-red-50/40 border border-red-100 space-y-2">
               <div className="flex items-baseline space-x-3">
-                <span className="text-3xl font-black">${product.price.toFixed(2)}</span>
+                <span className="text-3xl font-black text-slate-900">${product.price.toFixed(2)}</span>
                 {product.originalPrice && (
-                  <span className="text-sm text-zinc-500 line-through">
+                  <span className="text-sm text-slate-400 line-through font-semibold">
                     ${product.originalPrice.toFixed(2)}
                   </span>
                 )}
@@ -160,35 +152,35 @@ export default function ProductDetailPage() {
               {/* Live Real-time Stock Badge */}
               <div className="pt-2 flex items-center space-x-2 text-xs font-bold">
                 {isOut ? (
-                  <span className="text-red-500 flex items-center space-x-1">
+                  <span className="text-red-600 flex items-center space-x-1">
                     <AlertTriangle className="w-4 h-4" />
-                    <span>Out of Stock (Real-time back-office stock update active)</span>
+                    <span>Out of Stock</span>
                   </span>
                 ) : product.stock <= 3 ? (
-                  <span className="text-amber-500 flex items-center space-x-1">
+                  <span className="text-amber-600 flex items-center space-x-1">
                     <AlertTriangle className="w-4 h-4" />
                     <span>Only {product.stock} left in stock - Order soon!</span>
                   </span>
                 ) : (
-                  <span className="text-emerald-500 flex items-center space-x-1">
-                    <CheckCircle className="w-4 h-4" />
-                    <span>In Stock ({product.stock} available in real-time inventory)</span>
+                  <span className="text-emerald-700 flex items-center space-x-1">
+                    <CheckCircle className="w-4 h-4 text-emerald-600" />
+                    <span>In Stock ({product.stock} available)</span>
                   </span>
                 )}
               </div>
             </div>
 
-            <p className="text-xs sm:text-sm text-zinc-400 leading-relaxed">{product.description}</p>
+            <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">{product.description}</p>
 
             {/* Attributes Breakdown */}
             {product.attributes && Object.keys(product.attributes).length > 0 && (
               <div className="space-y-2">
-                <h4 className="text-xs font-extrabold uppercase tracking-wider text-zinc-400">Specifications</h4>
+                <h4 className="text-xs font-black uppercase tracking-wider text-slate-400">Specifications</h4>
                 <div className="grid grid-cols-2 gap-2 text-xs">
                   {Object.entries(product.attributes).map(([key, val]) => (
-                    <div key={key} className={`p-2.5 rounded-lg border ${is3D ? 'bg-zinc-900 border-zinc-800' : 'bg-zinc-50 border-zinc-200'}`}>
-                      <span className="text-zinc-500 font-medium capitalize">{key}: </span>
-                      <span className="font-bold text-white">{String(val)}</span>
+                    <div key={key} className="p-3 rounded-xl border border-slate-200 bg-slate-50">
+                      <span className="text-slate-500 font-medium capitalize">{key}: </span>
+                      <span className="font-bold text-slate-900">{String(val)}</span>
                     </div>
                   ))}
                 </div>
@@ -196,20 +188,20 @@ export default function ProductDetailPage() {
             )}
 
             {/* Quantity & Add to Cart */}
-            <div className="space-y-3 pt-4 border-t border-zinc-800">
+            <div className="space-y-3 pt-4 border-t border-slate-200">
               <div className="flex items-center space-x-4">
-                <div className="flex items-center border border-zinc-700 rounded-xl overflow-hidden bg-zinc-900">
+                <div className="flex items-center border border-slate-300 rounded-xl overflow-hidden bg-slate-50">
                   <button
                     onClick={() => setQuantity(Math.max(1, quantity - 1))}
-                    className="px-3 py-2 text-zinc-400 hover:text-white font-bold"
+                    className="px-3 py-2 text-slate-600 hover:text-black font-bold"
                   >
                     -
                   </button>
-                  <span className="px-4 text-xs font-bold">{quantity}</span>
+                  <span className="px-4 text-xs font-extrabold">{quantity}</span>
                   <button
                     onClick={() => setQuantity(Math.min(product.stock, quantity + 1))}
                     disabled={quantity >= product.stock}
-                    className="px-3 py-2 text-zinc-400 hover:text-white font-bold disabled:opacity-30"
+                    className="px-3 py-2 text-slate-600 hover:text-black font-bold disabled:opacity-30"
                   >
                     +
                   </button>
@@ -218,12 +210,10 @@ export default function ProductDetailPage() {
                 <button
                   onClick={() => addToCart(product, quantity)}
                   disabled={isOut}
-                  className={`flex-1 py-3.5 px-6 rounded-xl font-extrabold text-xs uppercase tracking-wider flex items-center justify-center space-x-2 transition shadow-lg ${
+                  className={`flex-1 py-3.5 px-6 rounded-xl font-extrabold text-xs uppercase tracking-wider flex items-center justify-center space-x-2 transition shadow-md ${
                     isOut
-                      ? 'bg-zinc-800 text-zinc-500 cursor-not-allowed border border-zinc-700'
-                      : is3D
-                      ? 'bg-red-600 hover:bg-red-700 text-white shadow-red-900/30'
-                      : 'bg-zinc-900 hover:bg-black text-white'
+                      ? 'bg-slate-100 text-slate-400 cursor-not-allowed border border-slate-200'
+                      : 'bg-red-600 hover:bg-red-700 text-white shadow-red-600/20'
                   }`}
                 >
                   <ShoppingBag className="w-4 h-4" />
@@ -235,48 +225,46 @@ export default function ProductDetailPage() {
 
         </div>
 
-        {/* CUSTOMER REVIEWS & MODERATION SECTION */}
-        <section className="pt-12 border-t border-zinc-800 space-y-8">
-          <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
-            <div>
-              <h3 className="text-xl font-extrabold flex items-center space-x-2">
-                <MessageSquare className="w-5 h-5 text-red-500" />
-                <span>Customer Reviews</span>
-              </h3>
-              <p className="text-xs text-zinc-400">Verified buyer ratings & moderated reviews</p>
-            </div>
+        {/* CUSTOMER REVIEWS SECTION */}
+        <section className="bg-white p-6 sm:p-8 rounded-3xl border border-slate-200/90 shadow-2xs space-y-6">
+          <div>
+            <h3 className="text-xl font-black text-slate-900 flex items-center space-x-2">
+              <MessageSquare className="w-5 h-5 text-red-600" />
+              <span>Customer Ratings & Reviews</span>
+            </h3>
+            <p className="text-xs text-slate-500">Verified buyer ratings & moderated reviews</p>
           </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
             
             {/* Left: Submit Review Form */}
             <div className="lg:col-span-5">
-              <form onSubmit={handleReviewSubmit} className={`p-6 rounded-2xl border space-y-4 ${is3D ? 'bg-zinc-900 border-zinc-800' : 'bg-zinc-50 border-zinc-200'}`}>
-                <h4 className="text-sm font-bold">Write a Customer Review</h4>
+              <form onSubmit={handleReviewSubmit} className="p-5 rounded-2xl bg-slate-50 border border-slate-200 space-y-3">
+                <h4 className="text-xs font-black uppercase text-slate-700">Write a Review</h4>
 
                 {reviewMsg && (
-                  <div className="p-3 bg-emerald-950/60 border border-emerald-800 text-emerald-400 text-xs rounded-lg">
+                  <div className="p-3 bg-emerald-50 border border-emerald-200 text-emerald-800 text-xs rounded-xl font-semibold">
                     {reviewMsg}
                   </div>
                 )}
 
                 <div>
-                  <label className="block text-xs font-bold uppercase mb-1 text-zinc-400">Your Name</label>
+                  <label className="block text-[11px] font-bold uppercase mb-1 text-slate-500">Your Name</label>
                   <input
                     type="text"
                     placeholder="e.g. Alex Mercer"
                     value={reviewerName}
                     onChange={(e) => setReviewerName(e.target.value)}
-                    className="w-full px-3 py-2 text-xs bg-zinc-950 border border-zinc-800 rounded-lg outline-none text-white focus:border-red-500"
+                    className="w-full px-3 py-2 text-xs bg-white border border-slate-300 rounded-xl outline-none text-slate-900 focus:border-red-600"
                   />
                 </div>
 
                 <div>
-                  <label className="block text-xs font-bold uppercase mb-1 text-zinc-400">Star Rating</label>
+                  <label className="block text-[11px] font-bold uppercase mb-1 text-slate-500">Rating</label>
                   <select
                     value={rating}
                     onChange={(e) => setRating(Number(e.target.value))}
-                    className="w-full px-3 py-2 text-xs bg-zinc-950 border border-zinc-800 rounded-lg text-white outline-none"
+                    className="w-full px-3 py-2 text-xs bg-white border border-slate-300 rounded-xl text-slate-900 outline-none"
                   >
                     <option value={5}>⭐⭐⭐⭐⭐ (5/5 Excellent)</option>
                     <option value={4}>⭐⭐⭐⭐ (4/5 Very Good)</option>
@@ -287,21 +275,21 @@ export default function ProductDetailPage() {
                 </div>
 
                 <div>
-                  <label className="block text-xs font-bold uppercase mb-1 text-zinc-400">Written Review</label>
+                  <label className="block text-[11px] font-bold uppercase mb-1 text-slate-500">Written Review</label>
                   <textarea
                     rows={3}
                     required
-                    placeholder="Share your experience with print quality, durability, or fit..."
+                    placeholder="Share your experience..."
                     value={reviewComment}
                     onChange={(e) => setReviewComment(e.target.value)}
-                    className="w-full px-3 py-2 text-xs bg-zinc-950 border border-zinc-800 rounded-lg outline-none text-white focus:border-red-500 resize-none"
+                    className="w-full px-3 py-2 text-xs bg-white border border-slate-300 rounded-xl outline-none text-slate-900 focus:border-red-600 resize-none"
                   />
                 </div>
 
                 <button
                   type="submit"
                   disabled={submittingReview}
-                  className="w-full py-2.5 bg-red-600 hover:bg-red-700 text-white font-bold text-xs rounded-xl shadow transition disabled:opacity-50"
+                  className="w-full py-2.5 bg-red-600 hover:bg-red-700 text-white font-extrabold text-xs rounded-xl shadow-2xs transition disabled:opacity-50"
                 >
                   {submittingReview ? 'Submitting...' : 'Post Customer Review'}
                 </button>
@@ -309,24 +297,22 @@ export default function ProductDetailPage() {
             </div>
 
             {/* Right: Published Reviews List */}
-            <div className="lg:col-span-7 space-y-4">
+            <div className="lg:col-span-7 space-y-3">
               {reviews.length === 0 ? (
-                <div className="text-center py-12 text-xs text-zinc-500 bg-zinc-900/50 rounded-2xl border border-zinc-800">
+                <div className="text-center py-12 text-xs text-slate-500 bg-slate-50 rounded-2xl border border-slate-200">
                   No reviews yet for this product. Be the first to review!
                 </div>
               ) : (
                 reviews.map((rev) => (
-                  <div key={rev.id} className={`p-4 rounded-xl border space-y-2 ${is3D ? 'bg-zinc-900 border-zinc-800' : 'bg-white border-zinc-200'}`}>
+                  <div key={rev.id} className="p-4 rounded-xl border border-slate-200 bg-slate-50 space-y-1.5">
                     <div className="flex items-center justify-between">
-                      <span className="text-xs font-bold">{rev.customerName}</span>
-                      <div className="flex items-center space-x-1 text-amber-400">
-                        {[...Array(5)].map((_, i) => (
-                          <Star key={i} className={`w-3 h-3 ${i < rev.rating ? 'fill-amber-400' : 'text-zinc-700'}`} />
-                        ))}
+                      <span className="text-xs font-bold text-slate-900">{rev.customerName}</span>
+                      <div className="flex items-center space-x-1 bg-emerald-700 text-white text-[10px] font-bold px-1.5 py-0.5 rounded">
+                        <span>{rev.rating} ★</span>
                       </div>
                     </div>
-                    <p className="text-xs text-zinc-300">{rev.comment}</p>
-                    <span className="text-[10px] text-zinc-500 block">
+                    <p className="text-xs text-slate-700">{rev.comment}</p>
+                    <span className="text-[10px] text-slate-400 block font-medium">
                       {new Date(rev.createdAt).toLocaleDateString()} &bull; Verified Purchase
                     </span>
                   </div>

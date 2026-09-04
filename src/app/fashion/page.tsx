@@ -40,115 +40,120 @@ export default function GenZFashionStore() {
   );
 
   return (
-    <div className="bg-[#FAF9F6] text-zinc-900 min-h-screen">
+    <div className="bg-[#F8FAFC] text-slate-900 min-h-screen pb-16">
       
       {/* 1. HERO BANNER - GenZ Korean Fashion */}
-      <section className="relative min-h-[500px] sm:min-h-[540px] flex items-center overflow-hidden border-b border-zinc-200 py-16 sm:py-20 px-4 sm:px-6 lg:px-8">
-        {/* Full Clear Background Banner Image - No Shadows */}
-        <div className="absolute inset-0 z-0">
-          <img
-            src="/images/fashion-banner.jpg"
-            alt="Korean Streetwear Fashion Banner"
-            className="w-full h-full object-cover object-center"
-          />
-          {/* Subtle left-side overlay so text is readable */}
-          <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/30 to-transparent" />
-        </div>
-
-        <div className="max-w-7xl mx-auto flex items-center relative z-10 w-full">
-          <div className="max-w-2xl space-y-5 text-left">
-            <span className="inline-block px-3.5 py-1.5 bg-amber-500 text-white text-xs font-extrabold uppercase tracking-widest rounded-full border border-amber-600 shadow-lg">
-              Autumn / Winter 2026 Collection
+      <section className="relative bg-white border-b border-slate-200/80 py-12 sm:py-16 px-4 sm:px-8 shadow-2xs">
+        <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+          
+          <div className="lg:col-span-7 space-y-6 text-left">
+            <span className="inline-block px-3.5 py-1 bg-amber-500 text-white text-xs font-black uppercase tracking-widest rounded-full shadow-2xs">
+              Autumn / Winter Collection
             </span>
 
-            <h1 className="text-4xl sm:text-6xl font-black tracking-tight text-white leading-none">
+            <h1 className="text-3xl sm:text-5xl font-black tracking-tight text-slate-900 leading-tight">
               Seoul Streetwear & <br />
-              <span className="text-amber-400 italic font-serif">Minimalist Fits.</span>
+              <span className="text-red-600 italic font-serif">Minimalist Fits.</span>
             </h1>
 
-            <p className="text-zinc-200 text-sm sm:text-base leading-relaxed font-normal">
+            <p className="text-slate-600 text-sm sm:text-base leading-relaxed font-normal max-w-xl">
               Discover relaxed drop-shoulder hoodies, boxy linen camp shirts, Y2K skate denim, and retro cyber quartz timepieces crafted for trendsetters.
             </p>
 
             <div className="pt-2 flex flex-wrap justify-start gap-3">
               <a
                 href="#catalog"
-                className="px-8 py-3.5 bg-amber-500 hover:bg-amber-600 text-white font-extrabold text-xs uppercase tracking-wider rounded-full shadow-xl transition transform hover:-translate-y-0.5"
+                className="px-7 py-3.5 bg-red-600 hover:bg-red-700 text-white font-extrabold text-xs uppercase tracking-wider rounded-xl shadow-md shadow-red-600/20 transition transform hover:-translate-y-0.5"
               >
                 Shop New Arrivals
               </a>
             </div>
           </div>
+
+          <div className="lg:col-span-5">
+            <div className="bg-white p-3 rounded-3xl border border-slate-200 shadow-xl overflow-hidden group">
+              <img
+                src="/images/fashion-banner.jpg"
+                alt="Korean Streetwear Fashion Banner"
+                className="w-full h-72 sm:h-80 object-cover rounded-2xl group-hover:scale-105 transition-transform duration-500"
+              />
+            </div>
+          </div>
+
         </div>
       </section>
 
       {/* 2. SUB-CATEGORIES NAV GRID */}
-      <section className="py-12 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
-        <h2 className="text-xs font-bold uppercase tracking-widest text-zinc-500 mb-6">
-          Browse by Category
-        </h2>
-        <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-7 gap-3">
-          {categories.slice(1).map((cat) => (
-            <button
-              key={cat.id}
-              onClick={() => setSelectedCategory(cat.id)}
-              className={`p-4 rounded-xl border text-center transition-all ${
-                selectedCategory === cat.id
-                  ? 'bg-zinc-900 text-white border-zinc-900 shadow-md'
-                  : 'bg-white text-zinc-800 border-zinc-200 hover:border-zinc-400'
-              }`}
-            >
-              <div className="text-xs font-bold truncate">{cat.name}</div>
-            </button>
-          ))}
-        </div>
-      </section>
-
-      {/* 3. PRODUCT CATALOG */}
-      <section id="catalog" className="py-12 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
-        <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-8 gap-4">
-          <div>
-            <h2 className="text-2xl font-black text-zinc-900">
-              Korean Apparel & Accessories
-            </h2>
-            <p className="text-xs text-zinc-500">Curated GenZ aesthetics with fast shipping</p>
-          </div>
-
-          {/* Filter Pills */}
-          <div className="flex flex-wrap gap-2">
-            {categories.map((cat) => (
+      <section className="py-8 px-4 sm:px-8 max-w-7xl mx-auto">
+        <div className="bg-white p-6 rounded-3xl border border-slate-200/90 shadow-2xs">
+          <h2 className="text-xs font-bold uppercase tracking-widest text-slate-500 mb-4">
+            Browse by Category
+          </h2>
+          <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-7 gap-3">
+            {categories.slice(1).map((cat) => (
               <button
                 key={cat.id}
                 onClick={() => setSelectedCategory(cat.id)}
-                className={`px-3 py-1.5 text-xs font-bold rounded-full transition ${
+                className={`p-3.5 rounded-2xl border text-center transition-all ${
                   selectedCategory === cat.id
-                    ? 'bg-emerald-800 text-white shadow'
-                    : 'bg-white text-zinc-700 hover:bg-zinc-100 border border-zinc-200'
+                    ? 'bg-red-600 text-white border-red-600 shadow-2xs'
+                    : 'bg-slate-50 text-slate-800 border-slate-200 hover:border-red-300 hover:bg-white'
                 }`}
               >
-                {cat.name}
+                <div className="text-xs font-bold truncate">{cat.name}</div>
               </button>
             ))}
           </div>
         </div>
+      </section>
 
-        {loading ? (
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
-            {[1, 2, 3, 4].map((i) => (
-              <div key={i} className="h-80 bg-zinc-200 rounded-2xl animate-pulse" />
-            ))}
+      {/* 3. PRODUCT CATALOG */}
+      <section id="catalog" className="py-6 px-4 sm:px-8 max-w-7xl mx-auto">
+        <div className="bg-white p-6 sm:p-8 rounded-3xl border border-slate-200/90 shadow-2xs">
+          <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-6 gap-4 border-b border-slate-100 pb-4">
+            <div>
+              <h2 className="text-xl sm:text-2xl font-black text-slate-900">
+                Korean Apparel & Accessories
+              </h2>
+              <p className="text-xs text-slate-500">Curated GenZ aesthetics with fast shipping</p>
+            </div>
+
+            {/* Filter Pills */}
+            <div className="flex flex-wrap gap-2">
+              {categories.map((cat) => (
+                <button
+                  key={cat.id}
+                  onClick={() => setSelectedCategory(cat.id)}
+                  className={`px-3.5 py-1.5 text-xs font-bold rounded-xl transition ${
+                    selectedCategory === cat.id
+                      ? 'bg-red-600 text-white shadow-2xs'
+                      : 'bg-slate-100 text-slate-700 hover:bg-slate-200 border border-slate-200'
+                  }`}
+                >
+                  {cat.name}
+                </button>
+              ))}
+            </div>
           </div>
-        ) : filteredProducts.length === 0 ? (
-          <div className="text-center py-16 text-zinc-500">
-            No items in this fashion subcategory.
-          </div>
-        ) : (
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-            {filteredProducts.map((product) => (
-              <ProductCard key={product.id} product={product} />
-            ))}
-          </div>
-        )}
+
+          {loading ? (
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
+              {[1, 2, 3, 4].map((i) => (
+                <div key={i} className="h-80 bg-slate-100 rounded-2xl animate-pulse" />
+              ))}
+            </div>
+          ) : filteredProducts.length === 0 ? (
+            <div className="text-center py-16 text-slate-500 text-sm font-semibold">
+              No items in this fashion subcategory.
+            </div>
+          ) : (
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+              {filteredProducts.map((product) => (
+                <ProductCard key={product.id} product={product} />
+              ))}
+            </div>
+          )}
+        </div>
       </section>
 
     </div>

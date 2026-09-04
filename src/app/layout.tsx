@@ -5,6 +5,7 @@ import './globals.css';
 import { AuthProvider } from '@/context/AuthContext';
 import { CartProvider } from '@/context/CartContext';
 import { Header } from '@/components/Header';
+import { CategoryScrollingRibbon } from '@/components/CategoryScrollingRibbon';
 import { Footer } from '@/components/Footer';
 import { CartDrawer } from '@/components/CartDrawer';
 import { RequestModal } from '@/components/RequestModal';
@@ -25,10 +26,11 @@ export default function RootLayout({
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </head>
-      <body className="antialiased min-h-screen flex flex-col bg-zinc-950 text-slate-900">
+      <body className="antialiased min-h-screen flex flex-col bg-[#F1F2F4] text-slate-900">
         <AuthProvider>
           <CartProvider>
             <Header onRequestModalOpen={() => setIsRequestModalOpen(true)} />
+            <CategoryScrollingRibbon onRequestModalOpen={() => setIsRequestModalOpen(true)} />
             <main className="flex-1">
               {children}
             </main>
