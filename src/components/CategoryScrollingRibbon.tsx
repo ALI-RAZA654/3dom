@@ -13,7 +13,11 @@ import {
   Sparkles,
   Watch,
   Flame,
-  PlusCircle
+  PlusCircle,
+  Zap,
+  Cpu,
+  Feather,
+  Droplet
 } from 'lucide-react';
 
 interface CategoryScrollingRibbonProps {
@@ -44,12 +48,11 @@ export const CategoryScrollingRibbon: React.FC<CategoryScrollingRibbonProps> = (
   };
 
   // Determine active vertical context
-  const is3D = pathname.startsWith('/3d-printing') || pathname === '/';
   const isFashion = pathname.startsWith('/fashion');
   const isBeauty = pathname.startsWith('/beauty');
 
-  // Category Ribbon Data with icon, label, badge, target link/action
-  const categories = [
+  // Vertical 1: 3D Printing Categories ONLY
+  const threeDCategories = [
     {
       id: '3d-printers',
       label: '3D Printers',
@@ -75,36 +78,28 @@ export const CategoryScrollingRibbon: React.FC<CategoryScrollingRibbonProps> = (
       catFilter: '3D Printer Parts',
     },
     {
-      id: 'korean-tops',
-      label: 'GenZ Apparel',
-      icon: Shirt,
-      badge: 'New Fit',
-      link: '/fashion',
-      catFilter: 'Tops',
-    },
-    {
-      id: 'denim',
-      label: 'Skate Denim',
-      icon: Scissors,
-      badge: 'Trending',
-      link: '/fashion',
-      catFilter: 'Jeans',
-    },
-    {
-      id: 'beauty-rituals',
-      label: 'Luxury Beauty',
+      id: 'accessories',
+      label: 'Accessories',
       icon: Sparkles,
-      badge: 'K-Glow',
-      link: '/beauty',
-      catFilter: 'all',
+      badge: 'PEI & Dryers',
+      link: '/3d-printing',
+      catFilter: 'Printer Accessories',
     },
     {
-      id: 'watches',
-      label: 'Cyber Watches',
-      icon: Watch,
-      badge: 'Edition',
-      link: '/fashion',
-      catFilter: 'Watches',
+      id: 'corexy',
+      label: 'CoreXY Printers',
+      icon: Zap,
+      badge: '600 mm/s',
+      link: '/3d-printing',
+      catFilter: 'Printers',
+    },
+    {
+      id: 'engineering',
+      label: 'Engineering Materials',
+      icon: Cpu,
+      badge: 'Nylon & CF',
+      link: '/3d-printing',
+      catFilter: 'Filaments',
     },
     {
       id: 'custom-print',
@@ -124,7 +119,118 @@ export const CategoryScrollingRibbon: React.FC<CategoryScrollingRibbonProps> = (
     },
   ];
 
-  const handleCategoryClick = (item: typeof categories[0]) => {
+  // Vertical 2: Fashion Categories ONLY
+  const fashionCategories = [
+    {
+      id: 'korean-tops',
+      label: 'GenZ Apparel',
+      icon: Shirt,
+      badge: 'New Fit',
+      link: '/fashion',
+      catFilter: 'Tops',
+    },
+    {
+      id: 'shirts',
+      label: 'Camp Shirts',
+      icon: Shirt,
+      badge: 'Minimalist',
+      link: '/fashion',
+      catFilter: 'Shirts',
+    },
+    {
+      id: 'denim',
+      label: 'Skate Denim',
+      icon: Scissors,
+      badge: 'Y2K Baggy',
+      link: '/fashion',
+      catFilter: 'Jeans',
+    },
+    {
+      id: 'cargo-bottoms',
+      label: 'Cargo Pants',
+      icon: Scissors,
+      badge: 'Utilitarian',
+      link: '/fashion',
+      catFilter: 'Bottoms',
+    },
+    {
+      id: 'watches',
+      label: 'Cyber Watches',
+      icon: Watch,
+      badge: 'Digital Steel',
+      link: '/fashion',
+      catFilter: 'Watches',
+    },
+    {
+      id: 'hot-fashion',
+      label: 'Trending Fits',
+      icon: Flame,
+      badge: '20% OFF',
+      link: '/fashion',
+      catFilter: 'all',
+    },
+  ];
+
+  // Vertical 3: Beauty Categories ONLY
+  const beautyCategories = [
+    {
+      id: 'perfumes',
+      label: 'Luxury Perfumes',
+      icon: Sparkles,
+      badge: 'Maison 3DOM',
+      link: '/beauty',
+      catFilter: 'Perfumes',
+    },
+    {
+      id: 'shampoo',
+      label: 'Organic Shampoo',
+      icon: Droplet,
+      badge: 'Argan Oil',
+      link: '/beauty',
+      catFilter: 'Shampoo',
+    },
+    {
+      id: 'hair-masks',
+      label: 'Keratin Care',
+      icon: Feather,
+      badge: 'Restorative',
+      link: '/beauty',
+      catFilter: 'Masks',
+    },
+    {
+      id: 'lip-balms',
+      label: 'Lip Treatments',
+      icon: Sparkles,
+      badge: 'Berry Rose',
+      link: '/beauty',
+      catFilter: 'Lip Balms',
+    },
+    {
+      id: 'k-glow',
+      label: 'K-Glow Sheet Masks',
+      icon: Sparkles,
+      badge: 'Hydrating',
+      link: '/beauty',
+      catFilter: 'Masks',
+    },
+    {
+      id: 'hot-beauty',
+      label: 'Beauty Deals',
+      icon: Flame,
+      badge: 'BEST SELLERS',
+      link: '/beauty',
+      catFilter: 'all',
+    },
+  ];
+
+  // Select categories array based on active page route
+  const currentCategories = isFashion
+    ? fashionCategories
+    : isBeauty
+    ? beautyCategories
+    : threeDCategories;
+
+  const handleCategoryClick = (item: typeof currentCategories[0]) => {
     if (item.isAction && item.action) {
       item.action();
       return;
@@ -158,7 +264,7 @@ export const CategoryScrollingRibbon: React.FC<CategoryScrollingRibbonProps> = (
           className="flex items-center space-x-3.5 sm:space-x-4 overflow-x-auto scrollbar-none scroll-smooth px-6 py-1"
           style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
         >
-          {categories.map((cat) => {
+          {currentCategories.map((cat) => {
             const Icon = cat.icon;
             const isActive = selectedCategory && selectedCategory.toLowerCase() === cat.catFilter?.toLowerCase();
 
