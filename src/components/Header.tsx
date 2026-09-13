@@ -18,7 +18,8 @@ import {
   Truck,
   PlusCircle,
   Zap,
-  HelpCircle
+  HelpCircle,
+  LogOut
 } from 'lucide-react';
 import { useCart } from '@/context/CartContext';
 import { useAuth } from '@/context/AuthContext';
@@ -28,7 +29,7 @@ export const Header: React.FC<{ onRequestModalOpen: () => void }> = ({ onRequest
   const pathname = usePathname();
   const router = useRouter();
   const { cart, setIsCartOpen } = useCart();
-  const { user, isAdmin, setIsAuthModalOpen } = useAuth();
+  const { user, isAdmin, setIsAuthModalOpen, logout } = useAuth();
 
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [isSearchInputOpen, setIsSearchInputOpen] = useState(false);
@@ -311,25 +312,33 @@ export const Header: React.FC<{ onRequestModalOpen: () => void }> = ({ onRequest
             </button>
           </div>
 
-          {/* User / Admin Login Icon */}
-          {isAdmin ? (
-            <Link
-              href="/admin"
-              className="px-3.5 py-2 rounded-xl border border-emerald-300 bg-emerald-50 text-emerald-700 hover:bg-emerald-100 transition flex items-center space-x-1.5 text-xs font-bold shadow-2xs"
-              title="Admin Dashboard"
-            >
-              <ShieldCheck className="w-4 h-4 text-emerald-600" />
-              <span className="hidden sm:inline">Admin</span>
-            </Link>
-          ) : user ? (
-            <button
-              onClick={() => setIsAuthModalOpen(true)}
-              className="px-3.5 py-2 rounded-xl border border-slate-200 bg-slate-50 text-slate-800 hover:bg-slate-100 transition flex items-center space-x-1.5 text-xs font-bold shadow-2xs"
-              title={`Account: ${user.name}`}
-            >
-              <User className="w-4 h-4 text-red-600" />
-              <span className="hidden sm:inline">{user.name.split(' ')[0]}</span>
-            </button>
+          {/* User / Admin Login & Logout Buttons */}
+          {user ? (
+            <div className="flex items-center space-x-2">
+              {isAdmin ? (
+                <Link
+                  href="/admin"
+                  className="px-3 py-2 rounded-xl border border-emerald-300 bg-emerald-50 text-emerald-700 hover:bg-emerald-100 transition flex items-center space-x-1 text-xs font-bold shadow-2xs"
+                  title="Admin Dashboard"
+                >
+                  <ShieldCheck className="w-4 h-4 text-emerald-600" />
+                  <span className="hidden sm:inline">Admin Panel</span>
+                </Link>
+              ) : (
+                <span className="px-3 py-2 rounded-xl border border-slate-200 bg-slate-50 text-slate-800 text-xs font-bold shadow-2xs flex items-center space-x-1">
+                  <User className="w-4 h-4 text-red-600" />
+                  <span className="hidden sm:inline">{user.name.split(' ')[0]}</span>
+                </span>
+              )}
+              <button
+                onClick={logout}
+                className="px-3 py-2 rounded-xl border border-red-200 bg-red-50 hover:bg-red-100 text-red-600 text-xs font-bold transition shadow-2xs flex items-center space-x-1"
+                title="Logout from account"
+              >
+                <LogOut className="w-4 h-4 text-red-600" />
+                <span className="hidden sm:inline">Logout</span>
+              </button>
+            </div>
           ) : (
             <button
               onClick={() => setIsAuthModalOpen(true)}

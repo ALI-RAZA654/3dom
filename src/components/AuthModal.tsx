@@ -28,30 +28,16 @@ export const AuthModal: React.FC = () => {
     }
   };
 
-  const handleQuickAdminLogin = async () => {
+  const handleQuickAdminLogin = () => {
     setEmail('admin@3dom.com');
-    setPassword('99911191');
-    setLoading(true);
-    try {
-      await login({ email: 'admin@3dom.com', password: '99911191' });
-    } catch (err: any) {
-      setError(err.message);
-    } finally {
-      setLoading(false);
-    }
+    setPassword('admin123');
+    setError('');
   };
 
-  const handleQuickCustomerLogin = async () => {
+  const handleQuickCustomerLogin = () => {
     setEmail('customer@3dom.com');
     setPassword('customer123');
-    setLoading(true);
-    try {
-      await login({ email: 'customer@3dom.com', password: 'customer123' });
-    } catch (err: any) {
-      setError(err.message);
-    } finally {
-      setLoading(false);
-    }
+    setError('');
   };
 
   return (

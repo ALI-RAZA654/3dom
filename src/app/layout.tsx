@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
+import { usePathname } from 'next/navigation';
 import './globals.css';
 import { AuthProvider } from '@/context/AuthContext';
 import { CartProvider } from '@/context/CartContext';
@@ -17,6 +18,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   const [isRequestModalOpen, setIsRequestModalOpen] = useState(false);
+  const pathname = usePathname();
+  const isAdminPage = pathname?.startsWith('/admin');
 
   return (
     <html lang="en">
@@ -26,15 +29,15 @@ export default function RootLayout({
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </head>
-      <body className="antialiased min-h-screen flex flex-col bg-[#F1F2F4] text-slate-900">
+      <body className={`antialiased min-h-screen flex flex-col ${isAdminPage ? 'bg-zinc-950 text-white' : 'bg-[#F1F2F4] text-slate-900'}`}>
         <AuthProvider>
           <CartProvider>
-            <Header onRequestModalOpen={() => setIsRequestModalOpen(true)} />
-            <CategoryScrollingRibbon onRequestModalOpen={() => setIsRequestModalOpen(true)} />
+            {!isAdminPage && <Header onRequestModalOpen={() => setIsRequestModalOpen(true)} />}
+            {!isAdminPage && <CategoryScrollingRibbon onRequestModalOpen={() => setIsRequestModalOpen(true)} />}
             <main className="flex-1">
               {children}
             </main>
-            <Footer />
+            {!isAdminPage && <Footer />}
             <CartDrawer />
             <RequestModal
               isOpen={isRequestModalOpen}

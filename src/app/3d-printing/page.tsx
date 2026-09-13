@@ -161,7 +161,7 @@ const FALLBACK_3D_PRODUCTS = [
     stock: 45,
     rating: 4.85,
     reviewCount: 120,
-    image: 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=800&q=80',
+    image: 'https://images.unsplash.com/photo-1581092335397-9583fe92d232?auto=format&fit=crop&w=800&q=80',
     description: 'Ultra-smooth, low-warp PLA+ engineered for high-speed printing with superior layer adhesion.',
     attributes: { material: 'PLA', diameter: '1.75mm', weight: '1kg', temp: '190-220°C' },
     isFeatured: true
@@ -178,7 +178,7 @@ const FALLBACK_3D_PRODUCTS = [
     stock: 40,
     rating: 4.9,
     reviewCount: 63,
-    image: 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=800&q=80',
+    image: 'https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc?auto=format&fit=crop&w=800&q=80',
     description: 'Stunning dichroic color shift filaments (Gold-Purple & Blue-Green) for lustrous 3D art models.',
     attributes: { material: 'Silk PLA', diameter: '1.75mm', weight: '2 x 1kg', temp: '200-225°C' },
     isFeatured: true
@@ -195,7 +195,7 @@ const FALLBACK_3D_PRODUCTS = [
     stock: 30,
     rating: 4.75,
     reviewCount: 64,
-    image: 'https://images.unsplash.com/photo-1579783902614-a3fb3927b675?auto=format&fit=crop&w=800&q=80',
+    image: 'https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc?auto=format&fit=crop&w=800&q=80',
     description: 'Durable, weather-resistant PETG filament combining the ease of PLA with the strength of ABS.',
     attributes: { material: 'PETG', diameter: '1.75mm', weight: '1kg', temp: '230-250°C' },
     isFeatured: false
@@ -212,7 +212,7 @@ const FALLBACK_3D_PRODUCTS = [
     stock: 12,
     rating: 4.9,
     reviewCount: 29,
-    image: 'https://images.unsplash.com/photo-1509228468518-180dd4864904?auto=format&fit=crop&w=800&q=80',
+    image: 'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=800&q=80',
     description: 'Industrial grade carbon fiber reinforced nylon with high thermal tolerance and tensile strength.',
     attributes: { material: 'Nylon', diameter: '1.75mm', weight: '500g', temp: '280-300°C' },
     isFeatured: true
@@ -818,7 +818,7 @@ export default function ThreeDPrintingStore() {
               {/* Decorative Filament Spool Image Container */}
               <div className="relative z-10 my-6 bg-white/10 backdrop-blur-md p-3 rounded-2xl border border-white/20 overflow-hidden">
                 <img
-                  src="https://images.unsplash.com/photo-1615485290382-441e4d049cb5?auto=format&fit=crop&w=800&q=80"
+                  src="https://images.unsplash.com/photo-1581092335397-9583fe92d232?auto=format&fit=crop&w=800&q=80"
                   alt="Special Filaments Deal Showcase"
                   onError={(e) => {
                     (e.target as HTMLImageElement).src = 'https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=800&q=80';
