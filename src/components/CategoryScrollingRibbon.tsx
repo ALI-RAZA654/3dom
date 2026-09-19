@@ -246,23 +246,22 @@ export const CategoryScrollingRibbon: React.FC<CategoryScrollingRibbonProps> = (
   };
 
   return (
-    <div className="w-full bg-white border-b border-slate-200/80 shadow-2xs py-3.5">
+    <div className="w-full bg-warm-card border-b border-warm-border py-3">
       <div className="relative max-w-7xl mx-auto px-4 sm:px-8">
         
         {/* Scroll Left Button */}
         <button
           onClick={scrollLeft}
-          className="absolute left-1 top-1/2 -translate-y-1/2 z-10 w-9 h-9 rounded-full bg-white border border-slate-200 shadow-md text-slate-700 hover:bg-slate-50 flex items-center justify-center transition focus:outline-none cursor-pointer"
+          className="absolute left-1 top-1/2 -translate-y-1/2 z-10 w-9 h-9 rounded-full bg-warm-card border border-warm-border shadow-warm-sm text-warm-muted hover:bg-warm-surface flex items-center justify-center transition focus:outline-none cursor-pointer"
           aria-label="Scroll left"
         >
-          <ChevronLeft className="w-5 h-5 text-slate-700" />
+          <ChevronLeft className="w-5 h-5" />
         </button>
 
         {/* Horizontal Category Pill Cards Container */}
         <div
           ref={scrollContainerRef}
-          className="flex items-center space-x-3.5 sm:space-x-4 overflow-x-auto scrollbar-none scroll-smooth px-6 py-1"
-          style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
+          className="flex items-center space-x-3 sm:space-x-4 overflow-x-auto scrollbar-none scroll-smooth px-6 py-1"
         >
           {currentCategories.map((cat) => {
             const Icon = cat.icon;
@@ -272,28 +271,28 @@ export const CategoryScrollingRibbon: React.FC<CategoryScrollingRibbonProps> = (
               <button
                 key={cat.id}
                 onClick={() => handleCategoryClick(cat)}
-                className={`group flex items-center space-x-3 px-4 py-2.5 rounded-2xl border transition-all flex-shrink-0 cursor-pointer text-left focus:outline-none transform hover:-translate-y-0.5 ${
+                className={`group flex items-center space-x-3 px-4 py-2.5 rounded-2xl border transition-all flex-shrink-0 cursor-pointer text-left focus:outline-none ${
                   isActive
-                    ? 'bg-red-50 border-red-500 shadow-sm ring-1 ring-red-300'
-                    : 'bg-slate-50 hover:bg-white border-slate-200 hover:border-red-400 hover:shadow-md'
+                    ? 'bg-warm-accent-light border-warm-accent shadow-warm-sm'
+                    : 'bg-warm-surface hover:bg-white border-warm-border hover:border-warm-accent/40 hover:shadow-warm-sm'
                 }`}
               >
                 {/* Category Icon */}
                 <div className={`w-9 h-9 rounded-xl flex items-center justify-center transition-colors ${
-                  isActive ? 'bg-red-600 text-white' : 'bg-red-100/80 text-red-600 group-hover:bg-red-600 group-hover:text-white'
+                  isActive ? 'bg-warm-accent text-white' : 'bg-warm-accent-light text-warm-accent group-hover:bg-warm-accent group-hover:text-white'
                 }`}>
-                  <Icon className="w-4.5 h-4.5" />
+                  <Icon className="w-4 h-4" />
                 </div>
 
                 {/* Label & Badge */}
                 <div className="flex flex-col">
-                  <span className={`text-xs font-bold transition ${
-                    isActive ? 'text-red-600' : 'text-slate-900 group-hover:text-red-600'
+                  <span className={`text-xs font-semibold transition ${
+                    isActive ? 'text-warm-accent' : 'text-warm-text group-hover:text-warm-accent'
                   }`}>
                     {cat.label}
                   </span>
                   {cat.badge && (
-                    <span className="text-[9px] font-black uppercase text-red-600 tracking-wider">
+                    <span className="text-[9px] font-bold uppercase text-warm-badge-text tracking-wider">
                       {cat.badge}
                     </span>
                   )}
@@ -306,10 +305,10 @@ export const CategoryScrollingRibbon: React.FC<CategoryScrollingRibbonProps> = (
         {/* Scroll Right Button */}
         <button
           onClick={scrollRight}
-          className="absolute right-1 top-1/2 -translate-y-1/2 z-10 w-9 h-9 rounded-full bg-white border border-slate-200 shadow-md text-slate-700 hover:bg-slate-50 flex items-center justify-center transition focus:outline-none cursor-pointer"
+          className="absolute right-1 top-1/2 -translate-y-1/2 z-10 w-9 h-9 rounded-full bg-warm-card border border-warm-border shadow-warm-sm text-warm-muted hover:bg-warm-surface flex items-center justify-center transition focus:outline-none cursor-pointer"
           aria-label="Scroll right"
         >
-          <ChevronRight className="w-5 h-5 text-slate-700" />
+          <ChevronRight className="w-5 h-5" />
         </button>
 
       </div>

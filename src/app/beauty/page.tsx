@@ -37,7 +37,7 @@ export default function BeautyStore() {
   );
 
   return (
-    <div className="bg-[#F1F2F4] text-gray-900 min-h-screen pb-16">
+    <div className="bg-[#F1F2F4] text-gray-900 min-h-screen pb-16 pt-[148px]">
       
       {/* 1. BEAUTY HERO SECTION */}
       <section className="relative bg-white border-b border-gray-200 py-12 sm:py-16 px-4 sm:px-6 lg:px-8 shadow-xs">

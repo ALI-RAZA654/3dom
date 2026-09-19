@@ -29,7 +29,7 @@ export default function RootLayout({
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </head>
-      <body className={`antialiased min-h-screen flex flex-col ${isAdminPage ? 'bg-zinc-950 text-white' : 'bg-[#F1F2F4] text-slate-900'}`}>
+      <body className={`antialiased min-h-screen flex flex-col ${isAdminPage ? 'bg-zinc-950 text-white' : 'bg-warm-bg text-warm-text'}`}>
         <AuthProvider>
           <CartProvider>
             {!isAdminPage && <Header onRequestModalOpen={() => setIsRequestModalOpen(true)} />}

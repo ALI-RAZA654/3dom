@@ -40,7 +40,7 @@ export default function GenZFashionStore() {
   );
 
   return (
-    <div className="bg-[#F8FAFC] text-slate-900 min-h-screen pb-16">
+    <div className="bg-[#F8FAFC] text-slate-900 min-h-screen pb-16 pt-[148px]">
       
       {/* 1. HERO BANNER - GenZ Korean Fashion */}
       <section className="relative bg-white border-b border-slate-200/80 py-12 sm:py-16 px-4 sm:px-8 shadow-2xs">

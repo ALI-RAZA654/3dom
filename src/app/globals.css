@@ -1,53 +1,122 @@
-@import url('https://rsms.me/inter/inter.css');
+@import url('https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Hanken+Grotesk:wght@300;400;500;600;700;800&family=Inter:wght@400;500;600;700;800;900&display=swap');
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 :root {
-  font-family: 'Inter', sans-serif;
-  font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11';
-}
+  /* 3DOM Brand Palette — Red + Warm Neutral */
+  --color-bg: #F5F1EB;
+  --color-card: #FDFAF6;
+  --color-text: #1A1A1E;
+  --color-text-muted: #6E6459;
+  --color-border: #E6DDD1;
+  --color-border-light: #EFE8DC;
+  --color-accent: #DC2626;
+  --color-accent-hover: #B91C1C;
+  --color-accent-light: #FEE2E2;
+  --color-badge-bg: #FFF1F1;
+  --color-badge-text: #991B1B;
+  --color-surface: #FAF7F2;
 
-@supports (font-variation-settings: normal) {
-  :root { font-family: 'Inter var', sans-serif; }
+  font-family: 'Hanken Grotesk', 'Inter', system-ui, sans-serif;
+  font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 body {
-  font-family: 'Inter', sans-serif;
-  background-color: #f1f2f4;
-  color: #0f172a;
+  font-family: 'Hanken Grotesk', 'Inter', system-ui, sans-serif;
+  background-color: var(--color-bg);
+  color: var(--color-text);
   overflow-x: hidden;
+  line-height: 1.55;
 }
 
-/* Custom scrollbars */
+/* Serif Heading Utility */
+.heading-serif {
+  font-family: 'Instrument Serif', Georgia, 'Times New Roman', serif;
+  font-weight: 400;
+  letter-spacing: -0.015em;
+  line-height: 1.08;
+}
+
+/* Custom 3DOM Logo Wordmark Styling */
+.logo-wordmark {
+  font-family: 'Hanken Grotesk', 'Inter', sans-serif;
+  font-weight: 800;
+  letter-spacing: -0.04em;
+}
+
+/* Warm Custom Scrollbars */
 ::-webkit-scrollbar {
   width: 6px;
   height: 6px;
 }
 ::-webkit-scrollbar-track {
-  background: #f1f5f9;
+  background: var(--color-bg);
 }
 ::-webkit-scrollbar-thumb {
-  background: #cbd5e1;
+  background: var(--color-border);
   border-radius: 4px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #94a3b8;
-}
-
-/* Custom 3DOM Logo Wordmark Styling */
-.logo-wordmark {
-  font-family: 'Inter', sans-serif;
-  font-weight: 900;
-  letter-spacing: -0.05em;
-  text-transform: uppercase;
+  background: #C4B9AA;
 }
 
 /* Glassmorphism utility */
 .glass-card {
-  background: rgba(255, 255, 255, 0.95);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(226, 232, 240, 0.8);
+  background: rgba(253, 250, 246, 0.92);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--color-border);
+}
+
+/* Premium Card with LuxeLoom-style hover */
+.premium-card {
+  background: var(--color-card);
+  border: 1px solid var(--color-border);
+  border-radius: 22px;
+  box-shadow: 0 1px 2px rgba(42,36,30,.03), 0 18px 40px -30px rgba(42,36,30,.18);
+  transition: transform .34s cubic-bezier(.24,.8,.3,1), box-shadow .34s ease;
+}
+.premium-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 1px 2px rgba(42,36,30,.03), 0 34px 60px -32px rgba(42,36,30,.28);
+}
+
+/* Warm accent button */
+.btn-accent {
+  background-color: var(--color-accent);
+  color: #fff;
+  font-weight: 700;
+  border-radius: 12px;
+  transition: background-color 0.2s ease, transform 0.2s ease;
+}
+.btn-accent:hover {
+  background-color: var(--color-accent-hover);
+  transform: translateY(-1px);
+}
+
+/* Eyebrow text — small label above headings */
+.eyebrow {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+}
+
+/* Hide scrollbar for horizontal scroll containers */
+.scrollbar-none::-webkit-scrollbar {
+  display: none;
+}
+.scrollbar-none {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* Smooth section transitions */
+section {
+  transition: opacity 0.3s ease;
 }

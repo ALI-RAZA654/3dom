@@ -260,6 +260,7 @@ export default function ThreeDPrintingStore() {
   const [selectedBrand, setSelectedBrand] = useState<string>('all');
   const [selectedMaterial, setSelectedMaterial] = useState<string>('all');
   const [bestSellerTab, setBestSellerTab] = useState<string>('enclosed');
+  const [heroSlide, setHeroSlide] = useState<number>(0);
   const [loading, setLoading] = useState<boolean>(true);
 
   // Carousel refs for smooth horizontal scrolling
@@ -468,72 +469,185 @@ export default function ThreeDPrintingStore() {
   const featuredBestSeller = getBestSellerFeatured();
 
   return (
-    <div className="bg-[#F8FAFC] text-slate-900 min-h-screen pb-16">
-      
-      {/* 1. HERO BANNER SECTION (Clean Red & Modern Theme) */}
-      <section className="relative bg-white border-b border-slate-200/80 py-10 sm:py-14 px-4 sm:px-8 shadow-2xs">
-        <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
-          
-          {/* Left Hero Text */}
-          <div className="lg:col-span-7 space-y-6 text-left">
-            <div className="inline-flex items-center space-x-2 px-3.5 py-1 rounded-full bg-red-50 border border-red-200 text-red-600 text-xs font-black uppercase tracking-wider">
-              <Zap className="w-3.5 h-3.5 text-red-600" />
-              <span>Flagship 3D Printing Marketplace</span>
-            </div>
+    <div className="bg-[#F8FAFC] text-slate-900 min-h-screen pb-16 pt-[148px]">
 
-            <h1 className="text-3xl sm:text-5xl font-black tracking-tight text-slate-900 leading-tight">
-              Shape your ideas. <br />
-              <span className="text-red-600">Build with Precision.</span>
-            </h1>
+      {/* 1. HERO BANNER — Dark Cinematic Carousel */}
+      <section className="px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto mb-8">
+        <div className="relative rounded-3xl overflow-hidden bg-[#111318] shadow-2xl" style={{ minHeight: '340px' }}>
 
-            <p className="text-slate-600 text-sm sm:text-base font-normal leading-relaxed max-w-xl">
-              Industrial grade 3D printers, high-speed CoreXY kits, engineering filaments, and high-temp replacement hardware delivered directly to your doorstep.
-            </p>
+          {/* Dark gradient overlay */}
+          <div className="absolute inset-0 bg-gradient-to-r from-black/75 via-black/35 to-transparent z-10" />
 
-            <div className="flex flex-wrap items-center gap-3 pt-2">
-              <a
-                href="#premium-printers"
-                className="px-7 py-3.5 bg-red-600 hover:bg-red-700 text-white font-extrabold text-xs rounded-xl shadow-md shadow-red-600/20 flex items-center space-x-2 transition transform hover:-translate-y-0.5"
-              >
-                <span>Explore Premium Printers</span>
-                <ArrowRight className="w-4 h-4" />
-              </a>
-              <a
-                href="#catalog"
-                className="px-7 py-3.5 bg-slate-100 hover:bg-slate-200 text-slate-800 font-bold text-xs rounded-xl border border-slate-300 transition"
-              >
-                <span>Browse Full Catalog</span>
-              </a>
-            </div>
+          {/* Slide Background Images (Dark High-Tech Banners) */}
+          <div className="absolute inset-0 z-0">
+            {heroSlide === 0 && (
+              <img
+                src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=1600&q=80"
+                alt="Next-Gen CoreXY Banner"
+                className="w-full h-full object-cover opacity-50 transition-all duration-1000 scale-105 group-hover:scale-100"
+              />
+            )}
+            {heroSlide === 1 && (
+              <img
+                src="https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&fit=crop&w=1600&q=80"
+                alt="High-Temp Filaments Banner"
+                className="w-full h-full object-cover opacity-45 transition-all duration-1000 scale-105 group-hover:scale-100"
+              />
+            )}
+            {heroSlide === 2 && (
+              <img
+                src="https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?auto=format&fit=crop&w=1600&q=80"
+                alt="Custom 3D Print Banner"
+                className="w-full h-full object-cover opacity-40 transition-all duration-1000 scale-105 group-hover:scale-100"
+              />
+            )}
+            {heroSlide === 3 && (
+              <img
+                src="https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1600&q=80"
+                alt="Flagship Printers Banner"
+                className="w-full h-full object-cover opacity-45 transition-all duration-1000 scale-105 group-hover:scale-100"
+              />
+            )}
 
-            {/* Stat Counters */}
-            <div className="pt-4 border-t border-slate-200/80 grid grid-cols-3 gap-4">
-              <div>
-                <div className="text-xl sm:text-2xl font-black text-slate-900">50K+</div>
-                <div className="text-xs text-slate-500 font-semibold">Prints Delivered</div>
-              </div>
-              <div>
-                <div className="text-xl sm:text-2xl font-black text-red-600">30+</div>
-                <div className="text-xs text-slate-500 font-semibold">Material Grades</div>
-              </div>
-              <div>
-                <div className="text-xl sm:text-2xl font-black text-slate-900">10K+</div>
-                <div className="text-xs text-slate-500 font-semibold">Makers & Engineers</div>
-              </div>
-            </div>
+            {/* Glowing Gradient Overlays */}
+            <div className="absolute inset-0 bg-gradient-to-r from-[#0B0C10] via-[#0B0C10]/85 to-transparent z-10" />
+            <div className="absolute inset-0 bg-gradient-to-t from-[#0B0C10] via-transparent to-[#0B0C10]/40 z-10" />
+            <div className="absolute -left-20 -top-20 w-96 h-96 bg-red-600/15 rounded-full blur-3xl z-10 pointer-events-none" />
+            <div className="absolute right-0 bottom-0 w-80 h-80 bg-red-600/10 rounded-full blur-3xl z-10 pointer-events-none" />
           </div>
 
-          {/* Right Hero Image Card */}
-          <div className="lg:col-span-5 relative">
-            <div className="bg-white p-3 rounded-3xl border border-slate-200 shadow-xl overflow-hidden group">
-              <img
-                src="/images/3d-banner.jpg"
-                alt="3D Printing Category Banner"
-                onError={(e) => {
-                  (e.target as HTMLImageElement).src = 'https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=800&q=80';
+          {/* Carousel Arrow Navigation */}
+          <button
+            onClick={() => setHeroSlide((prev) => (prev === 0 ? 3 : prev - 1))}
+            className="absolute left-4 z-30 w-11 h-11 rounded-2xl bg-black/60 hover:bg-red-600 border border-white/10 hover:border-red-500 text-white flex items-center justify-center transition-all duration-200 backdrop-blur-md shadow-xl"
+            aria-label="Previous slide"
+          >
+            <ChevronLeft className="w-5 h-5" />
+          </button>
+          
+          <button
+            onClick={() => setHeroSlide((prev) => (prev === 3 ? 0 : prev + 1))}
+            className="absolute right-4 z-30 w-11 h-11 rounded-2xl bg-black/60 hover:bg-red-600 border border-white/10 hover:border-red-500 text-white flex items-center justify-center transition-all duration-200 backdrop-blur-md shadow-xl"
+            aria-label="Next slide"
+          >
+            <ChevronRight className="w-5 h-5" />
+          </button>
+
+          {/* Hero Banner Slide Content */}
+          <div className="relative z-20 px-8 sm:px-14 md:px-20 py-10 max-w-3xl space-y-5 text-left">
+            
+            {/* Badges Row */}
+            <div className="flex items-center space-x-2.5 flex-wrap gap-y-2">
+              <span className="px-3.5 py-1 bg-red-600 text-white text-[11px] font-black uppercase tracking-widest rounded-lg shadow-lg shadow-red-900/50 flex items-center space-x-1.5">
+                <Flame className="w-3.5 h-3.5 text-white" />
+                <span>
+                  {heroSlide === 0 ? 'REVOLUTIONARY' : heroSlide === 1 ? 'PRO GRADE SPOOLS' : heroSlide === 2 ? 'INSTANT SERVICE' : 'FLAGSHIP SERIES'}
+                </span>
+              </span>
+              <span className="px-3 py-1 bg-white/10 backdrop-blur-md border border-white/20 text-white text-[11px] font-bold uppercase tracking-wider rounded-lg">
+                {heroSlide === 0 ? 'CORE-XY 600 MM/S' : heroSlide === 1 ? 'FLASHSALE 20% OFF' : heroSlide === 2 ? '24-HOUR TURNAROUND' : 'AMS MULTI-COLOR'}
+              </span>
+            </div>
+
+            {/* Slide Title */}
+            <h1 className="text-3xl sm:text-5xl font-black text-white tracking-tight leading-tight uppercase">
+              {heroSlide === 0 && (
+                <>Next-Gen <span className="text-red-500 drop-shadow-[0_0_25px_rgba(239,68,68,0.5)]">CoreXY</span> Systems</>
+              )}
+              {heroSlide === 1 && (
+                <>Precision High-Temp <span className="text-red-500 drop-shadow-[0_0_25px_rgba(239,68,68,0.5)]">Filaments</span></>
+              )}
+              {heroSlide === 2 && (
+                <>On-Demand <span className="text-red-500 drop-shadow-[0_0_25px_rgba(239,68,68,0.5)]">3D Printing</span> Service</>
+              )}
+              {heroSlide === 3 && (
+                <>Enclosed Multi-Color <span className="text-red-500 drop-shadow-[0_0_25px_rgba(239,68,68,0.5)]">Printers</span></>
+              )}
+            </h1>
+
+            {/* Slide Subtitle */}
+            <p className="text-slate-300 text-xs sm:text-base leading-relaxed max-w-xl font-medium">
+              {heroSlide === 0 && 'Industrial-grade precision engineering with automatic active bed leveling, rapid dual-gear extruders, and ultra-smooth CoreXY motion.'}
+              {heroSlide === 1 && 'Engineered Carbon Fiber, PETG, Silk Co-Extrusion, and high-temp resins tested for flawless layer adhesion and warp-free prints.'}
+              {heroSlide === 2 && 'Upload your STL or CAD model for instant pricing, engineering material options, and high-speed delivery within 24 hours.'}
+              {heroSlide === 3 && 'Experience high-speed automatic filament swapping with smart nozzle alignment and temperature-controlled build chambers.'}
+            </p>
+
+            {/* Call to Actions & Pricing */}
+            <div className="pt-2 flex flex-wrap items-center gap-4">
+              <button
+                onClick={() => {
+                  if (heroSlide === 2) onRequestModalOpen();
+                  else {
+                    setSelectedCategory(heroSlide === 1 ? 'Filaments' : 'Printers');
+                    document.getElementById('catalog')?.scrollIntoView({ behavior: 'smooth' });
+                  }
                 }}
-                className="w-full h-72 sm:h-80 object-cover rounded-2xl group-hover:scale-105 transition-transform duration-500"
-              />
+                className="px-8 py-3.5 bg-red-600 hover:bg-red-500 text-white text-xs font-black uppercase tracking-wider rounded-xl flex items-center space-x-2.5 transition-all duration-300 shadow-lg shadow-red-900/60 hover:scale-105 active:scale-95"
+              >
+                <span>{heroSlide === 2 ? 'Upload Your Model' : heroSlide === 1 ? 'Shop Filaments Deals' : 'Explore Flagship Printers'}</span>
+                <ArrowRight className="w-4 h-4" />
+              </button>
+
+              <a
+                href="#premium-printers"
+                className="px-6 py-3.5 bg-white/10 hover:bg-white/20 border border-white/20 text-white text-xs font-bold uppercase tracking-wider rounded-xl backdrop-blur-md transition-all duration-200"
+              >
+                View Catalog
+              </a>
+            </div>
+
+            {/* Dot Indicators */}
+            <div className="flex items-center space-x-2 pt-4">
+              {[0, 1, 2, 3].map((i) => (
+                <button
+                  key={i}
+                  onClick={() => setHeroSlide(i)}
+                  className={`h-2 rounded-full transition-all duration-300 ${
+                    i === heroSlide ? 'w-8 bg-red-500 shadow-md shadow-red-600/50' : 'w-2 bg-white/30 hover:bg-white/60'
+                  }`}
+                  aria-label={`Go to slide ${i + 1}`}
+                />
+              ))}
+            </div>
+
+          </div>
+
+          {/* Right Floating Dark Tech Graphic Card */}
+          <div className="absolute right-8 top-1/2 -translate-y-1/2 z-20 hidden lg:block w-72">
+            <div className="bg-[#12141C]/90 backdrop-blur-xl p-5 rounded-2xl border border-red-900/40 shadow-2xl space-y-4">
+              <div className="flex items-center justify-between border-b border-slate-800 pb-3">
+                <span className="text-[10px] font-black uppercase tracking-wider text-red-500 flex items-center space-x-1">
+                  <Zap className="w-3 h-3 text-red-500" />
+                  <span>3DOM PERFORMANCE</span>
+                </span>
+                <span className="text-[10px] font-extrabold text-slate-400">SERIES 2026</span>
+              </div>
+
+              <div className="space-y-2">
+                <div className="flex justify-between text-xs">
+                  <span className="text-slate-400 font-medium">Max Print Speed</span>
+                  <span className="text-white font-extrabold">600 mm/s</span>
+                </div>
+                <div className="w-full bg-slate-800 h-1.5 rounded-full overflow-hidden">
+                  <div className="bg-red-600 h-full w-[90%]" />
+                </div>
+              </div>
+
+              <div className="space-y-2">
+                <div className="flex justify-between text-xs">
+                  <span className="text-slate-400 font-medium">Acceleration</span>
+                  <span className="text-white font-extrabold">20,000 mm/s²</span>
+                </div>
+                <div className="w-full bg-slate-800 h-1.5 rounded-full overflow-hidden">
+                  <div className="bg-red-500 h-full w-[85%]" />
+                </div>
+              </div>
+
+              <div className="pt-2 flex items-center justify-between text-xs border-t border-slate-800/80">
+                <span className="text-slate-400">Nozzle Temp</span>
+                <span className="text-red-400 font-black">Up to 350°C</span>
+              </div>
             </div>
           </div>
 

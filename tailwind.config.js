@@ -8,18 +8,39 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        sans: ['Inter', 'sans-serif'],
+        sans: ['Hanken Grotesk', 'Inter', 'system-ui', 'sans-serif'],
+        serif: ['Instrument Serif', 'Georgia', 'Times New Roman', 'serif'],
       },
       colors: {
-        '3d-red': '#e63946',
-        '3d-dark': '#0f0f11',
-        '3d-card': '#18181c',
-        'fashion-bg': '#FAF9F6',
-        'fashion-sage': '#7d9884',
-        'fashion-lavender': '#d8d4f2',
-        'beauty-bg': '#FDF5F3',
-        'beauty-rose': '#d4a373',
-        'beauty-accent': '#c88770',
+        // Warm Neutral Palette (LuxeLoom-Inspired)
+        'warm': {
+          bg: '#F5F1EB',
+          card: '#FDFAF6',
+          surface: '#FAF7F2',
+          text: '#2A241E',
+          muted: '#6E6459',
+          border: '#E6DDD1',
+          'border-light': '#EFE8DC',
+          accent: '#DC2626',
+          'accent-hover': '#B91C1C',
+          'accent-light': '#FEE2E2',
+          'badge-bg': '#FFF1F1',
+          'badge-text': '#991B1B',
+        },
+        // Legacy tokens (kept for backward compat)
+        '3d-red': '#DC2626',
+        '3d-dark': '#2A241E',
+        '3d-card': '#FDFAF6',
+      },
+      borderRadius: {
+        'card': '22px',
+      },
+      boxShadow: {
+        'card': '0 1px 2px rgba(42,36,30,.03), 0 18px 40px -30px rgba(42,36,30,.18)',
+        'card-hover': '0 1px 2px rgba(42,36,30,.03), 0 34px 60px -32px rgba(42,36,30,.28)',
+        'warm-sm': '0 1px 3px rgba(42,36,30,.06)',
+        'warm-md': '0 4px 16px rgba(42,36,30,.08)',
+        'warm-lg': '0 12px 32px rgba(42,36,30,.12)',
       },
     },
   },
