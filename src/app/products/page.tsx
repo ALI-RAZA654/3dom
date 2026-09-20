@@ -1,6 +1,8 @@
 'use client';
 
-import React, { useState, useEffect, useMemo } from 'react';
+export const dynamic = 'force-dynamic';
+
+import React, { useState, useEffect, useMemo, Suspense } from 'react';
 import Link from 'next/link';
 import { useRouter, useSearchParams } from 'next/navigation';
 import {
@@ -182,7 +184,7 @@ const INITIAL_PRODUCTS = [
   }
 ];
 
-export default function ProductsCatalogPage() {
+function ProductsCatalogContent() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const { addToCart } = useCart();
@@ -674,5 +676,19 @@ export default function ProductsCatalogPage() {
         </div>
       </div>
     </div>
+  );
+}
+
+export default function ProductsCatalogPage() {
+  return (
+    <Suspense
+      fallback={
+        <div className="bg-[#F8F9FA] min-h-screen pt-[140px] text-center font-bold text-slate-500 text-sm">
+          Loading 3DOM Products Catalog...
+        </div>
+      }
+    >
+      <ProductsCatalogContent />
+    </Suspense>
   );
 }
