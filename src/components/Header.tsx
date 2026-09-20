@@ -269,7 +269,17 @@ export const Header: React.FC<{ onRequestModalOpen: () => void }> = ({ onRequest
                     <span>+1 Request Custom Order</span>
                   </button>
 
-                  {/* 5. Order Tracking */}
+                  {/* 5. Products Catalog */}
+                  <Link
+                    href="/products"
+                    onClick={() => setIsDropdownOpen(false)}
+                    className="flex items-center space-x-3 px-3 py-2.5 rounded-xl text-sm font-semibold text-warm-text hover:bg-warm-surface transition"
+                  >
+                    <Zap className="w-4 h-4 text-red-600" />
+                    <span>View All Products</span>
+                  </Link>
+
+                  {/* 6. Order Tracking */}
                   <Link
                     href="/orders"
                     onClick={() => setIsDropdownOpen(false)}

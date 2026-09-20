@@ -41,14 +41,16 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
       
       {/* Product Image Container & Badges */}
       <div className="relative aspect-square w-full overflow-hidden bg-warm-surface p-3">
-        <img
-          src={product.image}
-          alt={product.name}
-          onError={(e) => {
-            (e.target as HTMLImageElement).src = 'https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=800&q=80';
-          }}
-          className="w-full h-full object-cover rounded-2xl group-hover:scale-105 transition-transform duration-500"
-        />
+        <Link href={productUrl} className="block w-full h-full">
+          <img
+            src={product.image}
+            alt={product.name}
+            onError={(e) => {
+              (e.target as HTMLImageElement).src = 'https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=800&q=80';
+            }}
+            className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-500"
+          />
+        </Link>
 
         {/* Top Badges */}
         <div className="absolute top-4 left-4 flex flex-col gap-1.5 z-10">

@@ -14,6 +14,7 @@ import {
   Printer, 
   ChevronLeft, 
   ChevronRight, 
+  ChevronDown,
   Star, 
   ShoppingBag, 
   Eye, 
@@ -282,6 +283,14 @@ export default function ThreeDPrintingStore() {
       });
   }, []);
 
+  // Auto-loop hero slider every 4.5 seconds
+  useEffect(() => {
+    const slideTimer = setInterval(() => {
+      setHeroSlide((prev) => (prev + 1) % 4);
+    }, 4500);
+    return () => clearInterval(slideTimer);
+  }, []);
+
   const categories = [
     { id: 'all', name: 'All 3D Products', count: products.length },
     { id: 'Printers', name: '3D Printers', count: products.filter(p => p.category === 'Printers').length },
@@ -469,183 +478,223 @@ export default function ThreeDPrintingStore() {
   const featuredBestSeller = getBestSellerFeatured();
 
   return (
-    <div className="bg-[#F8FAFC] text-slate-900 min-h-screen pb-16 pt-[148px]">
+    <div className="bg-[#F8FAFC] text-slate-900 min-h-screen pb-16 pt-[130px]">
 
-      {/* 1. HERO BANNER — Wide Luxury Dark CoreXY Banner */}
-      <section className="px-3 sm:px-6 lg:px-8 max-w-[1536px] mx-auto mb-10">
-        <div className="relative rounded-[32px] overflow-hidden bg-[#0a0714] border border-white/10 shadow-[0_25px_60px_rgba(0,0,0,0.6)] min-h-[460px] lg:min-h-[500px] flex items-center">
+      {/* SHOP CATEGORIES RIBBON BAR (ABOVE HERO BANNER) */}
+      <div className="bg-white border-b border-slate-200 shadow-2xs mb-6">
+        <div className="max-w-[1536px] mx-auto px-4 sm:px-6 flex items-center justify-between text-xs overflow-x-auto whitespace-nowrap scrollbar-none py-2">
+          <div className="flex items-center space-x-6">
+            <button className="bg-black text-white px-3.5 py-2 rounded font-bold flex items-center space-x-2 text-xs hover:bg-slate-800 transition">
+              <span>■ Shop categories</span>
+              <ChevronDown className="w-3.5 h-3.5" />
+            </button>
 
-          {/* Slide Background Images with Glowing Gradient Overlays */}
-          <div className="absolute inset-0 z-0">
-            {heroSlide === 0 && (
-              <img
-                src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=1600&q=80"
-                alt="Next-Gen CoreXY Banner"
-                className="w-full h-full object-cover opacity-35 transition-all duration-1000 scale-105"
-              />
-            )}
-            {heroSlide === 1 && (
-              <img
-                src="https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&fit=crop&w=1600&q=80"
-                alt="High-Temp Filaments Banner"
-                className="w-full h-full object-cover opacity-35 transition-all duration-1000 scale-105"
-              />
-            )}
-            {heroSlide === 2 && (
-              <img
-                src="https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?auto=format&fit=crop&w=1600&q=80"
-                alt="Custom 3D Print Banner"
-                className="w-full h-full object-cover opacity-35 transition-all duration-1000 scale-105"
-              />
-            )}
-            {heroSlide === 3 && (
-              <img
-                src="https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1600&q=80"
-                alt="Flagship Printers Banner"
-                className="w-full h-full object-cover opacity-35 transition-all duration-1000 scale-105"
-              />
-            )}
-
-            {/* Glowing Luxury Ambient Gradients */}
-            <div className="absolute inset-0 bg-gradient-to-r from-[#0a0714] via-[#120a22]/90 to-transparent z-10" />
-            <div className="absolute inset-0 bg-gradient-to-t from-[#0a0714] via-transparent to-[#0a0714]/60 z-10" />
-            <div className="absolute -left-20 -top-20 w-[450px] h-[450px] bg-red-600/15 rounded-full blur-[100px] z-10 pointer-events-none" />
-            <div className="absolute right-10 bottom-0 w-[400px] h-[400px] bg-purple-600/15 rounded-full blur-[120px] z-10 pointer-events-none" />
+            <nav className="flex items-center space-x-6 text-slate-700 font-semibold">
+              {[
+                '3D Printers',
+                'Resin',
+                'Filament',
+                'Parts & Nozzles',
+                'Scanners',
+                'Under ₹50k'
+              ].map((tab, idx) => (
+                <Link
+                  key={tab}
+                  href="/products"
+                  className={`py-2 border-b-2 transition ${
+                    idx === 0
+                      ? 'border-red-600 text-red-600 font-bold'
+                      : 'border-transparent hover:text-black'
+                  }`}
+                >
+                  {tab}
+                </Link>
+              ))}
+            </nav>
           </div>
 
-          {/* Chevron Navigation Arrows (Top Left & Top Right) */}
-          <button
-            onClick={() => setHeroSlide((prev) => (prev === 0 ? 3 : prev - 1))}
-            className="absolute top-6 left-6 z-30 w-10 h-10 rounded-full bg-black/60 hover:bg-black/90 border border-white/20 text-white flex items-center justify-center transition-all duration-200 backdrop-blur-md shadow-lg cursor-pointer"
-            aria-label="Previous slide"
-          >
-            <ChevronLeft className="w-5 h-5" />
-          </button>
+          <div className="hidden lg:flex items-center space-x-2 font-bold text-red-600 cursor-pointer hover:underline">
+            <Link href="/products">Deals of the week</Link>
+          </div>
+        </div>
+      </div>
 
-          <button
-            onClick={() => setHeroSlide((prev) => (prev === 3 ? 0 : prev + 1))}
-            className="absolute top-6 right-6 z-30 w-10 h-10 rounded-full bg-black/60 hover:bg-black/90 border border-white/20 text-white flex items-center justify-center transition-all duration-200 backdrop-blur-md shadow-lg cursor-pointer"
-            aria-label="Next slide"
-          >
-            <ChevronRight className="w-5 h-5" />
-          </button>
+      {/* 1. HERO BANNER — Exact Replicated Banner Matching Reference Screenshot */}
+      <section className="px-3 sm:px-6 lg:px-8 max-w-[1536px] mx-auto mb-8">
+        <div className="relative rounded-3xl overflow-hidden bg-[#0A0710] text-white min-h-[380px] lg:min-h-[420px] flex items-center border border-slate-800 shadow-2xl group">
+          
+          {/* Active Slide Full Background Image */}
+          <div className="absolute inset-0 z-0">
+            <img
+              src={
+                heroSlide === 0
+                  ? '/images/3d-banner.jpg'
+                  : heroSlide === 1
+                  ? '/images/jakub-zerdzicki-ny9nVE0PEuo-unsplash.jpg'
+                  : heroSlide === 2
+                  ? '/images/jakub-zerdzicki-yDp9UPdiQrQ-unsplash (1).jpg'
+                  : '/images/minku-kang-aCniNTiIFd8-unsplash.jpg'
+              }
+              alt="3D Printer Showcase Banner"
+              className="w-full h-full object-cover transition-all duration-700 brightness-100 contrast-105"
+            />
+            {/* Soft left gradient overlay so text on left is 100% crystal clear */}
+            <div className="absolute inset-0 bg-gradient-to-r from-black via-black/80 to-transparent z-10 w-[70%]" />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-black/40 z-10" />
+          </div>
 
-          {/* Hero Content Area */}
-          <div className="relative z-20 px-8 sm:px-14 lg:px-20 py-12 max-w-3xl space-y-6 text-left">
-
-            {/* Badges Row */}
-            <div className="flex items-center space-x-3 flex-wrap gap-y-2">
-              <span className="px-4 py-1.5 bg-[#FF3B30] text-white text-[11px] font-black uppercase tracking-widest rounded-full shadow-[0_0_15px_rgba(255,59,48,0.6)] flex items-center space-x-1.5">
-                <Flame className="w-3.5 h-3.5 text-white" />
-                <span>
-                  {heroSlide === 0 ? 'REVOLUTIONARY' : heroSlide === 1 ? 'PRO GRADE SPOOLS' : heroSlide === 2 ? 'INSTANT SERVICE' : 'FLAGSHIP SERIES'}
+          {/* Banner Main Content Container */}
+          <div className="relative z-20 w-full p-6 sm:p-10 lg:p-12 flex items-center justify-between">
+            
+            {/* Left Overlay Text Content */}
+            <div className="max-w-xl space-y-4 text-left">
+              
+              {/* Badges */}
+              <div className="flex items-center space-x-2">
+                <span className="bg-red-600 text-white text-[10px] font-black uppercase px-2.5 py-0.5 rounded tracking-wider shadow-xs">
+                  {heroSlide === 0 ? 'NEW' : heroSlide === 1 ? 'BESTSELLER' : heroSlide === 2 ? 'PRO KITS' : 'HIGH PRECISION'}
                 </span>
-              </span>
-              <span className="px-4 py-1.5 bg-[#1d172e]/90 backdrop-blur-md border border-white/15 text-white text-[11px] font-extrabold uppercase tracking-wider rounded-full">
-                {heroSlide === 0 ? 'CORE-XY 600 MM/S' : heroSlide === 1 ? 'FLASHSALE 20% OFF' : heroSlide === 2 ? '24-HOUR TURNAROUND' : 'AMS MULTI-COLOR'}
-              </span>
-            </div>
+                <span className="bg-slate-800/90 text-slate-200 border border-slate-700 text-[10px] font-bold uppercase px-2.5 py-0.5 rounded tracking-wider">
+                  {heroSlide === 0 ? 'CORE-XY' : heroSlide === 1 ? 'AMS 4-COLOUR' : heroSlide === 2 ? 'CORE-XY DIY' : '12K MONO'}
+                </span>
+              </div>
 
-            {/* Slide Title */}
-            <h1 className="text-4xl sm:text-6xl font-black text-white tracking-tight leading-[1.05] uppercase">
-              {heroSlide === 0 && (
-                <>NEXT-GEN <span className="text-[#FF3B30] drop-shadow-[0_0_25px_rgba(255,59,48,0.7)]">COREXY</span><br />SYSTEMS</>
-              )}
-              {heroSlide === 1 && (
-                <>PRECISION <span className="text-[#FF3B30] drop-shadow-[0_0_25px_rgba(255,59,48,0.7)]">HIGH-TEMP</span><br />FILAMENTS</>
-              )}
-              {heroSlide === 2 && (
-                <>ON-DEMAND <span className="text-[#FF3B30] drop-shadow-[0_0_25px_rgba(255,59,48,0.7)]">3D PRINTING</span><br />SERVICE</>
-              )}
-              {heroSlide === 3 && (
-                <>ENCLOSED <span className="text-[#FF3B30] drop-shadow-[0_0_25px_rgba(255,59,48,0.7)]">MULTI-COLOR</span><br />PRINTERS</>
-              )}
-            </h1>
+              {/* Title & Speed Tagline */}
+              <div>
+                <h1 className="text-3xl sm:text-5xl font-black text-white tracking-tight leading-none">
+                  {heroSlide === 0 && 'Forge A1 Mini.'}
+                  {heroSlide === 1 && 'Forge A1 Pro AMS.'}
+                  {heroSlide === 2 && 'Voron 2.4 R2 DIY Kit.'}
+                  {heroSlide === 3 && 'Halo Photon M5s 12K.'}
+                </h1>
+                <div className="mt-2 flex items-baseline space-x-2 flex-wrap">
+                  <span className="text-2xl sm:text-4xl font-black text-white">
+                    {heroSlide === 0 && '500 mm/s'}
+                    {heroSlide === 1 && '4-Colour AMS'}
+                    {heroSlide === 2 && '350 mm/s'}
+                    {heroSlide === 3 && '105 mm/h'}
+                  </span>
+                  <span className="text-sm sm:text-base text-slate-300 font-medium">
+                    {heroSlide === 0 && 'on a desk that small.'}
+                    {heroSlide === 1 && 'multi-material auto switching.'}
+                    {heroSlide === 2 && 'flying gantry engineering.'}
+                    {heroSlide === 3 && 'level-free auto resin printing.'}
+                  </span>
+                </div>
+              </div>
 
-            {/* Slide Subtitle */}
-            <p className="text-slate-300 text-sm sm:text-base leading-relaxed max-w-xl font-medium">
-              {heroSlide === 0 && 'Industrial-grade precision engineering with automatic active bed leveling, rapid dual-gear extruders, and ultra-smooth CoreXY motion.'}
-              {heroSlide === 1 && 'Engineered Carbon Fiber, PETG, Silk Co-Extrusion, and high-temp resins tested for flawless layer adhesion and warp-free prints.'}
-              {heroSlide === 2 && 'Upload your STL or CAD model for instant pricing, engineering material options, and high-speed delivery within 24 hours.'}
-              {heroSlide === 3 && 'Experience high-speed automatic filament swapping with smart nozzle alignment and temperature-controlled build chambers.'}
-            </p>
+              {/* Specs line */}
+              <p className="text-xs sm:text-sm text-slate-300 font-medium">
+                {heroSlide === 0 && 'Auto bed levelling · High precision · Compact design'}
+                {heroSlide === 1 && '256³ build volume · Enclosed chamber · Auto levelling'}
+                {heroSlide === 2 && '350x350x350mm build · Klipper firmware · Flying gantry'}
+                {heroSlide === 3 && '12K Mono LCD · 19-micron XY accuracy · Fast resin curing'}
+              </p>
 
-            {/* Action Buttons */}
-            <div className="pt-2 flex flex-wrap items-center gap-4">
-              <button
-                onClick={() => {
-                  if (heroSlide === 2) onRequestModalOpen();
-                  else {
-                    setSelectedCategory(heroSlide === 1 ? 'Filaments' : 'Printers');
-                    document.getElementById('catalog')?.scrollIntoView({ behavior: 'smooth' });
+              {/* Price Row */}
+              <div className="flex items-center space-x-3 pt-1">
+                <span className="text-2xl sm:text-3xl font-black text-white">
+                  ₹{
+                    heroSlide === 0 ? '28,999' : heroSlide === 1 ? '62,999' : heroSlide === 2 ? '89,900' : '44,999'
                   }
-                }}
-                className="px-8 py-4 bg-[#FF3B30] hover:bg-red-500 text-white text-xs font-black uppercase tracking-wider rounded-full flex items-center space-x-2 transition-all duration-300 shadow-[0_0_20px_rgba(255,59,48,0.5)] transform hover:scale-105 active:scale-95 cursor-pointer"
-              >
-                <span>{heroSlide === 2 ? 'Upload Your Model' : heroSlide === 1 ? 'Shop Filaments Deals' : 'EXPLORE FLAGSHIP PRINTERS'}</span>
-                <ArrowRight className="w-4 h-4 ml-1" />
-              </button>
+                </span>
+                <span className="text-sm text-slate-400 line-through font-medium">
+                  ₹{
+                    heroSlide === 0 ? '34,999' : heroSlide === 1 ? '71,999' : heroSlide === 2 ? '95,000' : '52,999'
+                  }
+                </span>
+                <span className="bg-red-600 text-white text-xs font-black px-2.5 py-0.5 rounded uppercase tracking-wider">
+                  {heroSlide === 0 ? '17% OFF' : heroSlide === 1 ? '12% OFF' : heroSlide === 2 ? '5% OFF' : '15% OFF'}
+                </span>
+              </div>
 
-              <a
-                href="#premium-printers"
-                className="px-7 py-4 bg-[#201833]/80 hover:bg-[#2e234a] border border-white/20 text-white text-xs font-extrabold uppercase tracking-wider rounded-full backdrop-blur-md transition-all duration-200"
-              >
-                VIEW CATALOG
-              </a>
+              {/* Action Buttons */}
+              <div className="pt-3 flex items-center space-x-3">
+                <Link
+                  href={
+                    heroSlide === 0
+                      ? '/3d-printing/printers/forge-a1-mini'
+                      : heroSlide === 1
+                      ? '/3d-printing/printers/forge-a1-pro-ams'
+                      : heroSlide === 2
+                      ? '/3d-printing/printers/voron-2-4-r2-corexy-kit'
+                      : '/3d-printing/printers/halo-resin-4k'
+                  }
+                  className="px-6 py-3 bg-red-600 hover:bg-red-700 text-white rounded-lg text-xs font-black uppercase tracking-wider transition flex items-center space-x-1.5 shadow-lg"
+                >
+                  <span>Buy Now</span>
+                  <ArrowRight className="w-4 h-4 ml-0.5" />
+                </Link>
+
+                <Link
+                  href="/products"
+                  className="px-6 py-3 bg-black/60 hover:bg-black border border-white/40 text-white rounded-lg text-xs font-bold transition"
+                >
+                  Explore All
+                </Link>
+              </div>
+
             </div>
 
-            {/* Carousel Dots Indicator */}
-            <div className="flex items-center space-x-2 pt-4">
-              {[0, 1, 2, 3].map((i) => (
+            {/* Far Right Vertical Thumbnail Stack */}
+            <div className="hidden lg:flex flex-col space-y-3 z-30">
+              {[
+                { title: 'Forge A1 Mini', img: '/images/3d-banner.jpg' },
+                { title: 'Forge A1 Pro AMS', img: '/images/jakub-zerdzicki-ny9nVE0PEuo-unsplash.jpg' },
+                { title: 'Voron 2.4 DIY', img: '/images/jakub-zerdzicki-yDp9UPdiQrQ-unsplash (1).jpg' },
+                { title: 'Halo Photon 12K', img: '/images/minku-kang-aCniNTiIFd8-unsplash.jpg' }
+              ].map((thumb, idx) => (
                 <button
-                  key={i}
-                  onClick={() => setHeroSlide(i)}
-                  className={`h-2 rounded-full transition-all duration-300 ${
-                    i === heroSlide ? 'w-8 bg-[#FF3B30] shadow-[0_0_10px_rgba(255,59,48,0.8)]' : 'w-2 bg-white/30 hover:bg-white/60'
+                  key={idx}
+                  onClick={() => setHeroSlide(idx)}
+                  className={`w-16 h-16 sm:w-18 sm:h-18 rounded-xl overflow-hidden border-2 transition-all duration-300 cursor-pointer p-0.5 bg-black ${
+                    heroSlide === idx
+                      ? 'border-red-600 ring-2 ring-red-600/50 scale-105 shadow-xl'
+                      : 'border-white/20 opacity-60 hover:opacity-100 hover:border-white'
                   }`}
-                  aria-label={`Go to slide ${i + 1}`}
-                />
+                  aria-label={`Select ${thumb.title}`}
+                >
+                  <img
+                    src={thumb.img}
+                    alt={thumb.title}
+                    className="w-full h-full object-cover rounded-lg"
+                  />
+                </button>
               ))}
             </div>
 
           </div>
 
-          {/* Right Floating Specs Box (3DOM PERFORMANCE) */}
-          <div className="absolute right-10 top-1/2 -translate-y-1/2 z-20 hidden lg:block w-80">
-            <div className="bg-[#120d20]/90 backdrop-blur-xl p-5 rounded-2xl border border-white/10 shadow-2xl space-y-4">
-              <div className="flex items-center justify-between border-b border-white/10 pb-3">
-                <span className="text-[10px] font-black uppercase tracking-widest text-[#FF3B30] flex items-center space-x-1.5">
-                  <Zap className="w-3.5 h-3.5 text-[#FF3B30]" />
-                  <span>3DOM PERFORMANCE</span>
-                </span>
-                <span className="text-[10px] font-extrabold text-slate-400">SERIES 2026</span>
-              </div>
+          {/* Left Arrow Button */}
+          <button
+            onClick={() => setHeroSlide((prev) => (prev === 0 ? 3 : prev - 1))}
+            className="absolute left-4 top-1/2 -translate-y-1/2 z-30 w-10 h-10 rounded-full bg-black/60 hover:bg-black text-white border border-white/20 flex items-center justify-center backdrop-blur-md transition shadow-lg cursor-pointer"
+            aria-label="Previous Slide"
+          >
+            <ChevronLeft className="w-5 h-5" />
+          </button>
 
-              <div className="space-y-2">
-                <div className="flex justify-between text-xs">
-                  <span className="text-slate-400 font-medium">Max Print Speed</span>
-                  <span className="text-white font-extrabold">600 mm/s</span>
-                </div>
-                <div className="w-full bg-slate-800/80 h-1.5 rounded-full overflow-hidden">
-                  <div className="bg-[#FF3B30] h-full w-[92%] shadow-[0_0_8px_rgba(255,59,48,0.8)]" />
-                </div>
-              </div>
+          {/* Right Arrow Button */}
+          <button
+            onClick={() => setHeroSlide((prev) => (prev === 3 ? 0 : prev + 1))}
+            className="absolute right-24 sm:right-28 top-1/2 -translate-y-1/2 z-30 w-10 h-10 rounded-full bg-black/60 hover:bg-black text-white border border-white/20 flex items-center justify-center backdrop-blur-md transition shadow-lg cursor-pointer"
+            aria-label="Next Slide"
+          >
+            <ChevronRight className="w-5 h-5" />
+          </button>
 
-              <div className="space-y-2">
-                <div className="flex justify-between text-xs">
-                  <span className="text-slate-400 font-medium">Acceleration</span>
-                  <span className="text-white font-extrabold">20,000 mm/s²</span>
-                </div>
-                <div className="w-full bg-slate-800/80 h-1.5 rounded-full overflow-hidden">
-                  <div className="bg-[#FF3B30] h-full w-[85%]" />
-                </div>
-              </div>
-
-              <div className="pt-2 flex items-center justify-between text-xs border-t border-white/10">
-                <span className="text-slate-400 font-medium">Nozzle Temp</span>
-                <span className="text-[#FF3B30] font-black">Up to 350°C</span>
-              </div>
-            </div>
+          {/* Bottom Right Horizontal Pagination Indicators */}
+          <div className="absolute bottom-4 right-6 z-30 flex items-center space-x-1.5">
+            {[0, 1, 2, 3].map((idx) => (
+              <button
+                key={idx}
+                onClick={() => setHeroSlide(idx)}
+                className={`h-1.5 rounded-full transition-all duration-300 cursor-pointer ${
+                  heroSlide === idx ? 'w-6 bg-red-600' : 'w-1.5 bg-white/40 hover:bg-white'
+                }`}
+                aria-label={`Go to slide ${idx + 1}`}
+              />
+            ))}
           </div>
 
         </div>
@@ -662,16 +711,13 @@ export default function ThreeDPrintingStore() {
               Find the right setup
             </h2>
           </div>
-          <button
-            onClick={() => {
-              setSelectedCategory('all');
-              document.getElementById('catalog')?.scrollIntoView({ behavior: 'smooth' });
-            }}
+          <Link
+            href="/products"
             className="text-red-600 hover:text-red-700 font-extrabold text-xs sm:text-sm flex items-center space-x-1 cursor-pointer"
           >
             <span>View all</span>
             <ArrowRight className="w-4 h-4 ml-0.5" />
-          </button>
+          </Link>
         </div>
 
         {/* Categories Strip */}
@@ -718,16 +764,13 @@ export default function ThreeDPrintingStore() {
           <h2 className="text-2xl sm:text-3xl font-black text-slate-900 tracking-tight">
             Machines & parts that ship today
           </h2>
-          <button
-            onClick={() => {
-              setSelectedCategory('all');
-              document.getElementById('catalog')?.scrollIntoView({ behavior: 'smooth' });
-            }}
+          <Link
+            href="/products"
             className="text-red-600 hover:text-red-700 font-extrabold text-xs sm:text-sm flex items-center space-x-1 cursor-pointer"
           >
             <span>View all 84</span>
             <ArrowRight className="w-4 h-4 ml-0.5" />
-          </button>
+          </Link>
         </div>
 
         {/* 4 Card Product Grid */}
@@ -789,21 +832,9 @@ export default function ThreeDPrintingStore() {
               image: '/images/ender-craft-9.png'
             }
           ].map((item) => (
-            <div
+            <Link
               key={item.id}
-              onClick={() => {
-                addToCart({
-                  id: item.id,
-                  slug: item.slug,
-                  name: item.name,
-                  price: item.price,
-                  originalPrice: item.originalPrice,
-                  image: item.image,
-                  brand: item.brand,
-                  vertical: '3d-printing',
-                  category: 'Printers'
-                }, 1);
-              }}
+              href={`/3d-printing/printers/${item.slug}`}
               className="bg-white border border-slate-200/90 rounded-2xl p-4 flex flex-col justify-between hover:shadow-lg transition-all duration-300 group cursor-pointer"
             >
               <div>
@@ -864,7 +895,7 @@ export default function ThreeDPrintingStore() {
                   </span>
                 </div>
               </div>
-            </div>
+            </Link>
           ))}
         </div>
       </section>
@@ -929,7 +960,7 @@ export default function ThreeDPrintingStore() {
                         onError={(e) => {
                           (e.target as HTMLImageElement).src = 'https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=800&q=80';
                         }}
-                        className="w-full h-full object-cover rounded-xl group-hover:scale-105 transition-transform duration-500"
+                        className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-500"
                       />
 
                       {/* Top Sale & Brand Badges */}
@@ -1087,19 +1118,19 @@ export default function ThreeDPrintingStore() {
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
             
             {/* Left Showcase Banner Box */}
-            <div className="lg:col-span-4 bg-gradient-to-br from-slate-900 via-slate-800 to-red-950 p-6 sm:p-8 rounded-3xl text-white flex flex-col justify-between relative overflow-hidden group shadow-xl">
-              <div className="absolute top-0 right-0 -mr-10 -mt-10 w-40 h-40 bg-red-600/20 rounded-full blur-2xl group-hover:bg-red-600/30 transition-all" />
+            <div className="lg:col-span-4 bg-gradient-to-br from-red-50 via-rose-50 to-slate-50 border border-red-200 p-6 sm:p-8 rounded-3xl text-slate-900 flex flex-col justify-between relative overflow-hidden group shadow-sm">
+              <div className="absolute top-0 right-0 -mr-10 -mt-10 w-40 h-40 bg-red-200/40 rounded-full blur-2xl group-hover:bg-red-300/40 transition-all" />
               
               <div className="relative z-10 space-y-4">
-                <span className="bg-red-600 text-white text-[10px] font-black uppercase px-3 py-1 rounded-full tracking-wider shadow-md">
+                <span className="bg-red-600 text-white text-[10px] font-black uppercase px-3 py-1 rounded-full tracking-wider shadow-xs">
                   SPECIAL OFFER
                 </span>
 
-                <h3 className="text-2xl sm:text-3xl font-black leading-tight">
+                <h3 className="text-2xl sm:text-3xl font-black leading-tight text-slate-900">
                   High-Speed Filament Bundles
                 </h3>
 
-                <p className="text-slate-300 text-xs sm:text-sm leading-relaxed">
+                <p className="text-slate-600 text-xs sm:text-sm leading-relaxed font-medium">
                   Buy 3 or more spools of PLA+, PETG, or Silk Co-Extrusion filaments and receive an automatic 20% discount at checkout.
                 </p>
               </div>
@@ -1151,7 +1182,7 @@ export default function ThreeDPrintingStore() {
                           onError={(e) => {
                             (e.target as HTMLImageElement).src = 'https://images.unsplash.com/photo-1615485290382-441e4d049cb5?auto=format&fit=crop&w=800&q=80';
                           }}
-                          className="w-full h-full object-cover rounded-xl group-hover:scale-105 transition-transform duration-500"
+                          className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-500"
                         />
                         <span className="absolute top-3 left-3 bg-red-600 text-white text-[10px] font-black uppercase px-2.5 py-0.5 rounded-md shadow-xs">
                           {discountPercent}% OFF
@@ -1256,7 +1287,7 @@ export default function ThreeDPrintingStore() {
                     onError={(e) => {
                       (e.target as HTMLImageElement).src = 'https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=800&q=80';
                     }}
-                    className="w-full h-72 sm:h-80 object-cover rounded-2xl group-hover:scale-105 transition-transform duration-500"
+                    className="w-full h-72 sm:h-80 object-contain rounded-2xl group-hover:scale-105 transition-transform duration-500"
                   />
                   <div className="absolute top-6 left-6 bg-red-600 text-white text-[10px] font-black uppercase px-3 py-1 rounded-full shadow-md tracking-wider">
                     BEST SELLING #1
