@@ -471,109 +471,106 @@ export default function ThreeDPrintingStore() {
   return (
     <div className="bg-[#F8FAFC] text-slate-900 min-h-screen pb-16 pt-[148px]">
 
-      {/* 1. HERO BANNER — Dark Cinematic Carousel */}
-      <section className="px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto mb-8">
-        <div className="relative rounded-3xl overflow-hidden bg-[#111318] shadow-2xl" style={{ minHeight: '340px' }}>
+      {/* 1. HERO BANNER — Wide Luxury Dark CoreXY Banner */}
+      <section className="px-3 sm:px-6 lg:px-8 max-w-[1536px] mx-auto mb-10">
+        <div className="relative rounded-[32px] overflow-hidden bg-[#0a0714] border border-white/10 shadow-[0_25px_60px_rgba(0,0,0,0.6)] min-h-[460px] lg:min-h-[500px] flex items-center">
 
-          {/* Dark gradient overlay */}
-          <div className="absolute inset-0 bg-gradient-to-r from-black/75 via-black/35 to-transparent z-10" />
-
-          {/* Slide Background Images (Dark High-Tech Banners) */}
+          {/* Slide Background Images with Glowing Gradient Overlays */}
           <div className="absolute inset-0 z-0">
             {heroSlide === 0 && (
               <img
                 src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=1600&q=80"
                 alt="Next-Gen CoreXY Banner"
-                className="w-full h-full object-cover opacity-50 transition-all duration-1000 scale-105 group-hover:scale-100"
+                className="w-full h-full object-cover opacity-35 transition-all duration-1000 scale-105"
               />
             )}
             {heroSlide === 1 && (
               <img
                 src="https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&fit=crop&w=1600&q=80"
                 alt="High-Temp Filaments Banner"
-                className="w-full h-full object-cover opacity-45 transition-all duration-1000 scale-105 group-hover:scale-100"
+                className="w-full h-full object-cover opacity-35 transition-all duration-1000 scale-105"
               />
             )}
             {heroSlide === 2 && (
               <img
                 src="https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?auto=format&fit=crop&w=1600&q=80"
                 alt="Custom 3D Print Banner"
-                className="w-full h-full object-cover opacity-40 transition-all duration-1000 scale-105 group-hover:scale-100"
+                className="w-full h-full object-cover opacity-35 transition-all duration-1000 scale-105"
               />
             )}
             {heroSlide === 3 && (
               <img
                 src="https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1600&q=80"
                 alt="Flagship Printers Banner"
-                className="w-full h-full object-cover opacity-45 transition-all duration-1000 scale-105 group-hover:scale-100"
+                className="w-full h-full object-cover opacity-35 transition-all duration-1000 scale-105"
               />
             )}
 
-            {/* Glowing Gradient Overlays */}
-            <div className="absolute inset-0 bg-gradient-to-r from-[#0B0C10] via-[#0B0C10]/85 to-transparent z-10" />
-            <div className="absolute inset-0 bg-gradient-to-t from-[#0B0C10] via-transparent to-[#0B0C10]/40 z-10" />
-            <div className="absolute -left-20 -top-20 w-96 h-96 bg-red-600/15 rounded-full blur-3xl z-10 pointer-events-none" />
-            <div className="absolute right-0 bottom-0 w-80 h-80 bg-red-600/10 rounded-full blur-3xl z-10 pointer-events-none" />
+            {/* Glowing Luxury Ambient Gradients */}
+            <div className="absolute inset-0 bg-gradient-to-r from-[#0a0714] via-[#120a22]/90 to-transparent z-10" />
+            <div className="absolute inset-0 bg-gradient-to-t from-[#0a0714] via-transparent to-[#0a0714]/60 z-10" />
+            <div className="absolute -left-20 -top-20 w-[450px] h-[450px] bg-red-600/15 rounded-full blur-[100px] z-10 pointer-events-none" />
+            <div className="absolute right-10 bottom-0 w-[400px] h-[400px] bg-purple-600/15 rounded-full blur-[120px] z-10 pointer-events-none" />
           </div>
 
-          {/* Carousel Arrow Navigation */}
+          {/* Chevron Navigation Arrows (Top Left & Top Right) */}
           <button
             onClick={() => setHeroSlide((prev) => (prev === 0 ? 3 : prev - 1))}
-            className="absolute left-4 z-30 w-11 h-11 rounded-2xl bg-black/60 hover:bg-red-600 border border-white/10 hover:border-red-500 text-white flex items-center justify-center transition-all duration-200 backdrop-blur-md shadow-xl"
+            className="absolute top-6 left-6 z-30 w-10 h-10 rounded-full bg-black/60 hover:bg-black/90 border border-white/20 text-white flex items-center justify-center transition-all duration-200 backdrop-blur-md shadow-lg cursor-pointer"
             aria-label="Previous slide"
           >
             <ChevronLeft className="w-5 h-5" />
           </button>
-          
+
           <button
             onClick={() => setHeroSlide((prev) => (prev === 3 ? 0 : prev + 1))}
-            className="absolute right-4 z-30 w-11 h-11 rounded-2xl bg-black/60 hover:bg-red-600 border border-white/10 hover:border-red-500 text-white flex items-center justify-center transition-all duration-200 backdrop-blur-md shadow-xl"
+            className="absolute top-6 right-6 z-30 w-10 h-10 rounded-full bg-black/60 hover:bg-black/90 border border-white/20 text-white flex items-center justify-center transition-all duration-200 backdrop-blur-md shadow-lg cursor-pointer"
             aria-label="Next slide"
           >
             <ChevronRight className="w-5 h-5" />
           </button>
 
-          {/* Hero Banner Slide Content */}
-          <div className="relative z-20 px-8 sm:px-14 md:px-20 py-10 max-w-3xl space-y-5 text-left">
-            
+          {/* Hero Content Area */}
+          <div className="relative z-20 px-8 sm:px-14 lg:px-20 py-12 max-w-3xl space-y-6 text-left">
+
             {/* Badges Row */}
-            <div className="flex items-center space-x-2.5 flex-wrap gap-y-2">
-              <span className="px-3.5 py-1 bg-red-600 text-white text-[11px] font-black uppercase tracking-widest rounded-lg shadow-lg shadow-red-900/50 flex items-center space-x-1.5">
+            <div className="flex items-center space-x-3 flex-wrap gap-y-2">
+              <span className="px-4 py-1.5 bg-[#FF3B30] text-white text-[11px] font-black uppercase tracking-widest rounded-full shadow-[0_0_15px_rgba(255,59,48,0.6)] flex items-center space-x-1.5">
                 <Flame className="w-3.5 h-3.5 text-white" />
                 <span>
                   {heroSlide === 0 ? 'REVOLUTIONARY' : heroSlide === 1 ? 'PRO GRADE SPOOLS' : heroSlide === 2 ? 'INSTANT SERVICE' : 'FLAGSHIP SERIES'}
                 </span>
               </span>
-              <span className="px-3 py-1 bg-white/10 backdrop-blur-md border border-white/20 text-white text-[11px] font-bold uppercase tracking-wider rounded-lg">
+              <span className="px-4 py-1.5 bg-[#1d172e]/90 backdrop-blur-md border border-white/15 text-white text-[11px] font-extrabold uppercase tracking-wider rounded-full">
                 {heroSlide === 0 ? 'CORE-XY 600 MM/S' : heroSlide === 1 ? 'FLASHSALE 20% OFF' : heroSlide === 2 ? '24-HOUR TURNAROUND' : 'AMS MULTI-COLOR'}
               </span>
             </div>
 
             {/* Slide Title */}
-            <h1 className="text-3xl sm:text-5xl font-black text-white tracking-tight leading-tight uppercase">
+            <h1 className="text-4xl sm:text-6xl font-black text-white tracking-tight leading-[1.05] uppercase">
               {heroSlide === 0 && (
-                <>Next-Gen <span className="text-red-500 drop-shadow-[0_0_25px_rgba(239,68,68,0.5)]">CoreXY</span> Systems</>
+                <>NEXT-GEN <span className="text-[#FF3B30] drop-shadow-[0_0_25px_rgba(255,59,48,0.7)]">COREXY</span><br />SYSTEMS</>
               )}
               {heroSlide === 1 && (
-                <>Precision High-Temp <span className="text-red-500 drop-shadow-[0_0_25px_rgba(239,68,68,0.5)]">Filaments</span></>
+                <>PRECISION <span className="text-[#FF3B30] drop-shadow-[0_0_25px_rgba(255,59,48,0.7)]">HIGH-TEMP</span><br />FILAMENTS</>
               )}
               {heroSlide === 2 && (
-                <>On-Demand <span className="text-red-500 drop-shadow-[0_0_25px_rgba(239,68,68,0.5)]">3D Printing</span> Service</>
+                <>ON-DEMAND <span className="text-[#FF3B30] drop-shadow-[0_0_25px_rgba(255,59,48,0.7)]">3D PRINTING</span><br />SERVICE</>
               )}
               {heroSlide === 3 && (
-                <>Enclosed Multi-Color <span className="text-red-500 drop-shadow-[0_0_25px_rgba(239,68,68,0.5)]">Printers</span></>
+                <>ENCLOSED <span className="text-[#FF3B30] drop-shadow-[0_0_25px_rgba(255,59,48,0.7)]">MULTI-COLOR</span><br />PRINTERS</>
               )}
             </h1>
 
             {/* Slide Subtitle */}
-            <p className="text-slate-300 text-xs sm:text-base leading-relaxed max-w-xl font-medium">
+            <p className="text-slate-300 text-sm sm:text-base leading-relaxed max-w-xl font-medium">
               {heroSlide === 0 && 'Industrial-grade precision engineering with automatic active bed leveling, rapid dual-gear extruders, and ultra-smooth CoreXY motion.'}
               {heroSlide === 1 && 'Engineered Carbon Fiber, PETG, Silk Co-Extrusion, and high-temp resins tested for flawless layer adhesion and warp-free prints.'}
               {heroSlide === 2 && 'Upload your STL or CAD model for instant pricing, engineering material options, and high-speed delivery within 24 hours.'}
               {heroSlide === 3 && 'Experience high-speed automatic filament swapping with smart nozzle alignment and temperature-controlled build chambers.'}
             </p>
 
-            {/* Call to Actions & Pricing */}
+            {/* Action Buttons */}
             <div className="pt-2 flex flex-wrap items-center gap-4">
               <button
                 onClick={() => {
@@ -583,28 +580,28 @@ export default function ThreeDPrintingStore() {
                     document.getElementById('catalog')?.scrollIntoView({ behavior: 'smooth' });
                   }
                 }}
-                className="px-8 py-3.5 bg-red-600 hover:bg-red-500 text-white text-xs font-black uppercase tracking-wider rounded-xl flex items-center space-x-2.5 transition-all duration-300 shadow-lg shadow-red-900/60 hover:scale-105 active:scale-95"
+                className="px-8 py-4 bg-[#FF3B30] hover:bg-red-500 text-white text-xs font-black uppercase tracking-wider rounded-full flex items-center space-x-2 transition-all duration-300 shadow-[0_0_20px_rgba(255,59,48,0.5)] transform hover:scale-105 active:scale-95 cursor-pointer"
               >
-                <span>{heroSlide === 2 ? 'Upload Your Model' : heroSlide === 1 ? 'Shop Filaments Deals' : 'Explore Flagship Printers'}</span>
-                <ArrowRight className="w-4 h-4" />
+                <span>{heroSlide === 2 ? 'Upload Your Model' : heroSlide === 1 ? 'Shop Filaments Deals' : 'EXPLORE FLAGSHIP PRINTERS'}</span>
+                <ArrowRight className="w-4 h-4 ml-1" />
               </button>
 
               <a
                 href="#premium-printers"
-                className="px-6 py-3.5 bg-white/10 hover:bg-white/20 border border-white/20 text-white text-xs font-bold uppercase tracking-wider rounded-xl backdrop-blur-md transition-all duration-200"
+                className="px-7 py-4 bg-[#201833]/80 hover:bg-[#2e234a] border border-white/20 text-white text-xs font-extrabold uppercase tracking-wider rounded-full backdrop-blur-md transition-all duration-200"
               >
-                View Catalog
+                VIEW CATALOG
               </a>
             </div>
 
-            {/* Dot Indicators */}
+            {/* Carousel Dots Indicator */}
             <div className="flex items-center space-x-2 pt-4">
               {[0, 1, 2, 3].map((i) => (
                 <button
                   key={i}
                   onClick={() => setHeroSlide(i)}
                   className={`h-2 rounded-full transition-all duration-300 ${
-                    i === heroSlide ? 'w-8 bg-red-500 shadow-md shadow-red-600/50' : 'w-2 bg-white/30 hover:bg-white/60'
+                    i === heroSlide ? 'w-8 bg-[#FF3B30] shadow-[0_0_10px_rgba(255,59,48,0.8)]' : 'w-2 bg-white/30 hover:bg-white/60'
                   }`}
                   aria-label={`Go to slide ${i + 1}`}
                 />
@@ -613,12 +610,12 @@ export default function ThreeDPrintingStore() {
 
           </div>
 
-          {/* Right Floating Dark Tech Graphic Card */}
-          <div className="absolute right-8 top-1/2 -translate-y-1/2 z-20 hidden lg:block w-72">
-            <div className="bg-[#12141C]/90 backdrop-blur-xl p-5 rounded-2xl border border-red-900/40 shadow-2xl space-y-4">
-              <div className="flex items-center justify-between border-b border-slate-800 pb-3">
-                <span className="text-[10px] font-black uppercase tracking-wider text-red-500 flex items-center space-x-1">
-                  <Zap className="w-3 h-3 text-red-500" />
+          {/* Right Floating Specs Box (3DOM PERFORMANCE) */}
+          <div className="absolute right-10 top-1/2 -translate-y-1/2 z-20 hidden lg:block w-80">
+            <div className="bg-[#120d20]/90 backdrop-blur-xl p-5 rounded-2xl border border-white/10 shadow-2xl space-y-4">
+              <div className="flex items-center justify-between border-b border-white/10 pb-3">
+                <span className="text-[10px] font-black uppercase tracking-widest text-[#FF3B30] flex items-center space-x-1.5">
+                  <Zap className="w-3.5 h-3.5 text-[#FF3B30]" />
                   <span>3DOM PERFORMANCE</span>
                 </span>
                 <span className="text-[10px] font-extrabold text-slate-400">SERIES 2026</span>
@@ -629,8 +626,8 @@ export default function ThreeDPrintingStore() {
                   <span className="text-slate-400 font-medium">Max Print Speed</span>
                   <span className="text-white font-extrabold">600 mm/s</span>
                 </div>
-                <div className="w-full bg-slate-800 h-1.5 rounded-full overflow-hidden">
-                  <div className="bg-red-600 h-full w-[90%]" />
+                <div className="w-full bg-slate-800/80 h-1.5 rounded-full overflow-hidden">
+                  <div className="bg-[#FF3B30] h-full w-[92%] shadow-[0_0_8px_rgba(255,59,48,0.8)]" />
                 </div>
               </div>
 
@@ -639,14 +636,14 @@ export default function ThreeDPrintingStore() {
                   <span className="text-slate-400 font-medium">Acceleration</span>
                   <span className="text-white font-extrabold">20,000 mm/s²</span>
                 </div>
-                <div className="w-full bg-slate-800 h-1.5 rounded-full overflow-hidden">
-                  <div className="bg-red-500 h-full w-[85%]" />
+                <div className="w-full bg-slate-800/80 h-1.5 rounded-full overflow-hidden">
+                  <div className="bg-[#FF3B30] h-full w-[85%]" />
                 </div>
               </div>
 
-              <div className="pt-2 flex items-center justify-between text-xs border-t border-slate-800/80">
-                <span className="text-slate-400">Nozzle Temp</span>
-                <span className="text-red-400 font-black">Up to 350°C</span>
+              <div className="pt-2 flex items-center justify-between text-xs border-t border-white/10">
+                <span className="text-slate-400 font-medium">Nozzle Temp</span>
+                <span className="text-[#FF3B30] font-black">Up to 350°C</span>
               </div>
             </div>
           </div>
@@ -654,40 +651,218 @@ export default function ThreeDPrintingStore() {
         </div>
       </section>
 
-      {/* 2. SHOP BY CATEGORY SECTION */}
-      <section className="py-10 px-4 sm:px-8 max-w-7xl mx-auto">
-        <div className="mb-6">
-          <h2 className="text-xl sm:text-2xl font-black text-slate-900 tracking-tight">
-            Shop by Category
-          </h2>
-          <p className="text-xs text-slate-500 mt-1">Explore specialized 3D printing equipment & replacement hardware</p>
+      {/* 2. SHOP BY CATEGORY SECTION (Matching Image 2) */}
+      <section className="py-8 px-4 sm:px-6 lg:px-8 max-w-[1536px] mx-auto">
+        <div className="flex items-end justify-between mb-5">
+          <div>
+            <span className="text-[11px] font-extrabold tracking-widest text-slate-400 uppercase mb-1 block">
+              SHOP BY CATEGORY
+            </span>
+            <h2 className="text-2xl sm:text-3xl font-black text-slate-900 tracking-tight">
+              Find the right setup
+            </h2>
+          </div>
+          <button
+            onClick={() => {
+              setSelectedCategory('all');
+              document.getElementById('catalog')?.scrollIntoView({ behavior: 'smooth' });
+            }}
+            className="text-red-600 hover:text-red-700 font-extrabold text-xs sm:text-sm flex items-center space-x-1 cursor-pointer"
+          >
+            <span>View all</span>
+            <ArrowRight className="w-4 h-4 ml-0.5" />
+          </button>
         </div>
 
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6">
-          {categories.slice(1).map((cat) => (
+        {/* Categories Strip */}
+        <div className="flex space-x-3 overflow-x-auto scrollbar-none pb-2 pt-1 snap-x">
+          {[
+            { name: '3D Printers', catId: 'Printers', img: '/images/forge-a1-mini.png' },
+            { name: 'Resin', catId: 'Resin', img: '/images/halo-resin-4k.png' },
+            { name: 'Filament', catId: 'Filaments', img: 'https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc?auto=format&fit=crop&w=400&q=80' },
+            { name: 'Nozzles', catId: '3D Printer Parts', img: '/images/cat-nozzles.png' },
+            { name: 'Build plates', catId: 'Printer Accessories', img: '/images/cat-build-plates.png' },
+            { name: 'Scanners', catId: 'Printer Accessories', img: 'https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=400&q=80' },
+            { name: 'Dryers', catId: 'Printer Accessories', img: 'https://images.unsplash.com/photo-1563770660439-4636190af475?auto=format&fit=crop&w=400&q=80' },
+            { name: 'Under ₹50k', catId: 'Printers', img: '/images/ender-craft-9.png' },
+          ].map((cat, idx) => (
             <div
-              key={cat.id}
+              key={idx}
               onClick={() => {
-                setSelectedCategory(cat.id);
+                setSelectedCategory(cat.catId);
                 document.getElementById('catalog')?.scrollIntoView({ behavior: 'smooth' });
               }}
-              className={`p-5 rounded-3xl border cursor-pointer transition-all duration-300 flex flex-col justify-between group ${
-                selectedCategory === cat.id
-                  ? 'bg-red-50 border-red-600 shadow-md'
-                  : 'bg-white border-slate-200 hover:border-red-400 hover:shadow-md'
-              }`}
+              className="bg-white border border-slate-200/90 rounded-2xl p-3 hover:border-slate-300 hover:shadow-md transition-all flex items-center space-x-3 cursor-pointer group flex-shrink-0 min-w-[165px] sm:min-w-[190px] snap-start"
+            >
+              <div className="w-13 h-13 sm:w-14 sm:h-14 rounded-xl bg-slate-100/90 border border-slate-200/60 flex items-center justify-center p-1 overflow-hidden flex-shrink-0">
+                <img
+                  src={cat.img}
+                  alt={cat.name}
+                  className="w-full h-full object-cover rounded-lg group-hover:scale-110 transition-transform duration-300"
+                  onError={(e) => {
+                    (e.target as HTMLImageElement).src = 'https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=300&q=80';
+                  }}
+                />
+              </div>
+              <span className="text-xs sm:text-sm font-extrabold text-slate-900 group-hover:text-red-600 transition">
+                {cat.name}
+              </span>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* 3. MACHINES & PARTS THAT SHIP TODAY SECTION (Matching Image 3) */}
+      <section className="py-8 px-4 sm:px-6 lg:px-8 max-w-[1536px] mx-auto mb-6">
+        <div className="flex items-center justify-between mb-6">
+          <h2 className="text-2xl sm:text-3xl font-black text-slate-900 tracking-tight">
+            Machines & parts that ship today
+          </h2>
+          <button
+            onClick={() => {
+              setSelectedCategory('all');
+              document.getElementById('catalog')?.scrollIntoView({ behavior: 'smooth' });
+            }}
+            className="text-red-600 hover:text-red-700 font-extrabold text-xs sm:text-sm flex items-center space-x-1 cursor-pointer"
+          >
+            <span>View all 84</span>
+            <ArrowRight className="w-4 h-4 ml-0.5" />
+          </button>
+        </div>
+
+        {/* 4 Card Product Grid */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 sm:gap-6">
+          {[
+            {
+              id: 'prod-forge-mini',
+              slug: 'forge-a1-mini',
+              badge: 'BESTSELLER',
+              badgeBg: 'bg-red-600',
+              brand: 'FORGE',
+              name: 'Forge A1 Mini',
+              specs: 'Core-XY · 180×180×180 · 500 mm/s',
+              price: 28999,
+              originalPrice: 34999,
+              rating: '4.5',
+              ratingsCount: '2,841',
+              image: '/images/forge-a1-mini.png'
+            },
+            {
+              id: 'prod-forge-ams',
+              slug: 'forge-a1-pro-ams',
+              badge: 'NEW',
+              badgeBg: 'bg-red-600',
+              brand: 'FORGE',
+              name: 'Forge A1 Pro AMS',
+              specs: '4-colour AMS · 256³ build · enclosed',
+              price: 62999,
+              originalPrice: 71999,
+              rating: '4.6',
+              ratingsCount: '1,120',
+              image: '/images/forge-a1-pro-ams.png'
+            },
+            {
+              id: 'prod-halo-4k',
+              slug: 'halo-resin-4k',
+              badge: null,
+              brand: 'HALO',
+              name: 'Halo Resin 4K',
+              specs: '8.9" mono LCD · 22µm XY',
+              price: 24499,
+              originalPrice: 29999,
+              rating: '4.3',
+              ratingsCount: '908',
+              image: '/images/halo-resin-4k.png'
+            },
+            {
+              id: 'prod-ender-craft-9',
+              slug: 'ender-craft-9',
+              badge: 'BUDGET',
+              badgeBg: 'bg-black',
+              brand: 'ENDER',
+              name: 'Ender Craft 9',
+              specs: 'Bedslinger · 220³ · beginner kit',
+              price: 16999,
+              originalPrice: 21999,
+              rating: '4.1',
+              ratingsCount: '5,210',
+              image: '/images/ender-craft-9.png'
+            }
+          ].map((item) => (
+            <div
+              key={item.id}
+              onClick={() => {
+                addToCart({
+                  id: item.id,
+                  slug: item.slug,
+                  name: item.name,
+                  price: item.price,
+                  originalPrice: item.originalPrice,
+                  image: item.image,
+                  brand: item.brand,
+                  vertical: '3d-printing',
+                  category: 'Printers'
+                }, 1);
+              }}
+              className="bg-white border border-slate-200/90 rounded-2xl p-4 flex flex-col justify-between hover:shadow-lg transition-all duration-300 group cursor-pointer"
             >
               <div>
-                <div className="w-12 h-12 rounded-2xl bg-red-50 flex items-center justify-center text-red-600 mb-4 group-hover:scale-110 group-hover:bg-red-600 group-hover:text-white transition-all">
-                  <Box className="w-6 h-6" />
+                {/* Image Box */}
+                <div className="relative aspect-[1.35] w-full rounded-xl bg-[#F5F5F7] p-3 mb-4 flex items-center justify-center overflow-hidden border border-slate-100">
+                  {item.badge && (
+                    <span className={`absolute top-3 left-3 z-10 ${item.badgeBg} text-white text-[10px] font-black uppercase px-2.5 py-0.5 rounded-xs tracking-wider shadow-xs`}>
+                      {item.badge}
+                    </span>
+                  )}
+                  <img
+                    src={item.image}
+                    alt={item.name}
+                    className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-300"
+                    onError={(e) => {
+                      (e.target as HTMLImageElement).src = 'https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=800&q=80';
+                    }}
+                  />
                 </div>
-                <h3 className="text-sm font-bold text-slate-900 group-hover:text-red-600 transition">{cat.name}</h3>
-                <p className="text-xs text-slate-500 mt-1">{cat.count} Items in Stock</p>
+
+                {/* Brand Subtitle */}
+                <span className="text-[11px] font-black uppercase tracking-wider text-slate-400 block mb-1">
+                  {item.brand}
+                </span>
+
+                {/* Name & Specs */}
+                <h3 className="text-base sm:text-lg font-bold text-slate-900 leading-tight group-hover:text-red-600 transition">
+                  {item.name}
+                </h3>
+                <p className="text-xs text-slate-400 font-medium mt-1 mb-4">
+                  {item.specs}
+                </p>
               </div>
 
-              <div className="mt-4 flex items-center text-xs font-extrabold text-red-600 group-hover:translate-x-1 transition-transform">
-                <span>Browse Category</span>
-                <ArrowRight className="w-3.5 h-3.5 ml-1" />
+              {/* Price & Rating Row */}
+              <div className="pt-3 border-t border-slate-100 flex items-center justify-between">
+                <div>
+                  <div className="flex items-baseline space-x-2">
+                    <span className="text-lg sm:text-xl font-black text-slate-900">
+                      ₹{item.price.toLocaleString('en-IN')}
+                    </span>
+                    {item.originalPrice && (
+                      <span className="text-xs text-slate-400 line-through font-medium">
+                        ₹{item.originalPrice.toLocaleString('en-IN')}
+                      </span>
+                    )}
+                  </div>
+                </div>
+
+                {/* Rating Badge */}
+                <div className="flex items-center space-x-1.5">
+                  <div className="bg-slate-950 text-white text-[10px] font-black px-2 py-0.5 rounded flex items-center space-x-1">
+                    <span>{item.rating}</span>
+                    <Star className="w-2.5 h-2.5 fill-white text-white" />
+                  </div>
+                  <span className="text-xs text-slate-400 font-medium">
+                    {item.ratingsCount} ratings
+                  </span>
+                </div>
               </div>
             </div>
           ))}
@@ -695,7 +870,7 @@ export default function ThreeDPrintingStore() {
       </section>
 
       {/* 3. PREMIUM 3D PRINTERS SECTION (Exact requested red header & layout) */}
-      <section id="premium-printers" className="py-10 px-4 sm:px-8 max-w-7xl mx-auto">
+      <section id="premium-printers" className="py-10 px-4 sm:px-6 lg:px-8 max-w-[1536px] mx-auto">
         <div className="bg-white p-6 sm:p-8 rounded-3xl border border-slate-200 shadow-2xs">
           
           {/* Header with red text emphasis and carousel arrows */}
@@ -803,11 +978,11 @@ export default function ThreeDPrintingStore() {
                     <div>
                       <div className="flex items-baseline space-x-1.5">
                         <span className="text-base sm:text-lg font-black text-slate-900">
-                          ${product.price.toFixed(2)}
+                          ₹{product.price.toLocaleString('en-IN')}
                         </span>
                         {product.originalPrice && (
                           <span className="text-xs text-slate-400 line-through font-medium">
-                            ${product.originalPrice.toFixed(2)}
+                            ₹{product.originalPrice.toLocaleString('en-IN')}
                           </span>
                         )}
                       </div>
@@ -828,7 +1003,7 @@ export default function ThreeDPrintingStore() {
       </section>
 
       {/* 4. SHOP BY BRAND SECTION (Exact requested design & logos) */}
-      <section className="py-8 px-4 sm:px-8 max-w-7xl mx-auto">
+      <section className="py-8 px-4 sm:px-6 lg:px-8 max-w-[1536px] mx-auto">
         <div className="bg-white p-6 sm:p-8 rounded-3xl border border-slate-200 shadow-2xs">
           
           <div className="flex items-center justify-between mb-8 pb-4 border-b border-slate-100">
@@ -893,7 +1068,7 @@ export default function ThreeDPrintingStore() {
       </section>
 
       {/* 5. SPECIAL FILAMENTS DEAL SECTION (Exact requested banner & spool grid) */}
-      <section className="py-8 px-4 sm:px-8 max-w-7xl mx-auto">
+      <section className="py-8 px-4 sm:px-6 lg:px-8 max-w-[1536px] mx-auto">
         <div className="bg-white p-6 sm:p-8 rounded-3xl border border-slate-200 shadow-2xs">
           
           <div className="mb-8 pb-4 border-b border-slate-100">
@@ -1003,11 +1178,11 @@ export default function ThreeDPrintingStore() {
                       <div>
                         <div className="flex items-baseline space-x-1.5">
                           <span className="text-lg font-black text-slate-900">
-                            ${filament.price.toFixed(2)}
+                            ₹{filament.price.toLocaleString('en-IN')}
                           </span>
                           {filament.originalPrice && (
                             <span className="text-xs text-slate-400 line-through font-medium">
-                              ${filament.originalPrice.toFixed(2)}
+                              ₹{filament.originalPrice.toLocaleString('en-IN')}
                             </span>
                           )}
                         </div>
@@ -1032,7 +1207,7 @@ export default function ThreeDPrintingStore() {
       </section>
 
       {/* 6. OUR BEST SELLERS SECTION (Exact requested split showcase card & tabs) */}
-      <section className="py-8 px-4 sm:px-8 max-w-7xl mx-auto">
+      <section className="py-8 px-4 sm:px-6 lg:px-8 max-w-[1536px] mx-auto">
         <div className="bg-white p-6 sm:p-8 rounded-3xl border border-slate-200 shadow-2xs">
           
           {/* Header & Filter Tabs */}
@@ -1129,11 +1304,11 @@ export default function ThreeDPrintingStore() {
                     <span className="text-xs text-slate-500 font-semibold block">Exclusive Store Price</span>
                     <div className="flex items-baseline space-x-2">
                       <span className="text-2xl sm:text-3xl font-black text-slate-900">
-                        ${featuredBestSeller.price.toFixed(2)}
+                        ₹{featuredBestSeller.price.toLocaleString('en-IN')}
                       </span>
                       {featuredBestSeller.originalPrice && (
                         <span className="text-sm text-slate-400 line-through font-medium">
-                          ${featuredBestSeller.originalPrice.toFixed(2)}
+                          ₹{featuredBestSeller.originalPrice.toLocaleString('en-IN')}
                         </span>
                       )}
                     </div>
@@ -1173,7 +1348,7 @@ export default function ThreeDPrintingStore() {
       </section>
 
       {/* 7. MATERIALS COMPARISON GUIDE */}
-      <section id="materials" className="py-6 px-4 sm:px-8 max-w-7xl mx-auto">
+      <section id="materials" className="py-6 px-4 sm:px-6 lg:px-8 max-w-[1536px] mx-auto">
         <div className="bg-white p-6 sm:p-8 rounded-3xl border border-slate-200/90 shadow-2xs">
           <div className="text-center max-w-2xl mx-auto mb-8 space-y-2">
             <span className="text-[10px] font-black uppercase tracking-widest text-red-600 bg-red-50 px-3 py-1 rounded-full border border-red-200">
@@ -1223,7 +1398,7 @@ export default function ThreeDPrintingStore() {
       </section>
 
       {/* 8. MAIN PRODUCT CATALOG & FILTERING */}
-      <section id="catalog" className="py-8 px-4 sm:px-8 max-w-7xl mx-auto">
+      <section id="catalog" className="py-8 px-4 sm:px-6 lg:px-8 max-w-[1536px] mx-auto">
         <div className="bg-white p-6 sm:p-8 rounded-3xl border border-slate-200/90 shadow-2xs">
           <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-6 gap-4 border-b border-slate-100 pb-4">
             <div>
