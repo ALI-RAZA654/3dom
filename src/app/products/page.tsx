@@ -36,7 +36,7 @@ const INITIAL_PRODUCTS = [
     rating: 4.5,
     ratingCount: 2841,
     tag: 'BESTSELLER',
-    tagColor: 'bg-red-600 text-white',
+    tagColor: 'bg-slate-900 text-white',
     image: 'https://images.unsplash.com/photo-1612815150330-80e90c888d22?auto=format&fit=crop&w=800&q=80',
     subSpecs: 'Core-XY · 180×180×180 · 500 mm/s',
     stock: 12,
@@ -64,7 +64,7 @@ const INITIAL_PRODUCTS = [
     rating: 4.6,
     ratingCount: 1120,
     tag: 'NEW',
-    tagColor: 'bg-red-600 text-white',
+    tagColor: 'bg-slate-900 text-white',
     image: 'https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=800&q=80',
     subSpecs: '4-colour AMS · 256³ build · enclosed',
     stock: 8,
@@ -120,7 +120,7 @@ const INITIAL_PRODUCTS = [
     rating: 4.8,
     ratingCount: 890,
     tag: 'BESTSELLER',
-    tagColor: 'bg-red-600 text-white',
+    tagColor: 'bg-slate-900 text-white',
     image: 'https://images.unsplash.com/photo-1563770660941-20978e870e26?auto=format&fit=crop&w=800&q=80',
     subSpecs: '12K Mono LCD · Level-Free · 105mm/h',
     stock: 5,
@@ -172,7 +172,7 @@ const INITIAL_PRODUCTS = [
     rating: 4.4,
     ratingCount: 145,
     tag: 'NEW',
-    tagColor: 'bg-red-600 text-white',
+    tagColor: 'bg-slate-900 text-white',
     image: 'https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc?auto=format&fit=crop&w=800&q=80',
     subSpecs: '0.02mm Precision · 24-bit Full-Color Scan',
     stock: 4,
@@ -382,7 +382,7 @@ function ProductsCatalogContent() {
                     onClick={() => setMaxBudget(bVal)}
                     className={`flex-1 text-[11px] py-1 border rounded text-center transition font-semibold ${
                       maxBudget === bVal
-                        ? 'border-red-600 bg-red-50 text-red-600 font-bold'
+                        ? 'border-slate-900 bg-slate-100 text-slate-900 font-bold'
                         : 'border-slate-300 text-slate-700 hover:bg-slate-50'
                     }`}
                   >
@@ -583,7 +583,7 @@ function ProductsCatalogContent() {
                 <p className="text-sm font-bold text-slate-700">No products match your selected filters.</p>
                 <button
                   onClick={handleResetFilters}
-                  className="px-4 py-2 bg-red-600 text-white font-bold text-xs rounded hover:bg-red-700 transition"
+                  className="px-4 py-2 bg-slate-900 hover:bg-black text-white font-bold text-xs rounded transition"
                 >
                   Clear All Filters
                 </button>
@@ -660,7 +660,7 @@ function ProductsCatalogContent() {
 
                           <Link
                             href={pdpUrl}
-                            className="px-3 py-2 bg-slate-900 hover:bg-red-600 text-white rounded text-xs font-bold transition flex items-center space-x-1"
+                            className="px-3 py-2 bg-slate-900 hover:bg-black text-white rounded text-xs font-bold transition flex items-center space-x-1"
                           >
                             <span>Buy Now</span>
                           </Link>

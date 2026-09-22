@@ -151,7 +151,7 @@ export default function GenZFashionStore() {
               <div className="pt-2 flex flex-wrap items-center gap-4">
                 <a
                   href="#catalog"
-                  className="px-7 py-3.5 bg-slate-900 hover:bg-red-600 text-white text-xs font-black uppercase tracking-wider rounded-xl shadow-sm transition-all duration-300 flex items-center space-x-2 cursor-pointer"
+                  className="px-7 py-3.5 bg-slate-900 hover:bg-black text-white text-xs font-black uppercase tracking-wider rounded-xl shadow-md transition-all duration-300 flex items-center space-x-2 cursor-pointer"
                 >
                   <span>Shop New Drop</span>
                   <ArrowRight className="w-4 h-4 ml-1" />
@@ -331,7 +331,7 @@ export default function GenZFashionStore() {
               No products found in this fashion subcategory.
               <button
                 onClick={() => setSelectedCategory('all')}
-                className="block mx-auto mt-3 px-4 py-2 bg-red-600 text-white font-black text-xs rounded-xl"
+                className="block mx-auto mt-3 px-4 py-2 bg-slate-900 hover:bg-black text-white font-black text-xs rounded-xl transition"
               >
                 Reset Filter
               </button>

@@ -145,10 +145,10 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
           <button
             onClick={() => addToCart(product, 1)}
             disabled={isOut}
-            className={`px-3.5 py-2.5 rounded-xl text-xs font-semibold flex items-center space-x-1.5 transition ${
+            className={`px-3.5 py-2.5 rounded-xl text-xs font-bold flex items-center space-x-1.5 transition ${
               isOut
                 ? 'bg-warm-surface text-warm-muted cursor-not-allowed border border-warm-border'
-                : 'bg-warm-accent hover:bg-warm-accent-hover text-white shadow-warm-sm'
+                : 'bg-slate-900 hover:bg-black text-white shadow-md'
             }`}
           >
             <ShoppingBag className="w-3.5 h-3.5" />

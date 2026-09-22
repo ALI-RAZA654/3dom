@@ -40,7 +40,7 @@ export default function CheckoutPage() {
         <ShoppingBag className="w-12 h-12 text-zinc-600" />
         <h2 className="text-xl font-bold">Your cart is empty</h2>
         <p className="text-xs text-zinc-400">Add products from any of our 3 verticals before proceeding to checkout.</p>
-        <Link href="/3d-printing" className="px-6 py-2.5 bg-red-600 text-white text-xs font-bold rounded-xl shadow">
+        <Link href="/3d-printing" className="px-6 py-2.5 bg-slate-900 text-white text-xs font-bold rounded-xl shadow">
           Explore Stores
         </Link>
       </div>
@@ -216,7 +216,7 @@ export default function CheckoutPage() {
 
                 <button
                   type="submit"
-                  className="w-full py-3.5 bg-red-600 hover:bg-red-700 text-white font-extrabold text-xs uppercase tracking-wider rounded-xl shadow-lg flex items-center justify-center space-x-2 transition"
+                  className="w-full py-3.5 bg-slate-900 hover:bg-black text-white font-extrabold text-xs uppercase tracking-wider rounded-xl shadow-lg flex items-center justify-center space-x-2 transition"
                 >
                   <span>Continue to Payment</span>
                   <ArrowRight className="w-4 h-4" />
@@ -305,7 +305,7 @@ export default function CheckoutPage() {
                 <button
                   onClick={handleCompleteOrder}
                   disabled={isProcessing}
-                  className="w-full py-4 bg-red-600 hover:bg-red-700 text-white font-extrabold text-sm uppercase tracking-wider rounded-xl shadow-xl shadow-red-900/40 flex items-center justify-center space-x-2 transition disabled:opacity-50"
+                  className="w-full py-4 bg-slate-900 hover:bg-black text-white font-extrabold text-sm uppercase tracking-wider rounded-xl shadow-xl flex items-center justify-center space-x-2 transition disabled:opacity-50"
                 >
                   <Lock className="w-4 h-4" />
                   <span>{isProcessing ? 'Processing Order & Deducting Stock...' : `Pay $${cartTotal.toFixed(2)} Now`}</span>

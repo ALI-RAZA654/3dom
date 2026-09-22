@@ -300,7 +300,7 @@ export default function ProductDetailPage() {
 
               <button
                 onClick={handleBuyNow}
-                className="py-3.5 px-4 bg-red-600 hover:bg-red-700 text-white rounded-lg text-xs font-black uppercase tracking-wider transition shadow-sm"
+                className="py-3.5 px-4 bg-slate-900 hover:bg-black text-white rounded-lg text-xs font-black uppercase tracking-wider transition shadow-md"
               >
                 Buy now
               </button>

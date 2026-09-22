@@ -382,16 +382,16 @@ export const Header: React.FC<{ onRequestModalOpen: () => void }> = ({ onRequest
               </button>
             )}
 
-            {/* Shopping Cart Button — warm accent */}
+            {/* Shopping Cart Button — Luxe Black Accent */}
             <button
               onClick={() => setIsCartOpen(true)}
-              className="relative px-4 py-2.5 rounded-xl bg-warm-accent hover:bg-warm-accent-hover text-white font-bold text-xs transition flex items-center space-x-2 shadow-warm-md cursor-pointer"
+              className="relative px-4 py-2.5 rounded-xl bg-slate-900 hover:bg-black text-white font-bold text-xs transition flex items-center space-x-2 shadow-md cursor-pointer"
               title="View Shopping Cart"
             >
               <ShoppingBag className="w-4 h-4" />
               <span className="hidden sm:inline">Cart</span>
               {cartCount > 0 && (
-                <span className="bg-white text-warm-accent font-bold text-[11px] w-5 h-5 rounded-full flex items-center justify-center border border-warm-accent/20 ml-0.5">
+                <span className="bg-white text-slate-900 font-extrabold text-[11px] w-5 h-5 rounded-full flex items-center justify-center border border-slate-900/20 ml-0.5">
                   {cartCount}
                 </span>
               )}

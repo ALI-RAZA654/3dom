@@ -166,7 +166,7 @@ export const RequestModal: React.FC<{ isOpen: boolean; onClose: () => void }> = 
               <button
                 type="submit"
                 disabled={loading}
-                className="w-full py-3 bg-red-600 hover:bg-red-700 text-white font-extrabold text-xs uppercase tracking-wider rounded-xl shadow-lg shadow-red-900/30 flex items-center justify-center space-x-2 transition disabled:opacity-50"
+                className="w-full py-3 bg-slate-900 hover:bg-black text-white font-extrabold text-xs uppercase tracking-wider rounded-xl shadow-lg flex items-center justify-center space-x-2 transition disabled:opacity-50"
               >
                 <Send className="w-4 h-4" />
                 <span>{loading ? 'Submitting...' : 'Submit Procurement Request'}</span>

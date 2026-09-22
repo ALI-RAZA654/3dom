@@ -227,7 +227,7 @@ export const CartDrawer: React.FC = () => {
 
                 <div className="flex justify-between text-sm font-extrabold text-zinc-900 pt-2 border-t">
                   <span>Total</span>
-                  <span className="text-base text-red-600">${cartTotal.toFixed(2)}</span>
+                  <span className="text-base font-black text-slate-900">${cartTotal.toFixed(2)}</span>
                 </div>
               </div>
 
@@ -235,7 +235,7 @@ export const CartDrawer: React.FC = () => {
               <Link
                 href="/checkout"
                 onClick={() => setIsCartOpen(false)}
-                className="w-full py-3 bg-red-600 hover:bg-red-700 text-white font-extrabold text-sm rounded-xl shadow-lg shadow-red-900/30 flex items-center justify-center space-x-2 transition"
+                className="w-full py-3 bg-slate-900 hover:bg-black text-white font-extrabold text-sm rounded-xl shadow-lg flex items-center justify-center space-x-2 transition"
               >
                 <span>Proceed to Checkout</span>
                 <ArrowRight className="w-4 h-4" />

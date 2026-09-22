@@ -49,7 +49,7 @@ export default function OrderLookupPage() {
 
           <button
             type="submit"
-            className="w-full py-3 bg-red-600 hover:bg-red-700 text-white font-extrabold text-xs uppercase tracking-wider rounded-xl transition shadow-lg shadow-red-950/50 flex items-center justify-center space-x-2"
+            className="w-full py-3 bg-slate-900 hover:bg-black text-white font-extrabold text-xs uppercase tracking-wider rounded-xl transition shadow-lg flex items-center justify-center space-x-2"
           >
             <span>Track Status</span>
             <PackageCheck className="w-4 h-4" />
