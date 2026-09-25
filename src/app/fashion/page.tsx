@@ -72,7 +72,7 @@ export default function GenZFashionStore() {
   };
 
   return (
-    <div className="bg-[#FAF9F8] text-slate-900 min-h-screen pb-16 pt-[130px] font-sans">
+    <div className="bg-[#FAF9F8] text-slate-900 min-h-screen pb-16 pt-[110px] sm:pt-[120px] font-sans">
       
       {/* ─── 1. TOP CATEGORY RIBBON BAR (LIGHT THEME) ─── */}
       <div className="bg-white border-b border-slate-200/80 shadow-2xs">

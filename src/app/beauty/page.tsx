@@ -67,7 +67,7 @@ export default function BeautyStore() {
   };
 
   return (
-    <div className="bg-[#FAF8F6] text-slate-900 min-h-screen pb-16 pt-[130px] font-sans">
+    <div className="bg-[#FAF8F6] text-slate-900 min-h-screen pb-16 pt-[110px] sm:pt-[120px] font-sans">
       
       {/* ─── 1. TOP CATEGORY RIBBON BAR (LIGHT THEME) ─── */}
       <div className="bg-white border-b border-rose-100 shadow-2xs">

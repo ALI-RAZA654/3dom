@@ -246,22 +246,22 @@ export const CategoryScrollingRibbon: React.FC<CategoryScrollingRibbonProps> = (
   };
 
   return (
-    <div className="w-full bg-warm-card border-b border-warm-border py-3">
-      <div className="relative max-w-7xl mx-auto px-4 sm:px-8">
+    <div className="w-full bg-warm-card border-b border-warm-border py-1.5 sm:py-2">
+      <div className="relative max-w-7xl mx-auto px-2 sm:px-8">
         
         {/* Scroll Left Button */}
         <button
           onClick={scrollLeft}
-          className="absolute left-1 top-1/2 -translate-y-1/2 z-10 w-9 h-9 rounded-full bg-warm-card border border-warm-border shadow-warm-sm text-warm-muted hover:bg-warm-surface flex items-center justify-center transition focus:outline-none cursor-pointer"
+          className="hidden sm:flex absolute left-1 top-1/2 -translate-y-1/2 z-10 w-8 h-8 rounded-full bg-warm-card border border-warm-border shadow-warm-sm text-warm-muted hover:bg-warm-surface items-center justify-center transition focus:outline-none cursor-pointer"
           aria-label="Scroll left"
         >
-          <ChevronLeft className="w-5 h-5" />
+          <ChevronLeft className="w-4 h-4" />
         </button>
 
         {/* Horizontal Category Pill Cards Container */}
         <div
           ref={scrollContainerRef}
-          className="flex items-center space-x-3 sm:space-x-4 overflow-x-auto scrollbar-none scroll-smooth px-6 py-1"
+          className="flex items-center space-x-2 sm:space-x-3 overflow-x-auto scrollbar-none scroll-smooth px-2 sm:px-6 py-0.5"
         >
           {currentCategories.map((cat) => {
             const Icon = cat.icon;
@@ -271,28 +271,28 @@ export const CategoryScrollingRibbon: React.FC<CategoryScrollingRibbonProps> = (
               <button
                 key={cat.id}
                 onClick={() => handleCategoryClick(cat)}
-                className={`group flex items-center space-x-3 px-4 py-2.5 rounded-2xl border transition-all flex-shrink-0 cursor-pointer text-left focus:outline-none ${
+                className={`group flex items-center space-x-2.5 px-3 sm:px-4 py-1.5 sm:py-2 rounded-xl sm:rounded-2xl border transition-all flex-shrink-0 cursor-pointer text-left focus:outline-none ${
                   isActive
                     ? 'bg-warm-accent-light border-warm-accent shadow-warm-sm'
                     : 'bg-warm-surface hover:bg-white border-warm-border hover:border-warm-accent/40 hover:shadow-warm-sm'
                 }`}
               >
                 {/* Category Icon */}
-                <div className={`w-9 h-9 rounded-xl flex items-center justify-center transition-colors ${
+                <div className={`w-7 h-7 sm:w-8 sm:h-8 rounded-lg sm:rounded-xl flex items-center justify-center transition-colors ${
                   isActive ? 'bg-warm-accent text-white' : 'bg-warm-accent-light text-warm-accent group-hover:bg-warm-accent group-hover:text-white'
                 }`}>
-                  <Icon className="w-4 h-4" />
+                  <Icon className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
                 </div>
 
                 {/* Label & Badge */}
                 <div className="flex flex-col">
-                  <span className={`text-xs font-semibold transition ${
+                  <span className={`text-[11px] sm:text-xs font-semibold transition ${
                     isActive ? 'text-warm-accent' : 'text-warm-text group-hover:text-warm-accent'
                   }`}>
                     {cat.label}
                   </span>
                   {cat.badge && (
-                    <span className="text-[9px] font-bold uppercase text-warm-badge-text tracking-wider">
+                    <span className="text-[8px] sm:text-[9px] font-bold uppercase text-warm-badge-text tracking-wider">
                       {cat.badge}
                     </span>
                   )}
@@ -305,10 +305,10 @@ export const CategoryScrollingRibbon: React.FC<CategoryScrollingRibbonProps> = (
         {/* Scroll Right Button */}
         <button
           onClick={scrollRight}
-          className="absolute right-1 top-1/2 -translate-y-1/2 z-10 w-9 h-9 rounded-full bg-warm-card border border-warm-border shadow-warm-sm text-warm-muted hover:bg-warm-surface flex items-center justify-center transition focus:outline-none cursor-pointer"
+          className="hidden sm:flex absolute right-1 top-1/2 -translate-y-1/2 z-10 w-8 h-8 rounded-full bg-warm-card border border-warm-border shadow-warm-sm text-warm-muted hover:bg-warm-surface items-center justify-center transition focus:outline-none cursor-pointer"
           aria-label="Scroll right"
         >
-          <ChevronRight className="w-5 h-5" />
+          <ChevronRight className="w-4 h-4" />
         </button>
 
       </div>

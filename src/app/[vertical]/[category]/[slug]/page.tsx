@@ -114,7 +114,7 @@ export default function ProductDetailPage() {
   };
 
   return (
-    <div className="bg-[#F8F9FA] text-slate-900 min-h-screen pt-[140px] pb-16 font-sans">
+    <div className="bg-[#F8F9FA] text-slate-900 min-h-screen pt-[115px] sm:pt-[125px] pb-16 font-sans">
       <div className="max-w-[1300px] mx-auto px-4 sm:px-6">
         
         {/* Back Link */}

@@ -252,7 +252,7 @@ function ProductsCatalogContent() {
   }, [quickPick, maxBudget, selectedTech, selectedBrands, selectedCategories, under50kOffer, sortBy]);
 
   return (
-    <div className="bg-[#F8F9FA] text-slate-900 min-h-screen pt-[130px] pb-16 font-sans">
+    <div className="bg-[#F8F9FA] text-slate-900 min-h-screen pt-[110px] sm:pt-[120px] pb-16 font-sans">
       
       {/* TOP CATEGORY RIBBON / HEADER BAR */}
       <div className="bg-white border-b border-slate-200 shadow-2xs relative z-10">

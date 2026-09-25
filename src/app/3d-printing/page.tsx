@@ -480,7 +480,7 @@ export default function ThreeDPrintingStore() {
   const featuredBestSeller = getBestSellerFeatured();
 
   return (
-    <div className="bg-[#F8FAFC] text-slate-900 min-h-screen pb-16 pt-[130px]">
+    <div className="bg-[#F8FAFC] text-slate-900 min-h-screen pb-16 pt-[110px] sm:pt-[120px]">
 
       {/* SHOP CATEGORIES RIBBON BAR (ABOVE HERO BANNER) */}
       <div className="bg-white border-b border-slate-200 shadow-2xs mb-6">
