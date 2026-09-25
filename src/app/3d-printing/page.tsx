@@ -649,7 +649,7 @@ export default function ThreeDPrintingStore() {
                 <button
                   key={idx}
                   onClick={() => setHeroSlide(idx)}
-                  className={`w-16 h-16 sm:w-18 sm:h-18 rounded-xl overflow-hidden border-2 transition-all duration-300 cursor-pointer p-0.5 bg-black ${
+                  className={`w-16 h-16 sm:w-20 sm:h-20 rounded-xl overflow-hidden border-2 transition-all duration-300 cursor-pointer p-0.5 bg-black ${
                     heroSlide === idx
                       ? 'border-red-600 ring-2 ring-red-600/50 scale-105 shadow-xl'
                       : 'border-white/20 opacity-60 hover:opacity-100 hover:border-white'
@@ -740,19 +740,19 @@ export default function ThreeDPrintingStore() {
                 setSelectedCategory(cat.catId);
                 document.getElementById('catalog')?.scrollIntoView({ behavior: 'smooth' });
               }}
-              className="bg-white border border-slate-200/90 rounded-2xl p-3 hover:border-slate-300 hover:shadow-md transition-all flex items-center space-x-3 cursor-pointer group flex-shrink-0 min-w-[165px] sm:min-w-[190px] snap-start"
+              className="bg-white border border-slate-200/90 rounded-2xl p-2.5 sm:p-3 hover:border-slate-300 hover:shadow-md transition-all flex items-center space-x-3 cursor-pointer group shrink-0 min-w-[150px] sm:min-w-[180px] snap-start"
             >
-              <div className="w-13 h-13 sm:w-14 sm:h-14 rounded-xl bg-slate-100/90 border border-slate-200/60 flex items-center justify-center p-1 overflow-hidden flex-shrink-0">
+              <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-xl bg-slate-100/90 border border-slate-200/60 flex items-center justify-center p-1 overflow-hidden shrink-0">
                 <img
                   src={cat.img}
                   alt={cat.name}
-                  className="w-full h-full object-cover rounded-lg group-hover:scale-110 transition-transform duration-300"
+                  className="w-full h-full object-contain rounded-lg group-hover:scale-110 transition-transform duration-300"
                   onError={(e) => {
                     (e.target as HTMLImageElement).src = 'https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=300&q=80';
                   }}
                 />
               </div>
-              <span className="text-xs sm:text-sm font-extrabold text-slate-900 group-hover:text-red-600 transition">
+              <span className="text-xs sm:text-sm font-extrabold text-slate-900 group-hover:text-red-600 transition whitespace-nowrap">
                 {cat.name}
               </span>
             </div>
