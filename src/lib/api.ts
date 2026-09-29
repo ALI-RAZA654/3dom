@@ -197,3 +197,31 @@ export async function updateAdminReview(token: string, id: string, status: strin
   if (!res.ok) throw new Error('Failed to update review status');
   return res.json();
 }
+
+export async function fetchActivePaymentGateways() {
+  const res = await fetch(`${API_BASE_URL}/payment-gateways/active`);
+  if (!res.ok) throw new Error('Failed to fetch active payment gateways');
+  return res.json();
+}
+
+export async function fetchAdminPaymentGateways(token: string) {
+  const res = await fetch(`${API_BASE_URL}/admin/payment-gateways`, {
+    headers: { Authorization: `Bearer ${token}` }
+  });
+  if (!res.ok) throw new Error('Failed to fetch payment gateways config');
+  return res.json();
+}
+
+export async function updateAdminPaymentGateways(token: string, gatewayData: any) {
+  const res = await fetch(`${API_BASE_URL}/admin/payment-gateways`, {
+    method: 'PUT',
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${token}`
+    },
+    body: JSON.stringify(gatewayData)
+  });
+  const data = await res.json();
+  if (!res.ok) throw new Error(data.message || 'Failed to update payment gateways');
+  return data;
+}

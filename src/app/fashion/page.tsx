@@ -72,45 +72,7 @@ export default function GenZFashionStore() {
   };
 
   return (
-    <div className="bg-[#FAF9F8] text-slate-900 min-h-screen pb-16 pt-[110px] sm:pt-[120px] font-sans">
-      
-      {/* ─── 1. TOP CATEGORY RIBBON BAR (LIGHT THEME) ─── */}
-      <div className="bg-white border-b border-slate-200/80 shadow-2xs">
-        <div className="max-w-[1536px] mx-auto px-4 sm:px-6 flex items-center justify-between text-xs overflow-x-auto whitespace-nowrap scrollbar-none py-2.5">
-          <div className="flex items-center space-x-6">
-            <button className="bg-slate-900 text-white px-3.5 py-1.5 rounded-lg font-bold flex items-center space-x-2 text-xs hover:bg-slate-800 transition">
-              <span>■ Shop Categories</span>
-              <ChevronDown className="w-3.5 h-3.5" />
-            </button>
-
-            <nav className="flex items-center space-x-6 text-slate-700 font-semibold text-xs">
-              {[
-                { name: 'Oversized Hoodies', cat: 'Tops' },
-                { name: 'Y2K Skate Denim', cat: 'Jeans' },
-                { name: 'Camp Shirts', cat: 'Shirts' },
-                { name: 'Utilitarian Cargo', cat: 'Bottoms' },
-                { name: 'Cyber Steel Watches', cat: 'Watches' }
-              ].map((item) => (
-                <button
-                  key={item.name}
-                  onClick={() => {
-                    setSelectedCategory(item.cat);
-                    document.getElementById('catalog')?.scrollIntoView({ behavior: 'smooth' });
-                  }}
-                  className="hover:text-red-600 transition cursor-pointer"
-                >
-                  {item.name}
-                </button>
-              ))}
-            </nav>
-          </div>
-
-          <div className="hidden lg:flex items-center space-x-2 font-bold text-red-600 text-xs">
-            <Sparkles className="w-3.5 h-3.5 text-red-600" />
-            <span>Free Express Shipping & 7-Day Easy Fits Swap</span>
-          </div>
-        </div>
-      </div>
+    <div className="bg-[#FAF9F8] text-slate-900 min-h-screen pb-16 pt-2 font-sans">
 
       {/* ─── 2. HERO BANNER — LIGHT EDITORIAL KOREAN FASHION ─── */}
       <section className="px-3 sm:px-6 lg:px-8 max-w-[1536px] mx-auto my-6">

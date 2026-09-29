@@ -480,46 +480,7 @@ export default function ThreeDPrintingStore() {
   const featuredBestSeller = getBestSellerFeatured();
 
   return (
-    <div className="bg-[#F8FAFC] text-slate-900 min-h-screen pb-16 pt-[110px] sm:pt-[120px]">
-
-      {/* SHOP CATEGORIES RIBBON BAR (ABOVE HERO BANNER) */}
-      <div className="bg-white border-b border-slate-200 shadow-2xs mb-6">
-        <div className="max-w-[1536px] mx-auto px-4 sm:px-6 flex items-center justify-between text-xs overflow-x-auto whitespace-nowrap scrollbar-none py-2">
-          <div className="flex items-center space-x-6">
-            <button className="bg-black text-white px-3.5 py-2 rounded font-bold flex items-center space-x-2 text-xs hover:bg-slate-800 transition">
-              <span>■ Shop categories</span>
-              <ChevronDown className="w-3.5 h-3.5" />
-            </button>
-
-            <nav className="flex items-center space-x-6 text-slate-700 font-semibold">
-              {[
-                '3D Printers',
-                'Resin',
-                'Filament',
-                'Parts & Nozzles',
-                'Scanners',
-                'Under ₹50k'
-              ].map((tab, idx) => (
-                <Link
-                  key={tab}
-                  href="/products"
-                  className={`py-2 border-b-2 transition ${
-                    idx === 0
-                      ? 'border-red-600 text-red-600 font-bold'
-                      : 'border-transparent hover:text-black'
-                  }`}
-                >
-                  {tab}
-                </Link>
-              ))}
-            </nav>
-          </div>
-
-          <div className="hidden lg:flex items-center space-x-2 font-bold text-red-600 cursor-pointer hover:underline">
-            <Link href="/products">Deals of the week</Link>
-          </div>
-        </div>
-      </div>
+    <div className="bg-[#F8FAFC] text-slate-900 min-h-screen pb-16 pt-2">
 
       {/* 1. HERO BANNER — Exact Replicated Banner Matching Reference Screenshot */}
       <section className="px-3 sm:px-6 lg:px-8 max-w-[1536px] mx-auto mb-8">

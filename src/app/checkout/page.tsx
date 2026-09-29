@@ -1,12 +1,12 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
-import { ShieldCheck, CreditCard, ArrowRight, CheckCircle2, ShoppingBag, Truck, Tag, Lock, ArrowLeft } from 'lucide-react';
+import { ShieldCheck, CreditCard, ArrowRight, CheckCircle2, ShoppingBag, Truck, Tag, Lock, ArrowLeft, Globe, Package } from 'lucide-react';
 import { useCart } from '@/context/CartContext';
 import { useAuth } from '@/context/AuthContext';
-import { submitOrder, validateCoupon } from '@/lib/api';
+import { submitOrder, validateCoupon, fetchActivePaymentGateways } from '@/lib/api';
 
 export default function CheckoutPage() {
   const router = useRouter();
@@ -29,10 +29,40 @@ export default function CheckoutPage() {
   const [couponCode, setCouponCode] = useState('');
   const [couponError, setCouponError] = useState('');
 
-  // Payment method
-  const [paymentGateway, setPaymentGateway] = useState<'stripe' | 'razorpay'>('stripe');
+  // Payment Gateways (Dynamically Configured from Admin)
+  const [selectedGateway, setSelectedGateway] = useState<string>('stripe');
+  const [availableGateways, setAvailableGateways] = useState<any>({
+    stripe: { id: 'stripe', name: 'Stripe Payment Gateway', isEnabled: true, instructions: 'Pay securely using Credit/Debit Card via Stripe.' },
+    razorpay: { id: 'razorpay', name: 'Razorpay Gateway', isEnabled: true, instructions: 'Pay via UPI, NetBanking, Debit/Credit Card via Razorpay.' },
+    paypal: { id: 'paypal', name: 'PayPal Express Checkout', isEnabled: true, instructions: 'Pay securely with your PayPal account.' },
+    cod: { id: 'cod', name: 'Cash on Delivery (COD)', isEnabled: true, instructions: 'Pay cash upon delivery at your doorstep.' },
+    bank_transfer: { id: 'bank_transfer', name: 'Direct Bank Transfer', isEnabled: false, instructions: 'Transfer funds to our official bank account.' }
+  });
+
   const [isProcessing, setIsProcessing] = useState(false);
   const [checkoutError, setCheckoutError] = useState('');
+
+  useEffect(() => {
+    // 1. Try local storage first for offline / instant load
+    try {
+      const savedConfig = localStorage.getItem('3dom_payment_gateways');
+      if (savedConfig) {
+        const parsed = JSON.parse(savedConfig);
+        if (parsed.activeGateway) setSelectedGateway(parsed.activeGateway);
+        if (parsed.gateways) setAvailableGateways(parsed.gateways);
+      }
+    } catch (e) {
+      console.error(e);
+    }
+
+    // 2. Fetch live active gateways from Backend
+    fetchActivePaymentGateways()
+      .then((res) => {
+        if (res.activeGateway) setSelectedGateway(res.activeGateway);
+        if (res.gateways) setAvailableGateways(res.gateways);
+      })
+      .catch((err) => console.error('Using local gateway configuration', err));
+  }, []);
 
   if (cart.length === 0) {
     return (
@@ -66,6 +96,7 @@ export default function CheckoutPage() {
     setIsProcessing(true);
 
     try {
+      const currentGw = availableGateways[selectedGateway] || { name: selectedGateway };
       const orderPayload = {
         customer: {
           name: name || 'Guest Customer',
@@ -75,7 +106,7 @@ export default function CheckoutPage() {
         },
         items: cart,
         couponCode: appliedCoupon?.code || null,
-        paymentMethod: paymentGateway === 'stripe' ? 'Stripe Test Gateway (PCI Compliant)' : 'Razorpay Test Mode'
+        paymentMethod: `${currentGw.name || selectedGateway} (Configured via Admin)`
       };
 
       const createdOrder = await submitOrder(orderPayload);
@@ -87,6 +118,10 @@ export default function CheckoutPage() {
       setIsProcessing(false);
     }
   };
+
+  const enabledGatewayKeys = Object.keys(availableGateways).filter(
+    (key) => availableGateways[key]?.isEnabled !== false
+  );
 
   return (
     <div className="min-h-screen bg-zinc-950 text-white py-10 px-4 sm:px-6 lg:px-8">
@@ -216,7 +251,7 @@ export default function CheckoutPage() {
 
                 <button
                   type="submit"
-                  className="w-full py-3.5 bg-slate-900 hover:bg-black text-white font-extrabold text-xs uppercase tracking-wider rounded-xl shadow-lg flex items-center justify-center space-x-2 transition"
+                  className="w-full py-3.5 bg-slate-900 hover:bg-black text-white font-extrabold text-xs uppercase tracking-wider rounded-xl shadow-lg flex items-center justify-center space-x-2 transition cursor-pointer"
                 >
                   <span>Continue to Payment</span>
                   <ArrowRight className="w-4 h-4" />
@@ -229,7 +264,7 @@ export default function CheckoutPage() {
                 <div className="flex items-center justify-between border-b border-zinc-800 pb-4">
                   <h3 className="text-lg font-bold text-white flex items-center space-x-2">
                     <CreditCard className="w-5 h-5 text-red-500" />
-                    <span>Select Payment Gateway Mode</span>
+                    <span>Select Active Payment Gateway</span>
                   </h3>
                   <button
                     type="button"
@@ -241,73 +276,89 @@ export default function CheckoutPage() {
                   </button>
                 </div>
 
-                {/* Gateway Selection Tabs */}
-                <div className="grid grid-cols-2 gap-4">
-                  <div
-                    onClick={() => setPaymentGateway('stripe')}
-                    className={`p-4 rounded-xl border cursor-pointer transition flex flex-col justify-between ${
-                      paymentGateway === 'stripe'
-                        ? 'bg-red-950/40 border-red-600 ring-2 ring-red-500/50'
-                        : 'bg-zinc-950 border-zinc-800 hover:border-zinc-700'
-                    }`}
-                  >
-                    <div>
-                      <span className="text-xs font-black text-white">Stripe Test Gateway</span>
-                      <p className="text-[10px] text-zinc-400 mt-1">Simulated PCI-compliant card processing</p>
-                    </div>
-                    <span className="mt-3 text-[10px] font-bold text-emerald-400">Sandbox Test Mode</span>
-                  </div>
+                {/* 💳 DYNAMIC ADMIN-CONFIGURED PAYMENT GATEWAY CARDS */}
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  {enabledGatewayKeys.map((key) => {
+                    const gw = availableGateways[key];
+                    const isSelected = selectedGateway === key;
 
-                  <div
-                    onClick={() => setPaymentGateway('razorpay')}
-                    className={`p-4 rounded-xl border cursor-pointer transition flex flex-col justify-between ${
-                      paymentGateway === 'razorpay'
-                        ? 'bg-red-950/40 border-red-600 ring-2 ring-red-500/50'
-                        : 'bg-zinc-950 border-zinc-800 hover:border-zinc-700'
-                    }`}
-                  >
-                    <div>
-                      <span className="text-xs font-black text-white">Razorpay Test Gateway</span>
-                      <p className="text-[10px] text-zinc-400 mt-1">UPI, NetBanking & Card simulated flow</p>
-                    </div>
-                    <span className="mt-3 text-[10px] font-bold text-amber-400">UPI Sandbox Mode</span>
-                  </div>
+                    return (
+                      <div
+                        key={key}
+                        onClick={() => setSelectedGateway(key)}
+                        className={`p-4 rounded-2xl border cursor-pointer transition flex flex-col justify-between ${
+                          isSelected
+                            ? 'bg-red-950/40 border-red-600 ring-2 ring-red-500/50 shadow-lg'
+                            : 'bg-zinc-950 border-zinc-800 hover:border-zinc-700'
+                        }`}
+                      >
+                        <div>
+                          <div className="flex items-center justify-between">
+                            <span className="text-xs font-black text-white">{gw.name || key}</span>
+                            {isSelected && <span className="w-2.5 h-2.5 rounded-full bg-red-500 animate-pulse" />}
+                          </div>
+                          <p className="text-[11px] text-zinc-400 mt-1">{gw.instructions || 'Secure Admin-configured gateway'}</p>
+                        </div>
+                        <span className="mt-3 text-[10px] font-bold text-emerald-400 uppercase tracking-wider">
+                          {gw.mode ? `${gw.mode} Mode` : 'Active'}
+                        </span>
+                      </div>
+                    );
+                  })}
                 </div>
 
-                {/* Simulated Credit Card Input */}
-                <div className="p-4 bg-zinc-950 rounded-xl border border-zinc-800 space-y-3">
-                  <div className="flex items-center justify-between text-xs text-zinc-400">
-                    <span>Card Number (Test Mode Enabled)</span>
-                    <Lock className="w-3.5 h-3.5 text-emerald-500" />
+                {/* Gateway Specific Input Details / Instructions */}
+                {selectedGateway === 'bank_transfer' && (
+                  <div className="p-4 bg-zinc-950 rounded-xl border border-zinc-800 space-y-2 text-xs">
+                    <p className="font-bold text-amber-400">Direct Bank Wire Instructions:</p>
+                    <p className="text-zinc-300">Bank: <strong className="text-white">{availableGateways.bank_transfer?.bankName || 'Global Commerce Bank'}</strong></p>
+                    <p className="text-zinc-300">Account Title: <strong className="text-white">{availableGateways.bank_transfer?.accountTitle || '3DOM E-Commerce Pvt Ltd'}</strong></p>
+                    <p className="text-zinc-300">Account #: <strong className="text-white font-mono">{availableGateways.bank_transfer?.accountNumber || '10928374659102'}</strong></p>
                   </div>
-                  <input
-                    type="text"
-                    readOnly
-                    value="4242 •••• •••• 4242"
-                    className="w-full px-3.5 py-2 text-xs font-mono bg-zinc-900 border border-zinc-800 rounded-lg text-zinc-300"
-                  />
-                  <div className="grid grid-cols-2 gap-3">
+                )}
+
+                {selectedGateway === 'cod' && (
+                  <div className="p-4 bg-zinc-950 rounded-xl border border-zinc-800 text-xs text-zinc-300 font-medium">
+                    <p className="font-bold text-emerald-400">Cash on Delivery (COD) Selected:</p>
+                    <p className="mt-0.5">{availableGateways.cod?.instructions || 'Pay in cash upon delivery to the courier rider.'}</p>
+                  </div>
+                )}
+
+                {(selectedGateway === 'stripe' || selectedGateway === 'razorpay' || selectedGateway === 'paypal') && (
+                  <div className="p-4 bg-zinc-950 rounded-xl border border-zinc-800 space-y-3">
+                    <div className="flex items-center justify-between text-xs text-zinc-400">
+                      <span>Card / Account ({availableGateways[selectedGateway]?.name || selectedGateway})</span>
+                      <Lock className="w-3.5 h-3.5 text-emerald-500" />
+                    </div>
                     <input
                       type="text"
                       readOnly
-                      value="12 / 28"
-                      className="px-3 py-2 text-xs font-mono bg-zinc-900 border border-zinc-800 rounded-lg text-zinc-300"
+                      value="4242 •••• •••• 4242"
+                      className="w-full px-3.5 py-2 text-xs font-mono bg-zinc-900 border border-zinc-800 rounded-lg text-zinc-300"
                     />
-                    <input
-                      type="text"
-                      readOnly
-                      value="CVC 123"
-                      className="px-3 py-2 text-xs font-mono bg-zinc-900 border border-zinc-800 rounded-lg text-zinc-300"
-                    />
+                    <div className="grid grid-cols-2 gap-3">
+                      <input
+                        type="text"
+                        readOnly
+                        value="12 / 28"
+                        className="px-3 py-2 text-xs font-mono bg-zinc-900 border border-zinc-800 rounded-lg text-zinc-300"
+                      />
+                      <input
+                        type="text"
+                        readOnly
+                        value="CVC 123"
+                        className="px-3 py-2 text-xs font-mono bg-zinc-900 border border-zinc-800 rounded-lg text-zinc-300"
+                      />
+                    </div>
                   </div>
-                </div>
+                )}
 
                 <button
                   onClick={handleCompleteOrder}
                   disabled={isProcessing}
-                  className="w-full py-4 bg-slate-900 hover:bg-black text-white font-extrabold text-sm uppercase tracking-wider rounded-xl shadow-xl flex items-center justify-center space-x-2 transition disabled:opacity-50"
+                  className="w-full py-4 bg-slate-900 hover:bg-black text-white font-extrabold text-sm uppercase tracking-wider rounded-xl shadow-xl flex items-center justify-center space-x-2 transition disabled:opacity-50 cursor-pointer"
                 >
-                  <Lock className="w-4 h-4" />
+                  <Lock className="w-4 h-4 text-emerald-400" />
                   <span>{isProcessing ? 'Processing Order & Deducting Stock...' : `Pay $${cartTotal.toFixed(2)} Now`}</span>
                 </button>
               </div>
@@ -352,36 +403,50 @@ export default function CheckoutPage() {
                     Apply
                   </button>
                 </div>
-                {couponError && <p className="text-[11px] text-red-500">{couponError}</p>}
+
+                {couponError && <p className="text-xs text-red-500 font-semibold">{couponError}</p>}
+
                 {appliedCoupon && (
-                  <p className="text-[11px] text-emerald-400 font-bold">
-                    Applied: {appliedCoupon.code} (-${discountAmount.toFixed(2)})
-                  </p>
+                  <div className="flex justify-between items-center bg-emerald-950/80 text-emerald-300 p-2 rounded-lg text-xs font-semibold border border-emerald-800">
+                    <span>Applied: {appliedCoupon.code} (-${appliedCoupon.discountAmount?.toFixed(2)})</span>
+                    <button
+                      onClick={() => setAppliedCoupon(null)}
+                      className="text-white underline font-bold"
+                    >
+                      Remove
+                    </button>
+                  </div>
                 )}
               </form>
 
-              {/* Pricing Totals */}
-              <div className="pt-3 border-t border-zinc-800 space-y-2 text-xs text-zinc-400">
+              {/* Subtotal breakdown */}
+              <div className="space-y-2 text-xs text-zinc-400 pt-3 border-t border-zinc-800">
                 <div className="flex justify-between">
                   <span>Subtotal</span>
-                  <span className="font-bold text-white">${cartSubtotal.toFixed(2)}</span>
+                  <span className="text-white font-semibold">${cartSubtotal.toFixed(2)}</span>
                 </div>
+
                 {discountAmount > 0 && (
-                  <div className="flex justify-between text-emerald-400 font-bold">
+                  <div className="flex justify-between text-red-400 font-semibold">
                     <span>Discount</span>
                     <span>-${discountAmount.toFixed(2)}</span>
                   </div>
                 )}
-                <div className="flex justify-between text-sm font-black text-white pt-2 border-t border-zinc-800">
+
+                <div className="flex justify-between">
+                  <span>Shipping</span>
+                  <span className="text-emerald-400 font-semibold">FREE</span>
+                </div>
+
+                <div className="flex justify-between text-base font-black text-white pt-2 border-t border-zinc-800">
                   <span>Total Amount</span>
-                  <span className="text-red-500">${cartTotal.toFixed(2)}</span>
+                  <span className="text-xl font-black text-red-500">${cartTotal.toFixed(2)}</span>
                 </div>
               </div>
             </div>
           </div>
 
         </div>
-
       </div>
     </div>
   );

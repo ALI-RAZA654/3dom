@@ -67,44 +67,7 @@ export default function BeautyStore() {
   };
 
   return (
-    <div className="bg-[#FAF8F6] text-slate-900 min-h-screen pb-16 pt-[110px] sm:pt-[120px] font-sans">
-      
-      {/* ─── 1. TOP CATEGORY RIBBON BAR (LIGHT THEME) ─── */}
-      <div className="bg-white border-b border-rose-100 shadow-2xs">
-        <div className="max-w-[1536px] mx-auto px-4 sm:px-6 flex items-center justify-between text-xs overflow-x-auto whitespace-nowrap scrollbar-none py-2.5">
-          <div className="flex items-center space-x-6">
-            <button className="bg-rose-900 text-white px-3.5 py-1.5 rounded-lg font-bold flex items-center space-x-2 text-xs hover:bg-rose-800 transition">
-              <span>■ Beauty Categories</span>
-              <ChevronDown className="w-3.5 h-3.5" />
-            </button>
-
-            <nav className="flex items-center space-x-6 text-slate-700 font-semibold text-xs">
-              {[
-                { name: 'Artisanal Eau de Parfum', cat: 'Perfumes' },
-                { name: 'Organic Botanical Shampoos', cat: 'Shampoo' },
-                { name: 'Keratin Peptide Hair Masks', cat: 'Masks' },
-                { name: 'Triple Hyaluronic Lip Balms', cat: 'Lip Balms' }
-              ].map((item) => (
-                <button
-                  key={item.name}
-                  onClick={() => {
-                    setSelectedCategory(item.cat);
-                    document.getElementById('catalog')?.scrollIntoView({ behavior: 'smooth' });
-                  }}
-                  className="hover:text-rose-600 transition cursor-pointer"
-                >
-                  {item.name}
-                </button>
-              ))}
-            </nav>
-          </div>
-
-          <div className="hidden lg:flex items-center space-x-2 font-bold text-rose-600 text-xs">
-            <Sparkles className="w-3.5 h-3.5 text-rose-600" />
-            <span>100% Botanical & Dermatologically Certified</span>
-          </div>
-        </div>
-      </div>
+    <div className="bg-[#FAF8F6] text-slate-900 min-h-screen pb-16 pt-2 font-sans">
 
       {/* ─── 2. HERO BANNER — LIGHT LUXURY BEAUTY ─── */}
       <section className="px-3 sm:px-6 lg:px-8 max-w-[1536px] mx-auto my-6">
