@@ -23,7 +23,7 @@ const DEFAULT_PDP_PRODUCT = {
   rating: 4.5,
   ratingCount: 2841,
   answeredQuestions: 316,
-  image: PRINTER_SVG_FALLBACK,
+  image: '/images/forge-a1-mini.png',
   description: 'High-precision Core-XY enclosed auto-leveling 3D printer with 500mm/s acceleration and active flow compensation.',
   stock: 12,
   attributes: {
@@ -66,11 +66,10 @@ export default function ProductDetailPage() {
     fetchProductBySlug(slug)
       .then((data) => {
         if (data) {
-          const isFactoryPeoplePhoto = data.image && (data.image.includes('photo-1581092160607') || data.image.startsWith('/images/'));
           setProduct({
             ...DEFAULT_PDP_PRODUCT,
             ...data,
-            image: isFactoryPeoplePhoto ? PRINTER_SVG_FALLBACK : data.image,
+            image: data.image || '/images/forge-a1-mini.png',
             attributes: {
               ...DEFAULT_PDP_PRODUCT.attributes,
               ...(data.attributes || {})

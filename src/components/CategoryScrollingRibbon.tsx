@@ -95,8 +95,8 @@ export const CategoryScrollingRibbon: React.FC<CategoryScrollingRibbonProps> = (
     if (onSelectCategory) {
       onSelectCategory(catFilter);
     }
-    const vertical = isFashion ? '/fashion' : isBeauty ? '/beauty' : '/3d-printing';
-    router.push(vertical);
+    const vertical = isFashion ? 'fashion' : isBeauty ? 'beauty' : '3d-printing';
+    router.push(`/products?category=${encodeURIComponent(catFilter)}&vertical=${vertical}`);
   };
 
   const verticalLabel = isFashion ? 'Fashion' : isBeauty ? 'Beauty' : '3D Printing';
@@ -181,8 +181,7 @@ export const CategoryScrollingRibbon: React.FC<CategoryScrollingRibbonProps> = (
           {/* ─── RIGHT: Deals of the Week ─── */}
           <button
             onClick={() => {
-              const vertical = isFashion ? '/fashion' : isBeauty ? '/beauty' : '/3d-printing';
-              router.push(vertical);
+              router.push('/products?quickPick=onsale');
             }}
             className="hidden sm:flex items-center space-x-1.5 text-xs sm:text-[13px] font-bold text-warm-accent hover:text-red-700 transition cursor-pointer shrink-0"
           >

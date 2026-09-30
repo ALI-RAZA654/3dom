@@ -37,7 +37,7 @@ const INITIAL_PRODUCTS = [
     ratingCount: 2841,
     tag: 'BESTSELLER',
     tagColor: 'bg-slate-900 text-white',
-    image: 'https://images.unsplash.com/photo-1612815150330-80e90c888d22?auto=format&fit=crop&w=800&q=80',
+    image: '/images/forge-a1-mini.png',
     subSpecs: 'Core-XY · 180×180×180 · 500 mm/s',
     stock: 12,
     attributes: {
@@ -65,7 +65,7 @@ const INITIAL_PRODUCTS = [
     ratingCount: 1120,
     tag: 'NEW',
     tagColor: 'bg-slate-900 text-white',
-    image: 'https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=800&q=80',
+    image: '/images/forge-a1-pro-ams.png',
     subSpecs: '4-colour AMS · 256³ build · enclosed',
     stock: 8,
     attributes: {
@@ -93,7 +93,7 @@ const INITIAL_PRODUCTS = [
     ratingCount: 5210,
     tag: 'BUDGET',
     tagColor: 'bg-black text-white',
-    image: 'https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=800&q=80',
+    image: '/images/ender-craft-9.png',
     subSpecs: 'Bedslinger · 220³ · beginner kit',
     stock: 15,
     attributes: {
@@ -121,7 +121,7 @@ const INITIAL_PRODUCTS = [
     ratingCount: 890,
     tag: 'BESTSELLER',
     tagColor: 'bg-slate-900 text-white',
-    image: 'https://images.unsplash.com/photo-1563770660941-20978e870e26?auto=format&fit=crop&w=800&q=80',
+    image: '/images/halo-resin-4k.png',
     subSpecs: '12K Mono LCD · Level-Free · 105mm/h',
     stock: 5,
     attributes: {
@@ -199,6 +199,40 @@ function ProductsCatalogContent() {
   const [sortBy, setSortBy] = useState<'popularity' | 'price_asc' | 'price_desc' | 'rating'>('popularity');
   const [activeCategoryTab, setActiveCategoryTab] = useState<string>('3D Printers');
 
+  // Read URL query params on mount and apply as initial filters
+  useEffect(() => {
+    const categoryParam = searchParams.get('category');
+    const maxBudgetParam = searchParams.get('maxBudget');
+    const quickPickParam = searchParams.get('quickPick');
+
+    if (categoryParam) {
+      // Map category param to the correct tab label
+      const categoryTabMap: Record<string, string> = {
+        'Printers': '3D Printers',
+        'Resin': 'Resin',
+        'Filaments': 'Filament',
+        'Filament': 'Filament',
+        '3D Printer Parts': 'Parts & Nozzles',
+        'Printer Accessories': 'Scanners',
+      };
+      const tabLabel = categoryTabMap[categoryParam] || '3D Printers';
+      setActiveCategoryTab(tabLabel);
+      setSelectedCategories([categoryParam]);
+    }
+
+    if (maxBudgetParam) {
+      const budgetVal = parseInt(maxBudgetParam, 10);
+      if (!isNaN(budgetVal)) {
+        setMaxBudget(budgetVal);
+        if (budgetVal <= 50000) setUnder50kOffer(true);
+      }
+    }
+
+    if (quickPickParam) {
+      setQuickPick(quickPickParam);
+    }
+  }, [searchParams]);
+
   // Multi-checkbox helper
   const toggleArrayFilter = (arr: string[], setArr: React.Dispatch<React.SetStateAction<string[]>>, item: string) => {
     if (arr.includes(item)) {
@@ -216,6 +250,16 @@ function ProductsCatalogContent() {
     setSelectedCategories([]);
     setUnder50kOffer(false);
     setSortBy('popularity');
+  };
+
+  // Map active tab to category filter value
+  const tabToCategoryMap: Record<string, string> = {
+    '3D Printers': 'Printers',
+    'Resin': 'Resin',
+    'Filament': 'Filament',
+    'Parts & Nozzles': 'Parts & upgrades',
+    'Scanners': 'Printer Accessories',
+    'Under ₹50k': '',
   };
 
   // Filtered & Sorted Products
@@ -236,8 +280,16 @@ function ProductsCatalogContent() {
       // Brand filter
       if (selectedBrands.length > 0 && !selectedBrands.includes(p.brand)) return false;
 
-      // Category filter
+      // Category filter from sidebar checkboxes
       if (selectedCategories.length > 0 && !selectedCategories.includes(p.category)) return false;
+
+      // Active category tab filter (top ribbon)
+      if (activeCategoryTab === 'Under ₹50k') {
+        if (p.price > 50000) return false;
+      } else if (activeCategoryTab !== '3D Printers') {
+        const mappedCat = tabToCategoryMap[activeCategoryTab];
+        if (mappedCat && p.category !== mappedCat) return false;
+      }
 
       // Offers filter
       if (under50kOffer && p.price > 50000) return false;
@@ -249,7 +301,7 @@ function ProductsCatalogContent() {
       if (sortBy === 'rating') return b.rating - a.rating;
       return b.ratingCount - a.ratingCount; // Popularity
     });
-  }, [quickPick, maxBudget, selectedTech, selectedBrands, selectedCategories, under50kOffer, sortBy]);
+  }, [quickPick, maxBudget, selectedTech, selectedBrands, selectedCategories, under50kOffer, sortBy, activeCategoryTab]);
 
   return (
     <div className="bg-[#F8F9FA] text-slate-900 min-h-screen pt-4 sm:pt-6 pb-16 font-sans">
@@ -276,7 +328,10 @@ function ProductsCatalogContent() {
                 return (
                   <button
                     key={tab}
-                    onClick={() => setActiveCategoryTab(tab)}
+                    onClick={() => {
+                      setActiveCategoryTab(tab);
+                      setSelectedCategories([]);
+                    }}
                     className={`py-2 border-b-2 transition ${
                       isActive
                         ? 'border-red-600 text-red-600 font-bold'
@@ -522,7 +577,9 @@ function ProductsCatalogContent() {
             {/* Catalog Header & Sorting Options */}
             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-2 border-b border-slate-200">
               <div>
-                <h1 className="text-2xl font-black text-slate-900">3D Printers</h1>
+                <h1 className="text-2xl font-black text-slate-900">
+                  {activeCategoryTab === '3D Printers' ? 'All 3D Products' : activeCategoryTab}
+                </h1>
                 <p className="text-xs text-slate-500 font-medium mt-0.5">
                   {filteredProducts.length} of {INITIAL_PRODUCTS.length} products · delivered across India
                 </p>
@@ -591,7 +648,8 @@ function ProductsCatalogContent() {
             ) : (
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
                 {filteredProducts.map((product) => {
-                  const pdpUrl = `/3d-printing/printers/${product.slug}`;
+                  const categorySlug = product.category.toLowerCase().replace(/\s+/g, '-').replace(/&/g, 'and');
+                  const pdpUrl = `/${product.vertical}/${categorySlug}/${product.slug}`;
                   return (
                     <div
                       key={product.id}

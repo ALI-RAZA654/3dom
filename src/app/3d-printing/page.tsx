@@ -4,6 +4,7 @@ export const dynamic = 'force-dynamic';
 
 import React, { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import { 
   Box, 
   Layers, 
@@ -257,6 +258,7 @@ const FALLBACK_3D_PRODUCTS = [
 ];
 
 export default function ThreeDPrintingStore() {
+  const router = useRouter();
   const { addToCart } = useCart();
   const [products, setProducts] = useState<any[]>(FALLBACK_3D_PRODUCTS);
   const [selectedCategory, setSelectedCategory] = useState<string>('all');
@@ -693,13 +695,16 @@ export default function ThreeDPrintingStore() {
             { name: 'Build plates', catId: 'Printer Accessories', img: '/images/cat-build-plates.png' },
             { name: 'Scanners', catId: 'Printer Accessories', img: 'https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=400&q=80' },
             { name: 'Dryers', catId: 'Printer Accessories', img: 'https://images.unsplash.com/photo-1563770660439-4636190af475?auto=format&fit=crop&w=400&q=80' },
-            { name: 'Under ₹50k', catId: 'Printers', img: '/images/ender-craft-9.png' },
+            { name: 'Under ₹50k', catId: 'Printers', img: '/images/ender-craft-9.png', isUnder50k: true },
           ].map((cat, idx) => (
             <div
               key={idx}
               onClick={() => {
-                setSelectedCategory(cat.catId);
-                document.getElementById('catalog')?.scrollIntoView({ behavior: 'smooth' });
+                if ((cat as any).isUnder50k) {
+                  router.push('/products?category=Printers&maxBudget=50000');
+                } else {
+                  router.push(`/products?category=${encodeURIComponent(cat.catId)}`);
+                }
               }}
               className="bg-white border border-slate-200/90 rounded-2xl p-2.5 sm:p-3 hover:border-slate-300 hover:shadow-md transition-all flex items-center space-x-3 cursor-pointer group shrink-0 min-w-[150px] sm:min-w-[180px] snap-start"
             >
