@@ -8,7 +8,7 @@ export const Footer: React.FC = () => {
   return (
     <footer className="bg-white text-slate-600 text-sm border-t border-slate-200 mt-auto">
       {/* Platform Features Bar */}
-      <div className="border-b border-slate-100 py-8 px-4 bg-slate-50">
+      <div className="border-b border-slate-100 py-3 sm:py-4 px-4 bg-slate-50">
         <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-6 text-center md:text-left">
           <div className="flex items-center space-x-4 justify-center md:justify-start">
             <div className="p-3 bg-red-50 rounded-2xl border border-red-100 text-red-600">

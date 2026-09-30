@@ -480,11 +480,11 @@ export default function ThreeDPrintingStore() {
   const featuredBestSeller = getBestSellerFeatured();
 
   return (
-    <div className="bg-[#F8FAFC] text-slate-900 min-h-screen pb-16 pt-2">
+    <div className="bg-[#F8FAFC] text-slate-900 min-h-screen pb-4 pt-1">
 
-      {/* 1. HERO BANNER — Exact Replicated Banner Matching Reference Screenshot */}
-      <section className="px-3 sm:px-6 lg:px-8 max-w-[1536px] mx-auto mb-8">
-        <div className="relative rounded-3xl overflow-hidden bg-[#0A0710] text-white min-h-[380px] lg:min-h-[420px] flex items-center border border-slate-800 shadow-2xl group">
+      {/* 1. HERO BANNER — Compact Height & Modern Layout */}
+      <section className="px-3 sm:px-6 lg:px-8 max-w-[1536px] mx-auto mb-2">
+        <div className="relative rounded-2xl sm:rounded-3xl overflow-hidden bg-[#0A0710] text-white min-h-[250px] sm:min-h-[280px] lg:min-h-[310px] flex items-center border border-slate-800 shadow-xl group">
           
           {/* Active Slide Full Background Image */}
           <div className="absolute inset-0 z-0">
@@ -507,37 +507,37 @@ export default function ThreeDPrintingStore() {
           </div>
 
           {/* Banner Main Content Container */}
-          <div className="relative z-20 w-full p-6 sm:p-10 lg:p-12 flex items-center justify-between">
+          <div className="relative z-20 w-full p-4 sm:p-6 lg:p-7 flex items-center justify-between">
             
             {/* Left Overlay Text Content */}
-            <div className="max-w-xl space-y-4 text-left">
+            <div className="max-w-xl space-y-2 text-left">
               
               {/* Badges */}
               <div className="flex items-center space-x-2">
-                <span className="bg-red-600 text-white text-[10px] font-black uppercase px-2.5 py-0.5 rounded tracking-wider shadow-xs">
+                <span className="bg-red-600 text-white text-[9px] sm:text-[10px] font-black uppercase px-2 py-0.5 rounded tracking-wider shadow-xs">
                   {heroSlide === 0 ? 'NEW' : heroSlide === 1 ? 'BESTSELLER' : heroSlide === 2 ? 'PRO KITS' : 'HIGH PRECISION'}
                 </span>
-                <span className="bg-slate-800/90 text-slate-200 border border-slate-700 text-[10px] font-bold uppercase px-2.5 py-0.5 rounded tracking-wider">
+                <span className="bg-slate-800/90 text-slate-200 border border-slate-700 text-[9px] sm:text-[10px] font-bold uppercase px-2 py-0.5 rounded tracking-wider">
                   {heroSlide === 0 ? 'CORE-XY' : heroSlide === 1 ? 'AMS 4-COLOUR' : heroSlide === 2 ? 'CORE-XY DIY' : '12K MONO'}
                 </span>
               </div>
 
               {/* Title & Speed Tagline */}
               <div>
-                <h1 className="text-3xl sm:text-5xl font-black text-white tracking-tight leading-none">
+                <h1 className="text-2xl sm:text-4xl font-black text-white tracking-tight leading-none">
                   {heroSlide === 0 && 'Forge A1 Mini.'}
                   {heroSlide === 1 && 'Forge A1 Pro AMS.'}
                   {heroSlide === 2 && 'Voron 2.4 R2 DIY Kit.'}
                   {heroSlide === 3 && 'Halo Photon M5s 12K.'}
                 </h1>
-                <div className="mt-2 flex items-baseline space-x-2 flex-wrap">
-                  <span className="text-2xl sm:text-4xl font-black text-white">
+                <div className="mt-1 flex items-baseline space-x-2 flex-wrap">
+                  <span className="text-xl sm:text-2xl font-black text-white">
                     {heroSlide === 0 && '500 mm/s'}
                     {heroSlide === 1 && '4-Colour AMS'}
                     {heroSlide === 2 && '350 mm/s'}
                     {heroSlide === 3 && '105 mm/h'}
                   </span>
-                  <span className="text-sm sm:text-base text-slate-300 font-medium">
+                  <span className="text-xs sm:text-sm text-slate-300 font-medium">
                     {heroSlide === 0 && 'on a desk that small.'}
                     {heroSlide === 1 && 'multi-material auto switching.'}
                     {heroSlide === 2 && 'flying gantry engineering.'}
@@ -547,7 +547,7 @@ export default function ThreeDPrintingStore() {
               </div>
 
               {/* Specs line */}
-              <p className="text-xs sm:text-sm text-slate-300 font-medium">
+              <p className="text-[11px] sm:text-xs text-slate-300 font-medium hidden sm:block">
                 {heroSlide === 0 && 'Auto bed levelling · High precision · Compact design'}
                 {heroSlide === 1 && '256³ build volume · Enclosed chamber · Auto levelling'}
                 {heroSlide === 2 && '350x350x350mm build · Klipper firmware · Flying gantry'}
@@ -555,24 +555,24 @@ export default function ThreeDPrintingStore() {
               </p>
 
               {/* Price Row */}
-              <div className="flex items-center space-x-3 pt-1">
-                <span className="text-2xl sm:text-3xl font-black text-white">
+              <div className="flex items-center space-x-2.5 pt-0.5">
+                <span className="text-xl sm:text-2xl font-black text-white">
                   ₹{
                     heroSlide === 0 ? '28,999' : heroSlide === 1 ? '62,999' : heroSlide === 2 ? '89,900' : '44,999'
                   }
                 </span>
-                <span className="text-sm text-slate-400 line-through font-medium">
+                <span className="text-xs text-slate-400 line-through font-medium">
                   ₹{
                     heroSlide === 0 ? '34,999' : heroSlide === 1 ? '71,999' : heroSlide === 2 ? '95,000' : '52,999'
                   }
                 </span>
-                <span className="bg-red-600 text-white text-xs font-black px-2.5 py-0.5 rounded uppercase tracking-wider">
+                <span className="bg-red-600 text-white text-[10px] font-black px-2 py-0.5 rounded uppercase tracking-wider">
                   {heroSlide === 0 ? '17% OFF' : heroSlide === 1 ? '12% OFF' : heroSlide === 2 ? '5% OFF' : '15% OFF'}
                 </span>
               </div>
 
               {/* Action Buttons */}
-              <div className="pt-3 flex items-center space-x-3">
+              <div className="pt-1.5 flex items-center space-x-2.5">
                 <Link
                   href={
                     heroSlide === 0
@@ -583,15 +583,15 @@ export default function ThreeDPrintingStore() {
                       ? '/3d-printing/printers/voron-2-4-r2-corexy-kit'
                       : '/3d-printing/printers/halo-resin-4k'
                   }
-                  className="px-6 py-3 bg-slate-900 hover:bg-black text-white rounded-lg text-xs font-black uppercase tracking-wider transition flex items-center space-x-1.5 shadow-lg"
+                  className="px-4 py-2 bg-slate-900 hover:bg-black text-white rounded-lg text-xs font-black uppercase tracking-wider transition flex items-center space-x-1.5 shadow-md"
                 >
                   <span>Buy Now</span>
-                  <ArrowRight className="w-4 h-4 ml-0.5" />
+                  <ArrowRight className="w-3.5 h-3.5 ml-0.5" />
                 </Link>
 
                 <Link
                   href="/products"
-                  className="px-6 py-3 bg-black/60 hover:bg-black border border-white/40 text-white rounded-lg text-xs font-bold transition"
+                  className="px-4 py-2 bg-black/60 hover:bg-black border border-white/40 text-white rounded-lg text-xs font-bold transition"
                 >
                   Explore All
                 </Link>
@@ -600,7 +600,7 @@ export default function ThreeDPrintingStore() {
             </div>
 
             {/* Far Right Vertical Thumbnail Stack */}
-            <div className="hidden lg:flex flex-col space-y-3 z-30">
+            <div className="hidden lg:flex flex-col space-y-2 z-30">
               {[
                 { title: 'Forge A1 Mini', img: '/images/3d-banner.jpg' },
                 { title: 'Forge A1 Pro AMS', img: '/images/jakub-zerdzicki-ny9nVE0PEuo-unsplash.jpg' },
@@ -610,7 +610,7 @@ export default function ThreeDPrintingStore() {
                 <button
                   key={idx}
                   onClick={() => setHeroSlide(idx)}
-                  className={`w-16 h-16 sm:w-20 sm:h-20 rounded-xl overflow-hidden border-2 transition-all duration-300 cursor-pointer p-0.5 bg-black ${
+                  className={`w-12 h-12 sm:w-14 sm:h-14 rounded-xl overflow-hidden border-2 transition-all duration-300 cursor-pointer p-0.5 bg-black ${
                     heroSlide === idx
                       ? 'border-red-600 ring-2 ring-red-600/50 scale-105 shadow-xl'
                       : 'border-white/20 opacity-60 hover:opacity-100 hover:border-white'
@@ -631,29 +631,29 @@ export default function ThreeDPrintingStore() {
           {/* Left Arrow Button */}
           <button
             onClick={() => setHeroSlide((prev) => (prev === 0 ? 3 : prev - 1))}
-            className="absolute left-4 top-1/2 -translate-y-1/2 z-30 w-10 h-10 rounded-full bg-black/60 hover:bg-black text-white border border-white/20 flex items-center justify-center backdrop-blur-md transition shadow-lg cursor-pointer"
+            className="absolute left-3 top-1/2 -translate-y-1/2 z-30 w-8 h-8 rounded-full bg-black/60 hover:bg-black text-white border border-white/20 flex items-center justify-center backdrop-blur-md transition shadow-lg cursor-pointer"
             aria-label="Previous Slide"
           >
-            <ChevronLeft className="w-5 h-5" />
+            <ChevronLeft className="w-4 h-4" />
           </button>
 
           {/* Right Arrow Button */}
           <button
             onClick={() => setHeroSlide((prev) => (prev === 3 ? 0 : prev + 1))}
-            className="absolute right-24 sm:right-28 top-1/2 -translate-y-1/2 z-30 w-10 h-10 rounded-full bg-black/60 hover:bg-black text-white border border-white/20 flex items-center justify-center backdrop-blur-md transition shadow-lg cursor-pointer"
+            className="absolute right-20 sm:right-24 top-1/2 -translate-y-1/2 z-30 w-8 h-8 rounded-full bg-black/60 hover:bg-black text-white border border-white/20 flex items-center justify-center backdrop-blur-md transition shadow-lg cursor-pointer"
             aria-label="Next Slide"
           >
-            <ChevronRight className="w-5 h-5" />
+            <ChevronRight className="w-4 h-4" />
           </button>
 
           {/* Bottom Right Horizontal Pagination Indicators */}
-          <div className="absolute bottom-4 right-6 z-30 flex items-center space-x-1.5">
+          <div className="absolute bottom-3 right-5 z-30 flex items-center space-x-1.5">
             {[0, 1, 2, 3].map((idx) => (
               <button
                 key={idx}
                 onClick={() => setHeroSlide(idx)}
                 className={`h-1.5 rounded-full transition-all duration-300 cursor-pointer ${
-                  heroSlide === idx ? 'w-6 bg-red-600' : 'w-1.5 bg-white/40 hover:bg-white'
+                  heroSlide === idx ? 'w-5 bg-red-600' : 'w-1.5 bg-white/40 hover:bg-white'
                 }`}
                 aria-label={`Go to slide ${idx + 1}`}
               />
@@ -663,11 +663,11 @@ export default function ThreeDPrintingStore() {
         </div>
       </section>
 
-      {/* 2. SHOP BY CATEGORY SECTION (Matching Image 2) */}
-      <section className="py-8 px-4 sm:px-6 lg:px-8 max-w-[1536px] mx-auto">
-        <div className="flex items-end justify-between mb-5">
+      {/* 2. SHOP BY CATEGORY SECTION — ATTACHED TO BANNER */}
+      <section className="py-2 px-4 sm:px-6 lg:px-8 max-w-[1536px] mx-auto">
+        <div className="flex items-end justify-between mb-3">
           <div>
-            <span className="text-[11px] font-extrabold tracking-widest text-slate-400 uppercase mb-1 block">
+            <span className="text-[10px] font-extrabold tracking-widest text-slate-400 uppercase mb-0.5 block">
               SHOP BY CATEGORY
             </span>
             <h2 className="text-2xl sm:text-3xl font-black text-slate-900 tracking-tight">
@@ -722,8 +722,8 @@ export default function ThreeDPrintingStore() {
       </section>
 
       {/* 3. MACHINES & PARTS THAT SHIP TODAY SECTION (Matching Image 3) */}
-      <section className="py-8 px-4 sm:px-6 lg:px-8 max-w-[1536px] mx-auto mb-6">
-        <div className="flex items-center justify-between mb-6">
+      <section className="py-2 px-4 sm:px-6 lg:px-8 max-w-[1536px] mx-auto mb-2">
+        <div className="flex items-center justify-between mb-3">
           <h2 className="text-2xl sm:text-3xl font-black text-slate-900 tracking-tight">
             Machines & parts that ship today
           </h2>
@@ -863,12 +863,12 @@ export default function ThreeDPrintingStore() {
         </div>
       </section>
 
-      {/* 3. PREMIUM 3D PRINTERS SECTION (Exact requested red header & layout) */}
-      <section id="premium-printers" className="py-10 px-4 sm:px-6 lg:px-8 max-w-[1536px] mx-auto">
-        <div className="bg-white p-6 sm:p-8 rounded-3xl border border-slate-200 shadow-2xs">
+      {/* 3. PREMIUM 3D PRINTERS SECTION */}
+      <section id="premium-printers" className="py-2 px-4 sm:px-6 lg:px-8 max-w-[1536px] mx-auto">
+        <div className="bg-white p-4 sm:p-6 rounded-3xl border border-slate-200 shadow-2xs">
           
           {/* Header with red text emphasis and carousel arrows */}
-          <div className="flex items-center justify-between mb-8 pb-4 border-b border-slate-100">
+          <div className="flex items-center justify-between mb-4 pb-3 border-b border-slate-100">
             <div>
               <h2 className="text-2xl sm:text-3xl font-black text-slate-900 tracking-tight">
                 Premium <span className="text-red-600">3D Printers</span>
@@ -882,17 +882,17 @@ export default function ThreeDPrintingStore() {
             <div className="flex items-center space-x-2">
               <button
                 onClick={() => scrollContainer(premiumScrollRef, 'left')}
-                className="w-10 h-10 rounded-full border border-slate-200 bg-white hover:bg-slate-100 flex items-center justify-center text-slate-700 shadow-xs transition active:scale-95"
+                className="w-9 h-9 rounded-full border border-slate-200 bg-white hover:bg-slate-100 flex items-center justify-center text-slate-700 shadow-xs transition active:scale-95 cursor-pointer"
                 aria-label="Previous Premium Printers"
               >
-                <ChevronLeft className="w-5 h-5" />
+                <ChevronLeft className="w-4 h-4" />
               </button>
               <button
                 onClick={() => scrollContainer(premiumScrollRef, 'right')}
-                className="w-10 h-10 rounded-full border border-slate-200 bg-white hover:bg-slate-100 flex items-center justify-center text-slate-700 shadow-xs transition active:scale-95"
+                className="w-9 h-9 rounded-full border border-slate-200 bg-white hover:bg-slate-100 flex items-center justify-center text-slate-700 shadow-xs transition active:scale-95 cursor-pointer"
                 aria-label="Next Premium Printers"
               >
-                <ChevronRight className="w-5 h-5" />
+                <ChevronRight className="w-4 h-4" />
               </button>
             </div>
           </div>
@@ -900,7 +900,7 @@ export default function ThreeDPrintingStore() {
           {/* Horizontal Scrolling Card Container */}
           <div
             ref={premiumScrollRef}
-            className="flex space-x-6 overflow-x-auto scrollbar-none pb-4 snap-x"
+            className="flex space-x-4 sm:space-x-5 overflow-x-auto scrollbar-none pb-2 snap-x"
             style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
           >
             {premiumPrinters.map((product) => {
@@ -912,11 +912,11 @@ export default function ThreeDPrintingStore() {
               return (
                 <div
                   key={product.id}
-                  className="min-w-[270px] max-w-[290px] sm:min-w-[300px] bg-slate-50 rounded-3xl border border-slate-200 p-4 flex flex-col justify-between group hover:border-red-500 hover:shadow-xl transition-all duration-300 snap-start flex-shrink-0"
+                  className="min-w-[260px] max-w-[280px] sm:min-w-[290px] bg-slate-50 rounded-3xl border border-slate-200 p-4 flex flex-col justify-between group hover:border-red-500 hover:shadow-xl transition-all duration-300 snap-start flex-shrink-0"
                 >
                   <div>
                     {/* Image Area with Badges & Hover Action */}
-                    <div className="relative aspect-square w-full rounded-2xl bg-white p-3 overflow-hidden border border-slate-200/60 mb-4">
+                    <div className="relative aspect-square w-full rounded-2xl bg-white p-3 overflow-hidden border border-slate-200/60 mb-3">
                       <img
                         src={product.image}
                         alt={product.name}
@@ -968,7 +968,7 @@ export default function ThreeDPrintingStore() {
                   </div>
 
                   {/* Price & Rating Row */}
-                  <div className="mt-4 pt-3 border-t border-slate-200 flex items-center justify-between">
+                  <div className="mt-3 pt-2.5 border-t border-slate-200 flex items-center justify-between">
                     <div>
                       <div className="flex items-baseline space-x-1.5">
                         <span className="text-base sm:text-lg font-black text-slate-900">
@@ -996,11 +996,11 @@ export default function ThreeDPrintingStore() {
         </div>
       </section>
 
-      {/* 4. SHOP BY BRAND SECTION (Exact requested design & logos) */}
-      <section className="py-8 px-4 sm:px-6 lg:px-8 max-w-[1536px] mx-auto">
-        <div className="bg-white p-6 sm:p-8 rounded-3xl border border-slate-200 shadow-2xs">
+      {/* 4. SHOP BY BRAND SECTION */}
+      <section className="py-2 px-4 sm:px-6 lg:px-8 max-w-[1536px] mx-auto">
+        <div className="bg-white p-4 sm:p-6 rounded-3xl border border-slate-200 shadow-2xs">
           
-          <div className="flex items-center justify-between mb-8 pb-4 border-b border-slate-100">
+          <div className="flex items-center justify-between mb-4 pb-3 border-b border-slate-100">
             <div>
               <h2 className="text-2xl sm:text-3xl font-black text-slate-900 tracking-tight">
                 Shop By <span className="text-red-600">Brand</span>
@@ -1014,17 +1014,17 @@ export default function ThreeDPrintingStore() {
             <div className="flex items-center space-x-2">
               <button
                 onClick={() => scrollContainer(brandScrollRef, 'left')}
-                className="w-10 h-10 rounded-full border border-slate-200 bg-white hover:bg-slate-100 flex items-center justify-center text-slate-700 shadow-xs transition active:scale-95"
+                className="w-9 h-9 rounded-full border border-slate-200 bg-white hover:bg-slate-100 flex items-center justify-center text-slate-700 shadow-xs transition active:scale-95 cursor-pointer"
                 aria-label="Previous Brand"
               >
-                <ChevronLeft className="w-5 h-5" />
+                <ChevronLeft className="w-4 h-4" />
               </button>
               <button
                 onClick={() => scrollContainer(brandScrollRef, 'right')}
-                className="w-10 h-10 rounded-full border border-slate-200 bg-white hover:bg-slate-100 flex items-center justify-center text-slate-700 shadow-xs transition active:scale-95"
+                className="w-9 h-9 rounded-full border border-slate-200 bg-white hover:bg-slate-100 flex items-center justify-center text-slate-700 shadow-xs transition active:scale-95 cursor-pointer"
                 aria-label="Next Brand"
               >
-                <ChevronRight className="w-5 h-5" />
+                <ChevronRight className="w-4 h-4" />
               </button>
             </div>
           </div>
@@ -1032,7 +1032,7 @@ export default function ThreeDPrintingStore() {
           {/* Brand Cards Carousel */}
           <div
             ref={brandScrollRef}
-            className="flex space-x-4 sm:space-x-6 overflow-x-auto scrollbar-none py-2 snap-x"
+            className="flex space-x-3 sm:space-x-5 overflow-x-auto scrollbar-none py-1 snap-x"
             style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
           >
             {brandsList.map((brand) => (
@@ -1042,13 +1042,13 @@ export default function ThreeDPrintingStore() {
                   setSelectedBrand(brand.brandQuery);
                   document.getElementById('catalog')?.scrollIntoView({ behavior: 'smooth' });
                 }}
-                className={`min-w-[160px] sm:min-w-[190px] p-6 rounded-2xl border cursor-pointer transition-all duration-300 flex flex-col items-center justify-center text-center group snap-start flex-shrink-0 ${
+                className={`min-w-[150px] sm:min-w-[175px] p-4 rounded-2xl border cursor-pointer transition-all duration-300 flex flex-col items-center justify-center text-center group snap-start flex-shrink-0 ${
                   selectedBrand.toLowerCase() === brand.brandQuery.toLowerCase()
                     ? 'bg-red-50 border-red-600 shadow-md ring-2 ring-red-300'
                     : 'bg-slate-50 border-slate-200 hover:border-red-400 hover:bg-white hover:shadow-lg'
                 }`}
               >
-                <div className="h-12 flex items-center justify-center mb-2 group-hover:scale-110 transition-transform">
+                <div className="h-10 flex items-center justify-center mb-1 group-hover:scale-110 transition-transform">
                   {brand.logo}
                 </div>
                 <span className="text-[11px] font-bold text-slate-600 group-hover:text-red-600 transition mt-1">
@@ -1061,11 +1061,11 @@ export default function ThreeDPrintingStore() {
         </div>
       </section>
 
-      {/* 5. SPECIAL FILAMENTS DEAL SECTION (Exact requested banner & spool grid) */}
-      <section className="py-8 px-4 sm:px-6 lg:px-8 max-w-[1536px] mx-auto">
-        <div className="bg-white p-6 sm:p-8 rounded-3xl border border-slate-200 shadow-2xs">
+      {/* 5. SPECIAL FILAMENTS DEAL SECTION */}
+      <section className="py-2 px-4 sm:px-6 lg:px-8 max-w-[1536px] mx-auto">
+        <div className="bg-white p-4 sm:p-6 rounded-3xl border border-slate-200 shadow-2xs">
           
-          <div className="mb-8 pb-4 border-b border-slate-100">
+          <div className="mb-4 pb-3 border-b border-slate-100">
             <div className="inline-flex items-center space-x-1.5 px-3 py-1 rounded-full bg-red-50 text-red-600 text-[10px] font-black uppercase tracking-wider mb-2 border border-red-200">
               <Flame className="w-3 h-3 text-red-600" />
               <span>Limited Time Bundle Offers</span>
@@ -1078,45 +1078,45 @@ export default function ThreeDPrintingStore() {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-stretch">
             
             {/* Left Showcase Banner Box */}
-            <div className="lg:col-span-4 bg-gradient-to-br from-red-50 via-rose-50 to-slate-50 border border-red-200 p-6 sm:p-8 rounded-3xl text-slate-900 flex flex-col justify-between relative overflow-hidden group shadow-sm">
+            <div className="lg:col-span-4 bg-gradient-to-br from-red-50 via-rose-50 to-slate-50 border border-red-200 p-5 sm:p-6 rounded-3xl text-slate-900 flex flex-col justify-between relative overflow-hidden group shadow-sm">
               <div className="absolute top-0 right-0 -mr-10 -mt-10 w-40 h-40 bg-red-200/40 rounded-full blur-2xl group-hover:bg-red-300/40 transition-all" />
               
-              <div className="relative z-10 space-y-4">
+              <div className="relative z-10 space-y-3">
                 <span className="bg-red-600 text-white text-[10px] font-black uppercase px-3 py-1 rounded-full tracking-wider shadow-xs">
                   SPECIAL OFFER
                 </span>
 
-                <h3 className="text-2xl sm:text-3xl font-black leading-tight text-slate-900">
+                <h3 className="text-xl sm:text-2xl font-black leading-tight text-slate-900">
                   High-Speed Filament Bundles
                 </h3>
 
-                <p className="text-slate-600 text-xs sm:text-sm leading-relaxed font-medium">
+                <p className="text-slate-600 text-xs leading-relaxed font-medium">
                   Buy 3 or more spools of PLA+, PETG, or Silk Co-Extrusion filaments and receive an automatic 20% discount at checkout.
                 </p>
               </div>
 
               {/* Decorative Filament Spool Image Container */}
-              <div className="relative z-10 my-6 bg-white/10 backdrop-blur-md p-3 rounded-2xl border border-white/20 overflow-hidden">
+              <div className="relative z-10 my-4 bg-white/10 backdrop-blur-md p-2 rounded-2xl border border-white/20 overflow-hidden">
                 <img
                   src="https://images.unsplash.com/photo-1581092335397-9583fe92d232?auto=format&fit=crop&w=800&q=80"
                   alt="Special Filaments Deal Showcase"
                   onError={(e) => {
                     (e.target as HTMLImageElement).src = 'https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=800&q=80';
                   }}
-                  className="w-full h-44 object-cover rounded-xl group-hover:scale-105 transition-transform duration-500"
+                  className="w-full h-36 object-cover rounded-xl group-hover:scale-105 transition-transform duration-500"
                 />
               </div>
 
-              <div className="relative z-10 pt-2">
+              <div className="relative z-10 pt-1">
                 <button
                   onClick={() => {
                     setSelectedCategory('Filaments');
                     document.getElementById('catalog')?.scrollIntoView({ behavior: 'smooth' });
                   }}
-                  className="w-full py-3.5 bg-slate-900 hover:bg-black text-white text-xs font-black rounded-xl shadow-lg flex items-center justify-center space-x-2 transition"
+                  className="w-full py-3 bg-slate-900 hover:bg-black text-white text-xs font-black rounded-xl shadow-lg flex items-center justify-center space-x-2 transition"
                 >
                   <span>Explore Filament Deals</span>
                   <ArrowRight className="w-4 h-4" />
@@ -1125,7 +1125,7 @@ export default function ThreeDPrintingStore() {
             </div>
 
             {/* Right Filament Deals Grid */}
-            <div className="lg:col-span-8 grid grid-cols-1 sm:grid-cols-2 gap-6">
+            <div className="lg:col-span-8 grid grid-cols-1 sm:grid-cols-2 gap-5">
               {filamentDeals.slice(0, 4).map((filament) => {
                 const discountPercent = filament.originalPrice
                   ? Math.round(((filament.originalPrice - filament.price) / filament.originalPrice) * 100)
@@ -1134,11 +1134,11 @@ export default function ThreeDPrintingStore() {
                 return (
                   <div
                     key={filament.id}
-                    className="bg-slate-50 border border-slate-200 p-5 rounded-3xl flex flex-col justify-between hover:border-red-400 hover:shadow-xl transition-all duration-300 group"
+                    className="bg-slate-50 border border-slate-200 p-4 rounded-3xl flex flex-col justify-between hover:border-red-400 hover:shadow-xl transition-all duration-300 group"
                   >
                     <div>
                       {/* Spool Image with Sale Badge */}
-                      <div className="relative aspect-video w-full rounded-2xl bg-white p-3 border border-slate-200/80 mb-4 overflow-hidden">
+                      <div className="relative aspect-video w-full rounded-2xl bg-white p-3 border border-slate-200/80 mb-3 overflow-hidden">
                         <img
                           src={filament.image}
                           alt={filament.name}
@@ -1160,18 +1160,18 @@ export default function ThreeDPrintingStore() {
                       <span className="text-[10px] font-black uppercase tracking-wider text-red-600">
                         {filament.brand}
                       </span>
-                      <h4 className="text-sm font-bold text-slate-900 line-clamp-2 mt-1 group-hover:text-red-600 transition">
+                      <h4 className="text-xs sm:text-sm font-bold text-slate-900 line-clamp-2 mt-0.5 group-hover:text-red-600 transition">
                         {filament.name}
                       </h4>
-                      <p className="text-xs text-slate-500 mt-1 line-clamp-2 leading-relaxed">
+                      <p className="text-[11px] text-slate-500 mt-0.5 line-clamp-2 leading-relaxed">
                         {filament.description}
                       </p>
                     </div>
 
-                    <div className="mt-4 pt-3 border-t border-slate-200 flex items-center justify-between">
+                    <div className="mt-3 pt-2.5 border-t border-slate-200 flex items-center justify-between">
                       <div>
                         <div className="flex items-baseline space-x-1.5">
-                          <span className="text-lg font-black text-slate-900">
+                          <span className="text-base font-black text-slate-900">
                             ₹{filament.price.toLocaleString('en-IN')}
                           </span>
                           {filament.originalPrice && (
@@ -1184,7 +1184,7 @@ export default function ThreeDPrintingStore() {
 
                       <button
                         onClick={() => addToCart(filament, 1)}
-                        className="px-4 py-2.5 bg-slate-900 hover:bg-black text-white text-xs font-black rounded-xl shadow-md flex items-center space-x-1.5 transition"
+                        className="px-3.5 py-2 bg-slate-900 hover:bg-black text-white text-xs font-black rounded-xl shadow-md flex items-center space-x-1.5 transition"
                       >
                         <ShoppingBag className="w-3.5 h-3.5" />
                         <span>Add</span>
@@ -1200,17 +1200,17 @@ export default function ThreeDPrintingStore() {
         </div>
       </section>
 
-      {/* 6. OUR BEST SELLERS SECTION (Exact requested split showcase card & tabs) */}
-      <section className="py-8 px-4 sm:px-6 lg:px-8 max-w-[1536px] mx-auto">
-        <div className="bg-white p-6 sm:p-8 rounded-3xl border border-slate-200 shadow-2xs">
+      {/* 6. OUR BEST SELLERS SECTION */}
+      <section className="py-2 px-4 sm:px-6 lg:px-8 max-w-[1536px] mx-auto">
+        <div className="bg-white p-4 sm:p-6 rounded-3xl border border-slate-200 shadow-2xs">
           
           {/* Header & Filter Tabs */}
-          <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-8 gap-4 pb-4 border-b border-slate-100">
+          <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-5 gap-3 pb-3 border-b border-slate-100">
             <div>
               <h2 className="text-2xl sm:text-3xl font-black text-slate-900 tracking-tight">
                 Our Best <span className="text-red-600">Sellers</span>
               </h2>
-              <p className="text-xs sm:text-sm text-slate-500 mt-1">
+              <p className="text-xs sm:text-sm text-slate-500 mt-0.5">
                 Discover our best selling 3D printers, print head products, filaments & post-processing tools.
               </p>
             </div>
@@ -1225,7 +1225,7 @@ export default function ThreeDPrintingStore() {
                 <button
                   key={tab.id}
                   onClick={() => setBestSellerTab(tab.id)}
-                  className={`px-4 py-2 rounded-xl text-xs font-extrabold transition ${
+                  className={`px-3.5 py-1.5 rounded-xl text-xs font-extrabold transition ${
                     bestSellerTab === tab.id
                       ? 'bg-red-600 text-white shadow-md shadow-red-600/20'
                       : 'bg-slate-100 text-slate-700 hover:bg-slate-200 border border-slate-200'
@@ -1239,79 +1239,79 @@ export default function ThreeDPrintingStore() {
 
           {/* Main Best Seller Feature Split View Card */}
           {featuredBestSeller && (
-            <div className="bg-slate-50 border border-slate-200 rounded-3xl p-6 sm:p-8 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center mb-8">
+            <div className="bg-slate-50 border border-slate-200 rounded-3xl p-5 sm:p-6 grid grid-cols-1 lg:grid-cols-12 gap-6 items-center mb-6">
               
               {/* Left Image Showcase */}
               <div className="lg:col-span-6 relative">
-                <div className="bg-white p-4 rounded-3xl border border-slate-200 shadow-lg overflow-hidden group">
+                <div className="bg-white p-3 rounded-3xl border border-slate-200 shadow-lg overflow-hidden group">
                   <img
                     src={featuredBestSeller.image}
                     alt={featuredBestSeller.name}
                     onError={(e) => {
                       (e.target as HTMLImageElement).src = 'https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=800&q=80';
                     }}
-                    className="w-full h-72 sm:h-80 object-contain rounded-2xl group-hover:scale-105 transition-transform duration-500"
+                    className="w-full h-64 sm:h-72 object-contain rounded-2xl group-hover:scale-105 transition-transform duration-500"
                   />
-                  <div className="absolute top-6 left-6 bg-red-600 text-white text-[10px] font-black uppercase px-3 py-1 rounded-full shadow-md tracking-wider">
+                  <div className="absolute top-5 left-5 bg-red-600 text-white text-[10px] font-black uppercase px-3 py-1 rounded-full shadow-md tracking-wider">
                     BEST SELLING #1
                   </div>
                 </div>
               </div>
 
               {/* Right Technical Specs & Buy Actions */}
-              <div className="lg:col-span-6 space-y-6">
+              <div className="lg:col-span-6 space-y-4">
                 <div>
                   <span className="text-xs font-black uppercase tracking-wider text-red-600">
                     {featuredBestSeller.brand} • TOP RATED CHOICE
                   </span>
-                  <h3 className="text-2xl sm:text-3xl font-black text-slate-900 tracking-tight mt-1">
+                  <h3 className="text-xl sm:text-2xl font-black text-slate-900 tracking-tight mt-0.5">
                     {featuredBestSeller.name}
                   </h3>
-                  <p className="text-slate-600 text-xs sm:text-sm mt-2 leading-relaxed">
+                  <p className="text-slate-600 text-xs mt-1.5 leading-relaxed">
                     {featuredBestSeller.description}
                   </p>
                 </div>
 
                 {/* Feature Specs List with Icons */}
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs font-bold text-slate-800">
-                  <div className="flex items-center space-x-2.5 p-3 rounded-xl bg-white border border-slate-200">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 text-xs font-bold text-slate-800">
+                  <div className="flex items-center space-x-2 p-2.5 rounded-xl bg-white border border-slate-200">
                     <Zap className="w-4 h-4 text-red-600 flex-shrink-0" />
                     <span>Fast Automatic Full-Color</span>
                   </div>
-                  <div className="flex items-center space-x-2.5 p-3 rounded-xl bg-white border border-slate-200">
+                  <div className="flex items-center space-x-2 p-2.5 rounded-xl bg-white border border-slate-200">
                     <Gauge className="w-4 h-4 text-red-600 flex-shrink-0" />
                     <span>Up to 500 mm/s Speed</span>
                   </div>
-                  <div className="flex items-center space-x-2.5 p-3 rounded-xl bg-white border border-slate-200">
+                  <div className="flex items-center space-x-2 p-2.5 rounded-xl bg-white border border-slate-200">
                     <Wrench className="w-4 h-4 text-red-600 flex-shrink-0" />
                     <span>1-Clip Quick Swap Nozzle</span>
                   </div>
-                  <div className="flex items-center space-x-2.5 p-3 rounded-xl bg-white border border-slate-200">
+                  <div className="flex items-center space-x-2 p-2.5 rounded-xl bg-white border border-slate-200">
                     <CheckCircle2 className="w-4 h-4 text-red-600 flex-shrink-0" />
                     <span>Full-Auto Bed Mesh Leveling</span>
                   </div>
                 </div>
 
                 {/* Price & Primary Call to Actions */}
-                <div className="pt-4 border-t border-slate-200 flex flex-wrap items-center justify-between gap-4">
+                <div className="pt-3 border-t border-slate-200 flex flex-wrap items-center justify-between gap-3">
                   <div>
-                    <span className="text-xs text-slate-500 font-semibold block">Exclusive Store Price</span>
+                    <span className="text-[11px] text-slate-500 font-semibold block">Exclusive Store Price</span>
                     <div className="flex items-baseline space-x-2">
-                      <span className="text-2xl sm:text-3xl font-black text-slate-900">
+                      <span className="text-xl sm:text-2xl font-black text-slate-900">
                         ₹{featuredBestSeller.price.toLocaleString('en-IN')}
                       </span>
                       {featuredBestSeller.originalPrice && (
-                        <span className="text-sm text-slate-400 line-through font-medium">
+                        <span className="text-xs text-slate-400 line-through font-medium">
                           ₹{featuredBestSeller.originalPrice.toLocaleString('en-IN')}
                         </span>
                       )}
                     </div>
                   </div>
 
-                  <div className="flex items-center space-x-3">
+                  <div className="flex items-center space-x-2.5">
                     <button
                       onClick={() => addToCart(featuredBestSeller, 1)}
-                      className="px-7 py-3.5 bg-slate-900 hover:bg-black text-white text-xs font-black rounded-xl shadow-lg flex items-center space-x-2 transition transform hover:-translate-y-0.5"
+                      className="px-5 py-3 bg-slate-900 hover:bg-black text-white text-xs font-black rounded-xl shadow-lg flex items-center space-x-2 transition transform hover:-translate-y-0.5"
                     >
                       <ShoppingBag className="w-4 h-4" />
                       <span>+ Add to Cart</span>
@@ -1319,7 +1319,7 @@ export default function ThreeDPrintingStore() {
 
                     <Link
                       href={`/${featuredBestSeller.vertical}/${featuredBestSeller.category.toLowerCase().replace(/\s+/g, '-')}/${featuredBestSeller.slug}`}
-                      className="px-5 py-3.5 bg-white hover:bg-slate-100 text-slate-800 text-xs font-bold rounded-xl border border-slate-300 transition"
+                      className="px-4 py-3 bg-white hover:bg-slate-100 text-slate-800 text-xs font-bold rounded-xl border border-slate-300 transition"
                     >
                       <span>View Details</span>
                     </Link>
@@ -1332,7 +1332,7 @@ export default function ThreeDPrintingStore() {
           )}
 
           {/* Secondary Bestseller Grid */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
             {products.slice(0, 4).map((product) => (
               <ProductCard key={product.id} product={product} />
             ))}
@@ -1342,19 +1342,19 @@ export default function ThreeDPrintingStore() {
       </section>
 
       {/* 7. MATERIALS COMPARISON GUIDE */}
-      <section id="materials" className="py-6 px-4 sm:px-6 lg:px-8 max-w-[1536px] mx-auto">
-        <div className="bg-white p-6 sm:p-8 rounded-3xl border border-slate-200/90 shadow-2xs">
-          <div className="text-center max-w-2xl mx-auto mb-8 space-y-2">
+      <section id="materials" className="py-2 px-4 sm:px-6 lg:px-8 max-w-[1536px] mx-auto">
+        <div className="bg-white p-4 sm:p-6 rounded-3xl border border-slate-200/90 shadow-2xs">
+          <div className="text-center max-w-2xl mx-auto mb-5 space-y-1">
             <span className="text-[10px] font-black uppercase tracking-widest text-red-600 bg-red-50 px-3 py-1 rounded-full border border-red-200">
               Material Selection Guide
             </span>
-            <h2 className="text-2xl font-black text-slate-900">Pick the Right Plastic</h2>
+            <h2 className="text-xl sm:text-2xl font-black text-slate-900">Pick the Right Plastic</h2>
             <p className="text-xs text-slate-500">
               Compare thermal limits, impact resistance, and printing complexity across top engineering polymers.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-5 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-5 gap-3.5">
             {materials.map((mat) => (
               <div
                 key={mat.code}
@@ -1362,7 +1362,7 @@ export default function ThreeDPrintingStore() {
                   setSelectedMaterial(selectedMaterial === mat.code ? 'all' : mat.code);
                   document.getElementById('catalog')?.scrollIntoView({ behavior: 'smooth' });
                 }}
-                className={`p-4.5 rounded-2xl border transition-all cursor-pointer flex flex-col justify-between ${
+                className={`p-3.5 rounded-2xl border transition-all cursor-pointer flex flex-col justify-between ${
                   selectedMaterial === mat.code
                     ? 'bg-red-50 border-red-600 ring-2 ring-red-300'
                     : 'bg-slate-50 border-slate-200 hover:border-slate-300 hover:bg-white'
@@ -1378,7 +1378,7 @@ export default function ThreeDPrintingStore() {
                     </span>
                   </div>
                   <h4 className="text-xs font-bold text-slate-900 mb-1">{mat.name}</h4>
-                  <p className="text-[11px] text-slate-600 leading-relaxed mb-3">{mat.useCase}</p>
+                  <p className="text-[11px] text-slate-600 leading-relaxed mb-2">{mat.useCase}</p>
                 </div>
 
                 <div className="pt-2 border-t border-slate-200 flex items-center justify-between text-[10px] text-slate-500 font-semibold">
@@ -1392,9 +1392,9 @@ export default function ThreeDPrintingStore() {
       </section>
 
       {/* 8. MAIN PRODUCT CATALOG & FILTERING */}
-      <section id="catalog" className="py-8 px-4 sm:px-6 lg:px-8 max-w-[1536px] mx-auto">
-        <div className="bg-white p-6 sm:p-8 rounded-3xl border border-slate-200/90 shadow-2xs">
-          <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-6 gap-4 border-b border-slate-100 pb-4">
+      <section id="catalog" className="py-2 px-4 sm:px-6 lg:px-8 max-w-[1536px] mx-auto">
+        <div className="bg-white p-4 sm:p-6 rounded-3xl border border-slate-200/90 shadow-2xs">
+          <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-5 gap-3 border-b border-slate-100 pb-3">
             <div>
               <h2 className="text-xl sm:text-2xl font-black text-slate-900 flex items-center space-x-2">
                 <span>3D Printing Catalog</span>
@@ -1414,7 +1414,7 @@ export default function ThreeDPrintingStore() {
                 <button
                   key={cat.id}
                   onClick={() => setSelectedCategory(cat.id)}
-                  className={`px-3.5 py-1.5 text-xs font-bold rounded-xl transition ${
+                  className={`px-3 py-1 text-xs font-bold rounded-xl transition ${
                     selectedCategory === cat.id
                       ? 'bg-slate-900 text-white shadow-xs'
                       : 'bg-slate-100 text-slate-700 hover:bg-slate-200 border border-slate-200'
@@ -1436,13 +1436,13 @@ export default function ThreeDPrintingStore() {
           </div>
 
           {loading ? (
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-5">
               {[1, 2, 3, 4].map((i) => (
                 <div key={i} className="h-80 bg-slate-100 rounded-2xl animate-pulse" />
               ))}
             </div>
           ) : filteredProducts.length === 0 ? (
-            <div className="text-center py-16 text-slate-500 text-sm font-semibold">
+            <div className="text-center py-12 text-slate-500 text-sm font-semibold">
               No products match the selected filters.
               <button
                 onClick={() => {
@@ -1456,7 +1456,7 @@ export default function ThreeDPrintingStore() {
               </button>
             </div>
           ) : (
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5">
               {filteredProducts.map((product) => (
                 <ProductCard key={product.id} product={product} />
               ))}
